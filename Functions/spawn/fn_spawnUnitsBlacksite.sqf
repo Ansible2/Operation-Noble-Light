@@ -163,3 +163,6 @@ uiSleep 1;
 
 // dig site
 [4,1,ONL_CSATVariants,ONL_blackSite_interiorPositions_1b,false,true,opfor] call KISKA_fnc_spawn;
+
+
+["BL spawns are complete"] remoteExec ["hint",[0,-2] select isDedicated];

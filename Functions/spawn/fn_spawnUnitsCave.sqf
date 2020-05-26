@@ -69,3 +69,6 @@
 	
 	
 	[4,4,ONL_CSATViper_unitTypes,ONL_cave_center_positions_4,true] call KISKA_fnc_spawn;
+
+
+	["Dark Area spawns are complete"] remoteExec ["hint",[0,-2] select isDedicated];

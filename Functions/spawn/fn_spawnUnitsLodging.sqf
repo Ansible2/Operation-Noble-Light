@@ -51,3 +51,6 @@ if !(ONL_CUPUnitsLoaded) then {
 	ONL_PMCUnits append _PMCUnits1;
 	ONL_PMCUnits append _PMCUnits2;
 };
+
+
+["Lodge spawns are complete"] remoteExec ["hint",[0,-2] select isDedicated];

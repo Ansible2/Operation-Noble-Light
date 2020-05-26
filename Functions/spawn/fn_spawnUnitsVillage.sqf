@@ -24,3 +24,6 @@ for "_i" from 1 to 2 do {
 };
 
 ONL_villagePatrols = [ONL_villagePatrol_1,ONL_villagePatrol_2];
+
+
+["Village spawns are complete"] remoteExec ["hint",[0,-2] select isDedicated];

@@ -19,3 +19,6 @@ if !(ONL_CUPUnitsLoaded) then {
 	ONL_PMCUnits append (units _patrol1);
 	ONL_PMCUnits append (units _patrol2);
 };
+
+
+["Facility spawns are complete"] remoteExec ["hint",[0,-2] select isDedicated];

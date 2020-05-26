@@ -33,4 +33,6 @@ allUnits apply {
 	uiSleep 0.1;
 };
 
+["Master spawn is complete"] remoteExec ["hint",[0,-2] select isDedicated];
+
 true

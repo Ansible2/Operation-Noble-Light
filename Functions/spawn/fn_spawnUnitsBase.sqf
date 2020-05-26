@@ -138,3 +138,6 @@ call {
 		};
 	}];
 };
+
+
+["Base spawns are complete"] remoteExec ["hint",[0,-2] select isDedicated];

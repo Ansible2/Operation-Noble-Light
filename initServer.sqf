@@ -6,7 +6,7 @@
 #include "headers\entityGroups.hpp";
 #include "headers\newsSounds.hpp";
 
-[[[ONL_redGroup],[ONL_blueGroup]]] call KISKA_fnc_initializeRespawnSystem;
+[[[ONL_redGroup],[ONL_blueGroup],[ONL_yellowGroup]]] call KISKA_fnc_initializeRespawnSystem;
 
 // prepare all the global variables to account for different mods
 call ONL_fnc_prepareGlobals;
@@ -44,7 +44,7 @@ call ONL_fnc_startServerLoops;
 ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Airfield Respawn"] call BIS_fnc_addRespawnPosition;
 
 // distribute AI amongst headless client(s) save for some groups
-KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup];
+KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup,ONL_yellowGroup];
 
 // make civ triggers less intensive
 [ONL_blackSiteCiv_Trigger,ONL_lodgingCiv_Trigger,ONL_facilityCiv_trigger] apply {
@@ -53,11 +53,13 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTur
 
 uiSleep 30;
 
+["Headless balance has begun"] remoteExec ["hint",[0,-2] select isDedicated];
 [] spawn KISKA_fnc_balanceHeadless;
 
 uiSleep 100;
 
 // reassign loadouts for vanilla
 if (!ONL_CUPUnitsLoaded) then {
+	["Enemy loadout assignment has begun"] remoteExec ["hint",[0,-2] select isDedicated];
 	["ONL_",ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
 };
