@@ -35,7 +35,7 @@ ONL_drone flyInHeight 500;
             };
         }
     ]
-] remoteExec ["addEventHandler",0];
+] remoteExec ["addEventHandler",0,true];
 
 ["Be advised, 1x Reaper callsign WildFire is entering the AO"] remoteExecCall ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];
 
