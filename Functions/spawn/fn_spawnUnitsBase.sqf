@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 // turrets
 private _turretUnits = [4,1,ONL_CSATVariants,[[0,0,0],[0,0,0],[0,0,0],[0,0,0]],true] call KISKA_fnc_spawn;
 private _turrets = [ONL_turretBase_1,ONL_turretBase_2,ONL_turretBase_3,ONL_turretBase_4];

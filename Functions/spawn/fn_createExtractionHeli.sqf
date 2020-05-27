@@ -1,3 +1,6 @@
+if (!isServer) exitWith {};
+
+
 ONL_extractHeli = createVehicle [["B_Heli_Transport_03_F","CUP_B_UH60M_US"] select ONL_CUPVehiclesLoaded,[7213.91,5574.56,46.871],[],0,"FLY"];
 
 if (ONL_CUPVehiclesLoaded) then {

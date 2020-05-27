@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 // Interior
 [4,1,ONL_CSATVariants,ONL_facility_interiorPositions] call KISKA_fnc_spawn;
 

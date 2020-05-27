@@ -1,7 +1,9 @@
+if (!isServer) exitWith {};
+
 [
 	1,
 	{
-		[ONL_logic_bunkerRadio,35] spawn KISKA_fnc_radioChatter;
+		[ONL_logic_bunkerRadio,35,3] spawn KISKA_fnc_radioChatter;
 		
 		[
 			2,

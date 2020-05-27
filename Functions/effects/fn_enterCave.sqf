@@ -1,3 +1,6 @@
+if (!hasInterface) exitWith {};
+
+
 ["ONL_Cave_entered_Event"] call CBA_fnc_serverEvent;
 		
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Entering...</t>", "BLACK OUT", 3, true, true];

@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 private _fn_createSimple = {
 	params [
 		["_logic",objNull,[objNull]],

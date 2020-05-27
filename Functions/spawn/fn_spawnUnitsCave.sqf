@@ -1,3 +1,5 @@
+	if (!isServer) exitWith {};
+
 	// entry
 	[4,2,ONL_CSATViper_unitTypes,ONL_cave_entryWayPositions,true] call KISKA_fnc_spawn;
 	

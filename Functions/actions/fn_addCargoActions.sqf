@@ -4,7 +4,7 @@ params [
 	["_player",player,[objNull]]
 ];
 
-[['USAF_C17',13], ONL_startingVehicles] call KISKA_fnc_addCargoActions;
+[['USAF_C17',13.5], ONL_startingVehicles] call KISKA_fnc_addCargoActions;
 
 [	
 	ONL_resetSwitch,

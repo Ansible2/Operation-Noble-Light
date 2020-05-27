@@ -1,3 +1,5 @@
+if (!hasInterface) exitWIth {};
+
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Some Time Later...</t>", "BLACK OUT", 3, true, true]; 
 
 // for the c17's abismal engine noise

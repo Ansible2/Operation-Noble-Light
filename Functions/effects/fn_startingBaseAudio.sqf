@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 [
 	1,
 	{

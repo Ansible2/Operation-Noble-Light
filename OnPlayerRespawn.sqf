@@ -2,9 +2,9 @@ params [
 	"_newUnit"
 ];
 
-_newUnit setUnitLoadout ONL_playerLoadout;
+_newUnit setUnitLoadout KISKA_loadout;
 
-_newunit setCustomAimCoef 0.75;
+_newunit setCustomAimCoef 0.85;
 
 // set envrionmental and view distance if player respawns in or out of cave accordingly
 [

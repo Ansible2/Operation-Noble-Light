@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 [11,1,ONL_spetsnazSFVariants,ONL_village_positions_group1,true,true,resistance] call KISKA_fnc_spawn;
 	
 	

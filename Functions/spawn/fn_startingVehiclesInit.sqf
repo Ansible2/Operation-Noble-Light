@@ -1,5 +1,16 @@
+if (!isServer) exitWith {};
+
 if (!ONL_CUPVehiclesLoaded AND {!ONL_RHSUSFVehiclesLoaded}) exitWith {
 	missionNamespace setVariable ["ONL_startingVehicles",ONL_startingVehicles,true];
+
+	ONL_startingVehicles apply {
+		_x allowDamage false;
+
+		clearWeaponCargoGlobal _x;
+		clearItemCargoGlobal _x;
+		clearBackpackCargoGlobal _x;
+		clearMagazineCargoGlobal _x;
+	};
 };
 
 private _fn_create = {
@@ -38,6 +49,11 @@ if (ONL_CUPVehiclesLoaded) then {
 
 ONL_startingVehicles apply {
 	_x allowDamage false;
+
+	clearWeaponCargoGlobal _x;
+	clearItemCargoGlobal _x;
+	clearBackpackCargoGlobal _x;
+	clearMagazineCargoGlobal _x;
 };
 
 missionNamespace setVariable ["ONL_startingVehicles",ONL_startingVehicles,true];

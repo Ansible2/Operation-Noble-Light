@@ -1,8 +1,7 @@
+if (!hasInterface) exitWith {};
+
+
 if (!ONL_CCMLoaded AND {!ONL_KISKAMusicLoaded}) exitWith {false};
-
-
-
-
 
 if (ONL_CCMLoaded) exitWith {
 	[

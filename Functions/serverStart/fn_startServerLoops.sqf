@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 call ONL_fnc_waitToAddBlackSiteTasks;
 
 // cargo plane takeoff loop

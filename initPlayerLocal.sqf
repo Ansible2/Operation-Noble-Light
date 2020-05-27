@@ -46,7 +46,7 @@ However, we're risking the current peace in an effort to secure key intel on CSA
 One of our informants operating across the enemy lines has discovered what he claims to be groundbreaking intellegence. The catch is that he demands we extract him first from the border town of <marker name='marker_170'>Valstoff</marker>
 <br></br>
 <br></br>
-Visibility is quickly deteriorating, it's going to be approximately 1615 before we get a siginificant layer of fog in the area."
+Visibility is quickly deteriorating. We're expecting heavy fog within the next 6 hours. Should you need to stay out, ensure that you are using your time wisely."
 ],taskNull,"",true];
 
 // Mission

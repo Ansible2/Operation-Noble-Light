@@ -1,3 +1,6 @@
+if (!hasInterface) exitWith {};
+
+
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Exiting...</t>", "BLACK OUT", 3, true, true];
 
 3 fadeSound 0;

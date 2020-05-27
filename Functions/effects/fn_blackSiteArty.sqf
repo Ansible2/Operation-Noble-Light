@@ -1,4 +1,6 @@
-if !(canSuspend) exitWith {false};
+if (!canSuspend) exitWith {};
+
+if (!isServer) exitWith {};
 
 if (alive ONL_arty_1) then {
 	group (driver ONL_arty_1) enableDynamicSimulation false;

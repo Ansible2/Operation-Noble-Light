@@ -1,3 +1,6 @@
+if (!isServer) exitWith {};
+
+
 ((getMissionLayerEntities "GeneratorLamps") select 0) apply {
 	_x setDamage 0.95;
 };

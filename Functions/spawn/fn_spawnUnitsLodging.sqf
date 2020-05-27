@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 // Interior
 private _PMCUnits1 = [4,1,ONL_pmc_Variants,ONL_lodging_interiorPositions,true] call KISKA_fnc_spawn;
 

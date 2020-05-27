@@ -1,3 +1,5 @@
+if (!isServer) exitWith {};
+
 params [
 	["_radio",objNull,[objNull]],
 	["_duration",300,[123]]
