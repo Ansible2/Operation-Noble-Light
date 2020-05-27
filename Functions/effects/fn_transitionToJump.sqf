@@ -57,7 +57,7 @@ ONL_getoutActionID = player addAction [
 		[
 			{((velocity player) select 2) < -8},
 			{
-				player setVelocity ((velocity player) vectorAdd [120,0,0]);
+				player setVelocity ((velocity player) vectorDiff [0,120,0]);
 			}
 		] call CBA_fnc_waitUntilAndExecute;
 		

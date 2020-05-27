@@ -47,7 +47,7 @@ ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Air
 KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup];
 
 // make civ triggers less intensive
-[ONL_blackSiteCiv_Trigger,ONL_lodgingCiv_Trigger,ONL_facilityCiv_trigger] apply {
+[ONL_blackSiteCiv_Trigger,ONL_lodgingCiv_Trigger,ONL_facilityCiv_trigger,ONL_caveChemLights_trigger] apply {
 	_x setTriggerInterval 2;
 };
 
