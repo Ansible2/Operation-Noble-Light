@@ -33,7 +33,7 @@ ONL_spetsnaz_helicopter = "O_Heli_Light_02_unarmed_F";
 
 // PMC
 ONL_pmc_Variants = [ONL_PMCVanilla_unitTypes,ONL_ion_unitTypes] select ONL_CUPUnitsLoaded;
-ONL_PMC_guntruck = ["B_T_MRAP_01_hmg_F","CUP_I_RG31E_M2_W_ION"] select ONL_CUPVehiclesLoaded;
+ONL_PMC_guntruck = ["I_G_Offroad_01_armed_F","CUP_I_RG31E_M2_W_ION"] select ONL_CUPVehiclesLoaded;
 
 
 // static object replacement globals

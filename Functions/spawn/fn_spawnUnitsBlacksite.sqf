@@ -107,6 +107,16 @@ private _fn_popCheckpoint = {
 	];
 
 	private _gunTruck = createVehicle [ONL_PMC_guntruck,getPosATL _gunTruckLogic,[],0,"CAN_COLLIDE"];
+
+	// if cup is not loaded stop BIS randomization on trucks and make them look a certain way
+	if (!ONL_CUPVehiclesLoaded) then {
+		[
+			_gunTruck,
+			["Green",1], 
+			["Hide_Shield",1,"Hide_Rail",1,"HideDoor1",0,"HideDoor2",0,"HideDoor3",0,"HideBackpacks",0,"HideBumper1",1,"HideBumper2",0,"HideConstruction",0]
+		] call BIS_fnc_initVehicle;
+	};
+
 	_gunTruck setVectorDirAndUp [vectorDir _gunTruckLogic,vectorUp _gunTruckLogic];
 	_gunTruck enableDynamicSimulation true;
 

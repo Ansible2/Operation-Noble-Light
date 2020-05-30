@@ -60,7 +60,7 @@ ONL_blackSite_interiorPositions_1b = [ // These are at the dig site
 
 // Blacksite Checkpoints
 ONL_blackSite_checkpointPositions_1 = [
-    [12281.7,11909.4,0],
+    [12277,11913.7,0],
     [12282.7,11912.8,0],
     [12280,11910,0],
     [12279.9,11906,0],
