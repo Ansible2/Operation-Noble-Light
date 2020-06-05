@@ -12,7 +12,7 @@ ONL_ApolloTruck addAction [
 
 		["ONL_wasStudied_Event", [_truck]] call CBA_fnc_serverEvent;	
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  
@@ -33,7 +33,7 @@ ONL_ApolloFiles addAction [
 
 		["ONL_village_CollectedIntel_Event", [_files]] call CBA_fnc_serverEvent;	
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  

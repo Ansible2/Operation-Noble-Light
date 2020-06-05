@@ -12,7 +12,7 @@ ONL_glowingRock addAction [
 
 		["ONL_wasStudied_Event",[_rock]] call CBA_fnc_serverEvent;	
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  
@@ -34,7 +34,7 @@ ONL_blackSiteComputer addAction [
 
 		["ONL_wasStudied_Event",[_computer]] call CBA_fnc_serverEvent;
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  
@@ -57,7 +57,7 @@ ONL_blackSiteCollects apply {
 
 			["ONL_blackSite_CollectedIntel_Event",[_intelObject]] call CBA_fnc_serverEvent;		
 		}, 
-		[], 
+		nil, 
 		10,  
 		true,  
 		false,  

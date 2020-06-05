@@ -5,7 +5,7 @@ player addAction [
 	{
 		call ONL_fnc_enterCave;
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  

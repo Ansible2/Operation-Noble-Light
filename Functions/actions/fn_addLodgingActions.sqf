@@ -11,7 +11,7 @@ ONL_lodgingLaptop addAction [
 
 		["ONL_wasStudied_Event",[_laptop]] call CBA_fnc_serverEvent;	
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  

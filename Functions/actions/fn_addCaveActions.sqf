@@ -13,7 +13,7 @@ ONL_caveCollectDevices apply {
 
 			["ONL_Cave_CollectedIntel_Event",[_device]] call CBA_fnc_serverEvent;
 		}, 
-		[], 
+		nil, 
 		10,  
 		true,  
 		false,  
@@ -37,7 +37,7 @@ ONL_caveGenerators apply {
 
 			["ONL_Cave_generatorShutOff_Event",[_generator]] call CBA_fnc_serverEvent;
 		}, 
-		[], 
+		nil, 
 		10,  
 		true,  
 		false,  
@@ -58,7 +58,7 @@ ONL_caveTankComputer addAction [
 
 		["ONL_wasStudied_Event",[_computer]] call CBA_fnc_serverEvent;
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  
@@ -82,7 +82,7 @@ ONL_caveDevices apply {
 
 			["ONL_wasStudied_Event",[_device]] call CBA_fnc_serverEvent;			
 		}, 
-		[], 
+		nil, 
 		10,  
 		true,  
 		false,  
@@ -100,7 +100,7 @@ player addAction [
 	{		
 		call ONL_fnc_exitCave; 
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  

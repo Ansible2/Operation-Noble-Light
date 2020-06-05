@@ -12,7 +12,7 @@ ONL_BaseFile addAction [
 		["You flip through the pages and find transport routes to a living area with mentions of engineers. Could be a lodging location. Seems to be the northern area Snikesnoken Hyttetun"] call KISKA_fnc_hintDiary;
 
 	}, 
-	[], 
+	nil, 
 	10,  
 	true,  
 	false,  

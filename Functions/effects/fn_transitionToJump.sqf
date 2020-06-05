@@ -27,7 +27,7 @@ ONL_getoutActionID = player addAction [
 			1
 		] call CBA_fnc_waitAndExecute;
 	}, 
-	[], 
+	nil, 
 	1.5,  
 	false,  
 	false,  
