@@ -1,6 +1,6 @@
 params ["_newUnit"];
 
-call ONL_fnc_addPlayerActions;
+[_newUnit] spawn ONL_fnc_addPlayerActions;
 
 _newUnit setUnitLoadout KISKA_loadout;
 
@@ -27,10 +27,10 @@ _newunit setCustomAimCoef 0.15;
 				enableEnvironment [false,false];
 			};
 
-			call ONL_fnc_addDefusalActions;
-
 			setObjectViewDistance 200;
 			setViewDistance 200;
+
+			[] spawn ONL_fnc_addDefusalActions;
 		} else {
 			if !(environmentEnabled isEqualTo [true,true]) then {
 				enableEnvironment [true,true];

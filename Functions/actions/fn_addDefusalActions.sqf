@@ -1,4 +1,8 @@
-if !(hasInterface) exitWith {};
+if (!hasInterface) exitWith {};
+
+if (!canSuspend) exitWith {
+	"ONL_fnc_addDefusalActions must be run in scheduled envrionment" call BIS_fnc_error;
+};
 
 waitUntil {player isEqualTo player};
 
@@ -7,7 +11,7 @@ waitUntil {player isEqualTo player};
 if !(isNull ONL_charge_1) then {
 	ONL_charge_1_ID = [	
 		player,
-		"<t color='#b5041e'>Disarm Explosive</t>", 
+		"<t color='#b5041e'>Disarm Explosive 1</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"cursorObject isEqualTo ONL_charge_1", 
@@ -32,7 +36,7 @@ if !(isNull ONL_charge_1) then {
 if !(isNull ONL_charge_2) then {
 	ONL_charge_2_ID = [	
 		player,
-		"<t color='#b5041e'>Disarm Explosive</t>", 
+		"<t color='#b5041e'>Disarm Explosive 2</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"cursorObject isEqualTo ONL_charge_2", 
@@ -54,10 +58,11 @@ if !(isNull ONL_charge_2) then {
 	] call BIS_fnc_holdActionAdd;
 };
 
+
 if !(isNull ONL_charge_3) then {	
 	ONL_charge_3_ID = [	
 		player,
-		"<t color='#b5041e'>Disarm Explosive</t>", 
+		"<t color='#b5041e'>Disarm Explosive 3</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"cursorObject isEqualTo ONL_charge_3", 
@@ -79,6 +84,8 @@ if !(isNull ONL_charge_3) then {
 	] call BIS_fnc_holdActionAdd;
 };
 
+
+
 // remove action event, actions persist even when the charge is detonated
 if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false])) then {
 	[
@@ -98,8 +105,10 @@ if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false
 };
 
 
+
 // remove actions when dead
 if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
+
 	player addEventHandler ["Killed",{
 		params ["_unit"];
 
@@ -108,7 +117,7 @@ if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
 			_x = nil;
 		};
 
-		_unit removeEventHandler ["Killed",_thisEventHandler];
+		_unit removeEventHandler ["killed",_thisEventHandler];
 
 		ONL_defusalKilled_EH_added = false;
 	}];
