@@ -17,7 +17,7 @@ if (ONL_CCMLoaded) exitWith {
 			["CCM_GL_classifiedInformation",0,true] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated]; 
 		},
 		[],
-		(["CCM_sb_horizons"] call KISKA_fnc_getMusicDuration) + 2
+		(["CCM_sb_horizons"] call KISKA_fnc_getMusicDuration) + 62
 	] call CBA_fnc_waitAndExecute;
 
 	[

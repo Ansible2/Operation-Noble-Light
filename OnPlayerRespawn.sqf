@@ -1,17 +1,15 @@
-params [
-	"_newUnit"
-];
+params ["_newUnit"];
+
+call ONL_fnc_addPlayerActions;
 
 _newUnit setUnitLoadout KISKA_loadout;
 
-_newunit setCustomAimCoef 0.85;
+_newunit setCustomAimCoef 0.15;
 
 // set envrionmental and view distance if player respawns in or out of cave accordingly
 [
 	{
-		params [
-			"_newUnit"
-		];
+		params ["_newUnit"];
 
 		// make sure awful engine noise on c17 can't be heard if they respawn in it
 		if (((getPosATLVisual _newUnit) distance ONL_logic_jumpPosition) < 20) exitWith {
@@ -28,6 +26,8 @@ _newunit setCustomAimCoef 0.85;
 			if !(environmentEnabled isEqualTo [false,false]) then {
 				enableEnvironment [false,false];
 			};
+
+			call ONL_fnc_addDefusalActions;
 
 			setObjectViewDistance 200;
 			setViewDistance 200;

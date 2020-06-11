@@ -5,6 +5,8 @@ if (!hasInterface) exitWith {};
 		
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Entering...</t>", "BLACK OUT", 3, true, true];
 
+call ONL_fnc_addDefusalActions;
+
 3 fadeSound 0;
 
 player allowDamage false;

@@ -1,5 +1,10 @@
 if (!isServer) exitWith {};
 
+// so that the defusal actions can check if these are alive
+publicVariable "ONL_charge_1";
+publicVariable "ONL_charge_2";
+publicVariable "ONL_charge_3";
+
 // check optional mods
 ONL_snowTigersLoaded = ["IP_CSAT_ST"] call KISKA_fnc_isPatchLoaded;
 ONL_CUPVehiclesLoaded = ["CUP_Vehicles_Core"] call KISKA_fnc_isPatchLoaded;

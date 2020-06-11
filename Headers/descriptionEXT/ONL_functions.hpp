@@ -15,7 +15,7 @@ class ONL
 		{};
 		class addLodgingActions
 		{};
-		class addResearchFacilityActions
+		class addPlayerActions
 		{};
 		class addVillageActions
 		{};

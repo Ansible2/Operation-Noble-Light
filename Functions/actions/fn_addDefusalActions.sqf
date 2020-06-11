@@ -1,7 +1,6 @@
 if !(hasInterface) exitWith {};
 
 // cave In charges
-
 // Defuse chages actions
 if !(isNull ONL_charge_1) then {
 	ONL_charge_1_ID = [	
@@ -53,7 +52,7 @@ if !(isNull ONL_charge_2) then {
 	] call BIS_fnc_holdActionAdd;
 };
 
-if !(isNull ONL_charge_3) then {
+if !(isNull ONL_charge_3) then {	
 	ONL_charge_3_ID = [	
 		player,
 		"<t color='#b5041e'>Disarm Explosive</t>", 
@@ -79,15 +78,35 @@ if !(isNull ONL_charge_3) then {
 };
 
 // remove action event, actions persist even when the charge is detonated
-[
-	"ONL_removeDefusalAction_Event",
-	{
-		params [
-			["_chargeGlobalName","",[""]]
-		];
-		
-		if (!isNil _chargeGlobalName) then {
-			player removeAction (missionNamespace getVariable _chargeGlobalName);
+if (!(missionNamespace getVariable ["ONL_removeDefusalActionEventCreated",false])) then {
+	[
+		"ONL_removeDefusalAction_Event",
+		{
+			params [
+				["_chargeGlobalName","",[""]]
+			];
+			
+			if (!isNil _chargeGlobalName) then {
+				player removeAction (missionNamespace getVariable _chargeGlobalName);
+			};
+		}
+	] call CBA_fnc_addEventHandler;
+
+	ONL_removeDefusalActionEventCreated = true;
+};
+
+// removeActions when dead
+
+if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
+	player addEventHandler ["KILLED",{
+		params ["_unit"];
+
+		[ONL_charge_1_ID,ONL_charge_2_ID,ONL_charge_3_ID] apply {
+			[_unit,_x] call BIS_fnc_holdActionRemove;
 		};
-	}
-] call CBA_fnc_addEventHandler;
+
+		_unit removeEventHandler ["KILLED",_thisEventHandler];
+
+		ONL_defusalKilled_EH_added = false;
+	}];
+};

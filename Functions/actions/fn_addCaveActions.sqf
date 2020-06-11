@@ -94,23 +94,6 @@ ONL_caveDevices apply {
 };
 
 
-// exit cave
-player addAction [ 
-	"--Exit Bunker",  
-	{		
-		call ONL_fnc_exitCave; 
-	}, 
-	nil, 
-	10,  
-	true,  
-	false,  
-	"", 
-	"player distance ONL_logic_cave_1 < 5 AND {isNull (objectParent player)}", 
-	2, 
-	false 
-];
-
-
 // Open testing area actions
 [	
 	ONL_entryWallComputer,

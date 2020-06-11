@@ -1,6 +1,6 @@
 if !(isServer) exitWith {};
 
-[
+private _id = [
 	"ONL_getToExtraction_Event",
 	{
 		
@@ -78,8 +78,8 @@ if !(isServer) exitWith {};
 					540 // takes approx 1 minute to reach the extract
 				] call CBA_fnc_waitAndExecute;
 				
+				// attack helicopter if there are enough players
 				if (count (call CBA_fnc_players) >= 4) then {
-					// attack helicopter
 					[
 						{
 							private _vehicle = createVehicle [ONL_CSATHelicopterAttack,[8210.23,11883.4,0],[],20,"FLY"];
@@ -104,10 +104,14 @@ if !(isServer) exitWith {};
 						[] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
+							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
+							sleep 1;
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
-						};				
+						};
+
+						["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];				
 					},
 					[],
 					60
@@ -118,7 +122,17 @@ if !(isServer) exitWith {};
 						[] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
+							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
+							sleep 1;
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
+							sleep 1;
+							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
+							
+							if (isDedicated) then {
+								["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
+								sleep 1;
+								["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
+							};
 						};
 
 						["About 6 minutes out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];						
@@ -132,9 +146,16 @@ if !(isServer) exitWith {};
 						[] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
+							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
+							sleep 1;
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
+							
+							// add more infantry if on dedicated server
+							if (isDedicated) then {
+								["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
+							};
 						};
 
 						["3 minutes out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];				
@@ -142,26 +163,16 @@ if !(isServer) exitWith {};
 					[],
 					(7*60)
 				] call CBA_fnc_waitAndExecute;
-				
-				/*
-				// create Mammoth tank
-				[
-					{
-						private _vehicle = createVehicle ["HTNK_Snow",selectRandom [ONL_logic_extraction_spawn_1,ONL_logic_extraction_spawn_2,ONL_logic_extraction_spawn_3],[],20,"NONE"];
-						private _group = createVehicleCrew _vehicle;
-						private _waypoint = _group addWaypoint [ONL_logic_extraction,100];
-						_waypoint setWaypointType "SAD";						
-					},
-					[],
-					(3*60)
-				] call CBA_fnc_waitAndExecute;
-				*/
+
 			},
 			{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_extraction) < 50}) isEqualTo -1)}
 		] call KISKA_fnc_waitUntil;
 
+		ONL_getToExtract_EventID call CBA_fnc_removeEventHandler;
 	}
 ] call CBA_fnc_addEventHandler;
+ONL_getToExtract_EventID = ["ONL_getToExtraction_Event",_id];
+
 
 [
 	"ONL_spawnVehicle_Event",

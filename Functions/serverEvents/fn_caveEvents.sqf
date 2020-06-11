@@ -105,9 +105,6 @@ private _id2 = [
 
 		call ONL_fnc_waitToAddCaveTasks;
 
-		// add defusal actions to players
-		remoteExec ["ONL_fnc_addDefusalActions",[0,-2] select isDedicated,true];
-
 		// cave in charges timer begins
 		[
 			{
@@ -178,6 +175,7 @@ private _id3 = [
 	
 			sleep 1;
 			
+			// show rock cave in
 			((getMissionLayerEntities "Cave In") select 0) apply {
 				_x hideObjectGlobal false;
 			};

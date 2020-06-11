@@ -9,15 +9,16 @@ params [
 ONL_CCMLoaded = ["CCM_music"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
-_player setCustomAimCoef 0.75;
+_player setCustomAimCoef 0.15;
 
 call ONL_fnc_addBaseActions;
 call ONL_fnc_addBlackSiteActions;
 
 call ONL_fnc_addCaveActions;
 call ONL_fnc_addLodgingActions;
-call ONL_fnc_addResearchFacilityActions;
 call ONL_fnc_addVillageActions;
+
+call ONL_fnc_addPlayerActions;
 
 if (viewDistance > 1700) then {
 	setViewDistance 1700;
