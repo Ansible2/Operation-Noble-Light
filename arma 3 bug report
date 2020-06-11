@@ -1,0 +1,16 @@
+Title
+Significant FPS Drop When Hitting AI Near Large Editor Placed Rocks
+
+Desc
+When shooting (and hitting) AI near rocks of the base classes: a significant frame drop will occur. This seems to be tied to the hit animation, as if units have **allowDamage** set to **false** no stuttering will occur. The distance between the rock and AI must be **within approximately 50 meters**.
+
+Add info
+- This stuttering happens in all scenario types (singleplayer, multiplayer, dedicated, dedicated with headless client, and in editor).
+  
+- While the frame drop can happen and be noticeable when the AI is near one rock, it is particularly bad when it is between two of the rocks (a valley).
+  
+- The bug appears to happen **once per rock**. I say this because you can shoot one AI twice if there are two rocks and get hitching, however, after you shoot another AI right next to him, the hitching will not be present. You could also shoot each AI once and achieve the same result. After moving to another pair of rocks, the same will happen.
+ 
+- Confirmed on 4 separate machines and with two installs on each. 
+
+- The bug happens with all texture (environment) variants of these models.

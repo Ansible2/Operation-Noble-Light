@@ -80,7 +80,7 @@ if !(isNull ONL_charge_3) then {
 };
 
 // remove action event, actions persist even when the charge is detonated
-if (!(missionNamespace getVariable ["ONL_removeDefusalActionEventCreated",false])) then {
+if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false])) then {
 	[
 		"ONL_removeDefusalAction_Event",
 		{
@@ -94,23 +94,24 @@ if (!(missionNamespace getVariable ["ONL_removeDefusalActionEventCreated",false]
 		}
 	] call CBA_fnc_addEventHandler;
 
-	ONL_removeDefusalActionEventCreated = true;
+	ONL_removeDefusalAction_EventCreated = true;
 };
 
-// removeActions when dead
-/*
-if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
 
-	player addEventHandler ["Respawn",{
-		params ["_unit", "_corpse"];
+// remove actions when dead
+if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
+	player addEventHandler ["Killed",{
+		params ["_unit"];
 
 		[ONL_charge_1_ID,ONL_charge_2_ID,ONL_charge_3_ID] apply {
-			[_corpse,_x] call BIS_fnc_holdActionRemove;
+			[_unit,_x] call BIS_fnc_holdActionRemove;
+			_x = nil;
 		};
 
-		_corpse removeEventHandler ["Respawn",_thisEventHandler];
+		_unit removeEventHandler ["Killed",_thisEventHandler];
 
 		ONL_defusalKilled_EH_added = false;
 	}];
+
+	ONL_defusalKilled_EH_added = true;
 };
-*/

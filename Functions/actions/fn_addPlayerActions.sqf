@@ -35,15 +35,19 @@ ONL_exitBunkerAction_ID = player addAction [
 	false 
 ];
 
-/*
+
 // removeActions when dead
-player addEventHandler ["Respawn",{
-	params ["_unit","_corpse"];
+player addEventHandler ["Killed",{
+	params ["_unit"];
 
 	[ONL_enterBunkerAction_ID,ONL_exitBunkerAction_ID] apply {
 		_corpse removeAction _x;
+		_x = nil;
 	};
 
-	_corpse removeEventHandler ["Respawn",_thisEventHandler];
+	_unit removeEventHandler ["Killed",_thisEventHandler];
+
+	ONL_defusalKilled_EH_added = false;
 }];
-*/
+
+ONL_defusalKilled_EH_added = true;

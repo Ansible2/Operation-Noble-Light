@@ -1,4 +1,4 @@
-FindHeadScientist_TaskID = "task_1_ID"; //start //end not added. awaiting to add him in to the cave 
+FindHeadScientist_TaskID = "task_1_ID"; //start//end // this was simply for noting whether or not each task had a start and end point scripted
 
 CollectBaseIntel_TaskID = "task_2a_ID";//start//end
 DestroyComs_TaskID = "task_2b_ID";//start//end

@@ -1,7 +1,6 @@
 if !(isServer) exitWith {};
 
 // Destroy cave generators EHs and sound
-
 private _caveGenerators = 
 ((getMissionLayerEntities "Cave Generators") select 0) apply {
 	_x addEventHandler ["Killed", { 
@@ -84,7 +83,7 @@ ONL_Cave_generatorShutOff_Event_ID = ["ONL_Cave_CollectedIntel_Event",_id1];
 
 
 
-// Destroy cave device
+// Destroy cave devices
 ONL_caveDevices apply {
 	_x addEventHandler ["Killed", { 
 		if (missionNamespace getVariable ["ONL_cave_devicesDead",0] isEqualTo 0) then {

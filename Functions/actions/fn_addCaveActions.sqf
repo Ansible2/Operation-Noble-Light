@@ -27,7 +27,6 @@ ONL_caveCollectDevices apply {
 
 // Cave Generators
 ONL_caveGenerators apply {
-
 	_x addAction [ 
 		"--ShutDown Generator",  
 		{
