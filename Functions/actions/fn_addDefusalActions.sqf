@@ -1,5 +1,7 @@
 if !(hasInterface) exitWith {};
 
+waitUntil {player isEqualTo player};
+
 // cave In charges
 // Defuse chages actions
 if !(isNull ONL_charge_1) then {
@@ -96,17 +98,19 @@ if (!(missionNamespace getVariable ["ONL_removeDefusalActionEventCreated",false]
 };
 
 // removeActions when dead
-
+/*
 if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
-	player addEventHandler ["KILLED",{
-		params ["_unit"];
+
+	player addEventHandler ["Respawn",{
+		params ["_unit", "_corpse"];
 
 		[ONL_charge_1_ID,ONL_charge_2_ID,ONL_charge_3_ID] apply {
-			[_unit,_x] call BIS_fnc_holdActionRemove;
+			[_corpse,_x] call BIS_fnc_holdActionRemove;
 		};
 
-		_unit removeEventHandler ["KILLED",_thisEventHandler];
+		_corpse removeEventHandler ["Respawn",_thisEventHandler];
 
 		ONL_defusalKilled_EH_added = false;
 	}];
 };
+*/

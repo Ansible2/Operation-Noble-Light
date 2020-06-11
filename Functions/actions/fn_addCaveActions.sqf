@@ -11,7 +11,7 @@ ONL_caveCollectDevices apply {
 
 			hint "Collected Device";
 
-			["ONL_Cave_CollectedIntel_Event",[_device]] call CBA_fnc_serverEvent;
+			["ONL_cave_collectedIntel_Event",[_device]] call CBA_fnc_serverEvent;
 		}, 
 		nil, 
 		10,  

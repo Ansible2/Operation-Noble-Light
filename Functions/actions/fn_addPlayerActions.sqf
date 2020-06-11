@@ -1,5 +1,9 @@
 if !(hasInterface) exitWith {};
 
+hint "added actions";
+
+waitUntil {player isEqualTo player};
+
 ONL_enterBunkerAction_ID = player addAction [ 
 	"--Enter Bunker",  
 	{
@@ -31,11 +35,15 @@ ONL_exitBunkerAction_ID = player addAction [
 	false 
 ];
 
+/*
 // removeActions when dead
-player addEventHandler ["KILLED",{
-	params ["_unit"];
+player addEventHandler ["Respawn",{
+	params ["_unit","_corpse"];
 
 	[ONL_enterBunkerAction_ID,ONL_exitBunkerAction_ID] apply {
-		_unit removeAction _x;
+		_corpse removeAction _x;
 	};
+
+	_corpse removeEventHandler ["Respawn",_thisEventHandler];
 }];
+*/

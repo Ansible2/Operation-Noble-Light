@@ -18,7 +18,7 @@ private _caveGenerators =
 
 // cave generator shutoff event
 private _id = [
-	"ONL_Cave_generatorShutOff_Event",
+	"ONL_cave_generatorShutOff_Event",
 	{
 		params [
 			["_generator",objNull,[objNull]]
@@ -62,7 +62,7 @@ ONL_caveServers apply {
 ONL_cave_collectableIntel_count = count ONL_caveCollectDevices;
 
 private _id1 = [
-	"ONL_Cave_CollectedIntel_Event",
+	"ONL_cave_CollectedIntel_Event",
 	{
 		params [
 			["_intelObject",objNull,[objNull]]

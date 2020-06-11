@@ -11,7 +11,7 @@
 [
     1,
     {		
-        [true, DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo",caveServer1,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;            
+        [true, DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo",ONL_caveServer_1,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;            
 		[true, CollectCaveData_TaskID,"CollectCaveData_TaskInfo",objNull,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;
     },
     {!(((call CBA_fnc_players) findIf {(_x distance ONL_caveServer_1) < 5}) isEqualTo -1)}
