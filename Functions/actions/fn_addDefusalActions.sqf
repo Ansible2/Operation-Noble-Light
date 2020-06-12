@@ -108,18 +108,15 @@ if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false
 
 // remove actions when dead
 if (!(missionNamespace getVariable ["ONL_defusalKilled_EH_added",false])) then {
+	private _player = call KISKA_fnc_getPlayerObject;
 
-	player addEventHandler ["Killed",{
-		params ["_unit"];
+	_player addEventHandler ["Killed",{
+		params ["_corpse"];
 
 		[ONL_charge_1_ID,ONL_charge_2_ID,ONL_charge_3_ID] apply {
-			[_unit,_x] call BIS_fnc_holdActionRemove;
+			[_corpse,_x] call BIS_fnc_holdActionRemove;
 			_x = nil;
 		};
-
-		_unit removeEventHandler ["killed",_thisEventHandler];
-
-		ONL_defusalKilled_EH_added = false;
 	}];
 
 	ONL_defusalKilled_EH_added = true;
