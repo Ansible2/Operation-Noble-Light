@@ -175,16 +175,6 @@ call ONL_fnc_waitToAddBlackSiteTasks;
 			},
 			{!(((call CBA_fnc_players) findIf {(_x distance ONL_newsRadio_blackSite) < 50}) isEqualTo -1)}
 		] call KISKA_fnc_waitUntil;
-
-		/* find a better condition for this, current use is located in ONL_fnc_waitToAddBlackSiteTasks
-		[
-			4,
-			{
-				call ONL_fnc_blackSiteArty;
-			},
-			{}// needs condition
-		] call KISKA_fnc_waitUntil;
-		*/
 	},
 	{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_blackSite_base) < 800}) isEqualTo -1)}
 ] call KISKA_fnc_waitUntil;

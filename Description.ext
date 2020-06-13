@@ -1,3 +1,19 @@
+author			= "Ansible2 // Cipher";
+onLoadName		= "Operation Noble Light";
+onLoadMission	= "Investigate northern CSAT facilities.";
+loadScreen		= "pics\loadScreen.jpg";
+overviewPicture = "pics\cover.jpg";
+overviewText 	= "Investigate northern CSAT facilities.";
+
+class Header
+{
+	gameType =  Coop;	
+	minPlayers =  1;	
+	maxPlayers = 14;	
+};
+
+respawnOnStart = -1;
+
 class CfgTaskDescriptions
 {
 	#include "headers\descriptionEXT\taskDescriptions.hpp"
@@ -9,5 +25,3 @@ class CfgFunctions
 
 	#include "headers\descriptionEXT\KISKA_functions.hpp"
 };
-
-respawnOnStart = -1;

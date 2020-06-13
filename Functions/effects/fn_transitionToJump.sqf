@@ -95,4 +95,4 @@ ONL_getoutActionID = player addAction [
 
 
 ["Be advised, high winds at the DZ",12,true] call KISKA_fnc_DatalinkMsg;
-["Chute deployment height recommended at 1000-1200m AGL",18,true] call KISKA_fnc_DatalinkMsg;
+["Chute deployment height recommended at 700-900m AGL",18,true] call KISKA_fnc_DatalinkMsg;
