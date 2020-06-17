@@ -29,26 +29,31 @@ if ((getObjectViewDistance select 0) > 1500) then {
 };
 
 // Situation
-_player createDiaryRecord ["Diary",["Situation","In a bid to garner more influence among Europe and talks with the Russian Federation, CSAT's soft expansion has brought it to Northern European nations.
+_player createDiaryRecord ["Diary",["Situation","In a bid to garner more influence among Europe and its talks with the Russian Federation, CSAT's soft expansion has brought it to Scandinavia.
 <br></br>
 <br></br>
 Welcome to Vidda.
 <br></br>
 <br></br>
-Civil war amongst several of its territories has enabled CSAT to obtain terrioties within its borders, being handed over by the provincial governments under the guize of aid relief. 
+Civil war amongst several of its territories has enabled CSAT to obtain land within its borders, being handed over by the provincial governments under the guise of aid relief.
 <br></br>
 <br></br>
 NATO in response and at the request of the federal body has deployed troops to the same AO. This has developed into the tense standoff between our forces.
 <br></br>
 <br></br>
-However, we're risking the current peace in an effort to secure key intel on CSAT weapons projects being developed in the area.
+However, after CSAT’s attacks in Takistan several hours ago, we are severing this peace at 0500 tomorrow morning. Lines have been drawn.
 <br></br>
 <br></br>
-One of our informants operating across the enemy lines has discovered what he claims to be groundbreaking intellegence. The catch is that he demands we extract him first from the border town of <marker name='marker_170'>Valstoff</marker>
+Prior to this, you will insert to extract an asset, code named Apollo.
 <br></br>
 <br></br>
-Visibility is quickly deteriorating. We're expecting heavy fog within the next 6 hours. Should you need to stay out, ensure that you are using your time wisely."
-],taskNull,"",true];
+He claims to possess groundbreaking intelligence on a CSAT weapons project. The catch is that he demands we extract him first from the border town of <marker name='marker_170'>Valstoff</marker>
+<br></br>
+<br></br>
+Visibility is quickly deteriorating. We're expecting heavy fog within the next 6 hours. Should you need to stay out, ensure that you are using your time wisely.
+<br></br>
+<br></br>
+We will have a limited opportunity to insert you via HALO jump before CSAT’s air defence network is fully operational in the area."],taskNull,"",true];
 
 // Mission
 _player createDiaryRecord ["Diary",["Mission","Secure the informant, callsign Apollo, and his information.
