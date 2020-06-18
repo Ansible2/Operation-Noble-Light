@@ -25,3 +25,7 @@ class CfgFunctions
 
 	#include "headers\descriptionEXT\KISKA_functions.hpp"
 };
+class Params
+{
+	#include "headers\descriptionEXT\missionParameters.hpp"
+};

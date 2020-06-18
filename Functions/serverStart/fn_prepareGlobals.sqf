@@ -9,6 +9,7 @@ publicVariable "ONL_charge_3";
 ONL_snowTigersLoaded = ["IP_CSAT_ST"] call KISKA_fnc_isPatchLoaded;
 ONL_CUPVehiclesLoaded = ["CUP_Vehicles_Core"] call KISKA_fnc_isPatchLoaded;
 ONL_RHSUSFVehiclesLoaded = ["rhsusf_cars"] call KISKA_fnc_isPatchLoaded;
+ONL_preferredVehicleMod = ["CUP","RHSUSAF"] select (["PreferredVehicleMod",0] call BIS_fnc_getParamValue);
 ONL_CUPUnitsLoaded = ["CUP_Creatures_People_Core"] call KISKA_fnc_isPatchLoaded;
 ONL_FSGLoaded = ["fsg_units"] call KISKA_fnc_isPatchLoaded;
 
@@ -51,5 +52,16 @@ ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
 
 ////// Prepare music globals
-ONL_CCMLoaded = ["CCM_music"] call KISKA_fnc_isPatchLoaded;
-ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
+private _musicType = ["CCM","NONE","KISKA"] select (["MusicType",0] call BIS_fnc_getParamValue);
+if (_musicType != "None") then {
+	if (_musicType == "CCM") then {
+		ONL_CCMLoaded = true;
+		ONL_KISKAMusicLoaded = false;
+	} else {
+		ONL_KISKAMusicLoaded = true;
+		ONL_CCMLoaded = false;
+	};
+} else {
+	ONL_CCMLoaded = false;
+	ONL_KISKAMusicLoaded = false;
+};
