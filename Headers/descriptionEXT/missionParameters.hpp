@@ -1,8 +1,8 @@
 class MusicType
 {
 	title = "Music";
-	texts[] = {"Creative Commons Music","None","KISKA Music Library"};
-	values[] = {0,1,2};
+	texts[] = {"Creative Commons Music","None"/*,"KISKA Music Library"*/};
+	values[] = {0,1/*,2*/};
 	default = 0;
 };
 class PreferredVehicleMod

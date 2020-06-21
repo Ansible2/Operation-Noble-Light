@@ -1,16 +1,20 @@
 if (!isServer) exitWith {};
 
-[11,1,ONL_spetsnazSFVariants,ONL_village_positions_group1,true,true,resistance] call KISKA_fnc_spawn;
-	
+[count ONL_village_positions_group1,1,ONL_spetsnazSFVariants,ONL_village_positions_group1,true,true,resistance] call KISKA_fnc_spawn;
 	
 uiSleep 1;
 
-
-[6,3,ONL_spetsnazSFVariants,ONL_village_positions_group2,false,true,resistance] call KISKA_fnc_spawn;
-
+[count ONL_village_positions_group2,3,ONL_spetsnazSFVariants,ONL_village_positions_group2,false,true,resistance] call KISKA_fnc_spawn;
 
 uiSleep 1;
 
+private _animatedUnits = [count ONL_village_positions_group3,3,ONL_spetsnazSFVariants,ONL_village_positions_group3,false,true,resistance] call KISKA_fnc_spawn;
+
+_animatedUnits apply {
+	[_x] call BIS_fnc_ambientAnimCombat;
+};
+
+uiSleep 1;
 
 // village patrols
 for "_i" from 1 to 2 do {
