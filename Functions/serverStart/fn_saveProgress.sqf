@@ -3,13 +3,13 @@ if (!isServer) exitWith {};
 private _ONLSaveData = [];
 
 
-////////Vehicles/////////
+//////////////////////////////////Vehicles/////////
 // filter vehicles
 private _vehiclesToSave = vehicles select {
 	alive _x AND 
 	{!(isNull _x)} AND 
 	{!(_x in ONL_startingVehicles)} AND 
-	{!(_x in ONL_saveExclueded_Vehicles)}
+	{!(_x getVariable ["ONL_saveExcluded",false])}
 };
 
 // create storage arrays
@@ -44,11 +44,11 @@ _vehiclesToSave apply {
 _ONLSaveData pushBack _vehicleSaveInfoArray;
 
 
-////////Groups/////////
+//////////////////////////////////Groups/////////
 private _groupsSaveInfoArray = [];
 
 private _groupsToSave = allGroups select {
-	!(_x in ONL_saveExclueded_groups) AND
+	!(_x getVariable ["ONL_saveExcluded",false]) AND
 	{!(isNull _x)} AND
 	{((side _x) isEqualTo OPFOR) OR {(side _x) isEqualTo independent}}
 };
@@ -108,7 +108,6 @@ _groupsToSave apply {
 		};
 	};
 
-
 	// misc group info for spawning
 	private _groupBehaviour = behaviour _group;
 	private _combatMode = combatMode _group;
@@ -117,13 +116,18 @@ _groupsToSave apply {
 	private _deleteWhenEmpty = isGroupDeletedWhenEmpty _group;
 	private _groupFormation = formation _group;
 
+	// special code to run upon creating the group when loading a save
+	private _onCreateCode = _group getVariable ["ONL_loadCreationCode",{}];
+
 	// add to master group list
-	_groupsSaveInfoArray pushBack [_groupSide,_isGroupDySimmed,_combatMode,_groupBehaviour,_groupFormation,_deleteWhenEmpty,_unitsInfo,_savedWaypoints];
+	_groupsSaveInfoArray pushBack [_groupSide,_isGroupDySimmed,_combatMode,_groupBehaviour,_groupFormation,_deleteWhenEmpty,_unitsInfo,_savedWaypoints,_onCreateCode];
 };
 // add masters to actual save
 _ONLSaveData pushBack _groupsSaveInfoArray;
 
-////////Tasks/////////
+
+
+//////////////////////////////////Tasks/////////
 private _fn_isTaskComplete = {
 	params ["_task"];
 
@@ -159,10 +163,14 @@ _tasks apply {
 		_completedTasks pushBack _x;
 	};
 };
+// add to master
 _ONLSaveData pushBack _completedTasks;
 
 
+//////////////////////////////////Dependencies/////////
+_ONLSaveData pushBack [ONL_snowTigersLoaded,ONL_CUPVehiclesLoaded,ONL_RHSUSFVehiclesLoaded,ONL_CUPUnitsLoaded,ONL_FSGLoaded];
 
-////////SAVE/////////
+
+//////////////////////////////////SAVE/////////
 profileNamespace setVariable ["ONL_saveData",_ONLSaveData];
 saveProfileNamespace;

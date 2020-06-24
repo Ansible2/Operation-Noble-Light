@@ -62,6 +62,10 @@ class ONL
 	class serverStart
 	{
 		file = "Functions\serverStart";
+		class saveProgress
+		{};
+		class loadProgress
+		{};
 		class startServerLoops
 		{};
 		class prepareGlobals
@@ -86,6 +90,10 @@ class ONL
 	class spawn
 	{
 		file = "Functions\spawn";
+		class createBaseHeliPatrol
+		{};
+		class createBlackSiteHeliPatrol
+		{};
 		class createDrone
 		{};
 		class createExtractionHeli

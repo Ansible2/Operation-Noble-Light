@@ -12,9 +12,11 @@ ONL_drone = ([[18728,14207.7,1137.77], 180, "USAF_MQ9", west] call BIS_fnc_spawn
     ONL_drone removeWeaponTurret [_x,[0]]
 };
 
+// make drone easy to use
 ONL_drone setCaptive true;
 ONL_drone allowDamage false;
 
+// set initial waypoint
 private _waypoint0 = (group ONL_drone) addWaypoint [getPosATL ONL_loiterLogic, 10];
 _waypoint0 setWaypointType "LOITER";
 _waypoint0 setWaypointLoiterType "CIRCLE";
@@ -23,7 +25,7 @@ _waypoint0 setWaypointLoiterRadius 800;
 
 ONL_drone flyInHeight 500; 
 
-
+// ensure ease of use if drone changes locality
 [
     ONL_drone,
     ["Local", {
@@ -37,6 +39,10 @@ ONL_drone flyInHeight 500;
     ]
 ] remoteExec ["addEventHandler",0,true];
 
+// inform players drone is airborne
 ["Be advised, 1x Reaper callsign WildFire is entering the AO"] remoteExecCall ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];
 
-["Armament: 16x GBU",4,false] remoteExecCall ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];
+["Armament: 8x GBU",4,false] remoteExecCall ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];
+
+// exclude from Saves
+ONL_drone setVariable ["ONL_saveExcluded",true];

@@ -45,3 +45,6 @@ ONL_extractHeli hideObjectGlobal true;
 
 // to be used in player respawn script
 missionNamespace setVariable ["ONL_extractHeli",ONL_extractHeli,true];
+
+// exclude from saves
+ONL_extractHeli setVariable ["ONL_saveExcluded",true];

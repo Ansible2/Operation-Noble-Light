@@ -5,6 +5,9 @@ publicVariable "ONL_charge_1";
 publicVariable "ONL_charge_2";
 publicVariable "ONL_charge_3";
 
+// load save game
+ONL_loadSave = [false,true] select (["LoadSave",0] call BIS_fnc_getParamValue);
+
 // check optional mods
 ONL_snowTigersLoaded = ["IP_CSAT_ST"] call KISKA_fnc_isPatchLoaded;
 ONL_CUPVehiclesLoaded = ["CUP_Vehicles_Core"] call KISKA_fnc_isPatchLoaded;
@@ -49,18 +52,6 @@ ONL_ifritVariants = [ONL_ifritVariants_vanilla,ONL_ifritVariants_FST] select ONL
 ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select ONL_snowTigersLoaded;
 
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
-
-
-/////// save globals
-
-// groups
-ONL_saveExclueded_groups = [];
-ONL_saved_groups = [];
-
-// vehicles
-ONL_saveExclueded_Vehicles = [];
-ONL_saved_vehicles = [];
-
 
 
 ////// Prepare music globals
