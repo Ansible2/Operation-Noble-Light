@@ -12,3 +12,10 @@ class PreferredVehicleMod
 	values[] = {0,1};
 	default = 0;
 };
+class LoadSave
+{
+	title = "Load Save Game If Present";
+	texts[] = {"New Game","Load Save"};
+	values[] = {0,1};
+	default = 0;
+};

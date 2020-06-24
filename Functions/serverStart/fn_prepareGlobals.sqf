@@ -51,6 +51,16 @@ ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
 
+/////// save globals
+
+// groups
+ONL_saveExclueded_groups = [];
+ONL_save_groups = [];
+
+// vehicles
+ONL_saveExclueded_Vehicles = [];
+
+
 ////// Prepare music globals
 private _musicType = ["CCM","NONE"/*,"KISKA"*/] select (["MusicType",0] call BIS_fnc_getParamValue);
 if (_musicType != "None") then {
