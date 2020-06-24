@@ -55,10 +55,12 @@ ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
 // groups
 ONL_saveExclueded_groups = [];
-ONL_save_groups = [];
+ONL_saved_groups = [];
 
 // vehicles
 ONL_saveExclueded_Vehicles = [];
+ONL_saved_vehicles = [];
+
 
 
 ////// Prepare music globals
