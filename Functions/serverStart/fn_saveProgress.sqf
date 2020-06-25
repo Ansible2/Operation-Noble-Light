@@ -174,7 +174,6 @@ _ONLSaveData pushBack _completedTasks;
 
 //////////////////////////////////Specials/////////////////////////////////////////////////////////////////////////////////////
 private _specialSaveData = [];
-
 private _fn_aliveAndHasCrew = {
 	params ["_vehicle"];
 	
@@ -182,24 +181,18 @@ private _fn_aliveAndHasCrew = {
 };
 
 // arty pieces, decide if they need eventhandelers
-private ["_artyAlive_1","_artyAlive_2"];
-if ([ONL_arty_1] call _fn_aliveAndHasCrew) then {
-	_artyAlive_1 = true;
-} else {
-	_artyAlive_1 = false;
-};
-if ([ONL_arty_2] call _fn_aliveAndHasCrew) then {
-	_artyAlive_2 = true;
-} else {
-	_artyAlive_2 = false;
-};
-
+private ["",""];
+private _artyAlive_1 = [ONL_arty_1] call _fn_aliveAndHasCrew;
+private _artyAlive_2 = [ONL_arty_2] call _fn_aliveAndHasCrew;
 _specialSaveData pushBack _artyAlive_1;
 _specialSaveData pushBack _artyAlive_2;
 
 // helicopter patrols
 private _blackSiteHeliAlive = [ONL_blackSitePatrolHelicopter] call _fn_aliveAndHasCrew;
 private _baseHeliAlive = [ONL_basePatrolHelicopter] call _fn_aliveAndHasCrew;
+_specialSaveData pushBack _blackSiteHeliAlive;
+_specialSaveData pushBack _baseHeliAlive;
+
 
 
 _ONLSaveData pushBack _specialSaveData;
