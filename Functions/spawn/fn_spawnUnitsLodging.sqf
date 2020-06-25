@@ -15,6 +15,11 @@ private _randomPosition = [ONL_logic_lodging,300] call CBA_fnc_randPos;
 private _pmcGroup = [4,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 [_pmcGroup,ONL_logic_lodging,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
+_pmcGroup setVariable ["ONL_loadCreationCode",{
+	params ["_group"];
+	[_group] call CBA_fnc_clearWaypoints;
+	[_group,ONL_logic_lodging,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+}];
 
 uiSleep 1;
 
