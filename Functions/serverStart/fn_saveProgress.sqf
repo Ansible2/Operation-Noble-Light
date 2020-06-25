@@ -83,7 +83,8 @@ _groupsToSave apply {
 		private _unitType = typeOf _unit;
 		private _unitLoadout = getUnitLoadout _unit;
 		private _isManSimulated = simulationEnabled _unit;	
-		_unitsInfo pushBack [_unitType,_unitLoadout,_isManSimulated,_vehicleInfo];
+		private _canUnitMove = _unit checkAIFeature "PATH";
+		_unitsInfo pushBack [_unitType,_unitLoadout,_isManSimulated,_vehicleInfo,_canUnitMove];
 	};
 
 

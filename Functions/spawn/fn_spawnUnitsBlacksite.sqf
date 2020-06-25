@@ -39,6 +39,12 @@ private _randomPosition = [ONL_logic_blackSite_perimeter,500] call CBA_fnc_randP
 private _patrolGroup = [6,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 [_patrolGroup,ONL_logic_blackSite_perimeter,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
+_patrolGroup setVariable ["ONL_loadCreationCode",{
+	params ["_group"];
+	[_group] call CBA_fnc_clearWaypoints;
+	[_group,ONL_logic_blackSite_perimeter,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+}];
+
 if !(ONL_CUPUnitsLoaded) then {
 	ONL_PMCUnits append (units _patrolGroup);
 };

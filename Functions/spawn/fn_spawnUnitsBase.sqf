@@ -28,6 +28,13 @@ for "_i" from 1 to 2 do {
 	uiSleep 1;
 
 	[_group,_randomPosition,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+
+	_group setVariable ["ONL_loadCreationCode",{
+		params ["_group"];
+		[_group] call CBA_fnc_clearWaypoints;
+		private _randomPosition = [ONL_logic_base_2,300] call CBA_fnc_randPos;
+		[_group,_randomPosition,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+	}];
 };
 
 
@@ -65,14 +72,30 @@ private _bunkerUnits = [5,1,ONL_CSATVariants,ONL_base_bunkerExterior_positions] 
 uiSleep 1;
 
 
-// bunker patrols
-[ONL_baseBunker_patrolLogic_1,ONL_baseBunker_patrolLogic_2] apply {
-	private _group = [3,ONL_CSATVariants,OPFOR,_x] call KISKA_fnc_spawnGroup;
+//// bunker patrols
+// patrol 1
+private _patrol1 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_1] call KISKA_fnc_spawnGroup;
 
-	[_group,_x,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+_patrol1 setVariable ["ONL_loadCreationCode",{
+	params ["_group"];
+	[_group] call CBA_fnc_clearWaypoints;
+	[_group,ONL_baseBunker_patrolLogic_1,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+}];
 
-	uiSleep 1;
-};
+[_patrol1,ONL_baseBunker_patrolLogic_1,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+
+uiSleep 1;
+
+// patrol 2
+private _patrol2 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_2] call KISKA_fnc_spawnGroup;
+_patrol2 setVariable ["ONL_loadCreationCode",{
+	params ["_group"];
+	[_group] call CBA_fnc_clearWaypoints;
+	[_group,ONL_baseBunker_patrolLogic_2,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+}];
+[_patrol2,ONL_baseBunker_patrolLogic_2,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+uiSleep 1;
+
 
 
 // Helicopter Patrol

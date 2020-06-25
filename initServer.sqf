@@ -65,3 +65,12 @@ if (!ONL_CUPUnitsLoaded AND {!(ONL_loadSave)}) then {
 	uiSleep 100;
 	["ONL_",ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
 };
+// assign loadouts if save was loaded
+if (ONL_loadSave) then {
+	uiSleep 100;
+	allUnits apply {
+		if (!isNil {_unit getVariable "ONL_savedLoadout"}) then {
+			_unit setUnitLoadout (_unit getVariable "ONL_savedLoadout");
+		};
+	};
+};
