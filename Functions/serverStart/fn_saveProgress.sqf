@@ -134,24 +134,35 @@ _ONLSaveData pushBack _savedGroupsInfoArray;
 
 
 //////////////////////////////////Tasks///////////////////////////////////////////////////////////////////////////////////////////
-private _fn_isTaskComplete = {
+private _fn_taskStatus = {
 	params ["_task"];
 
-	if (_task isEqualType []) exitWith {
-		[(_task select 0)] call BIS_fnc_taskCompleted;
+	// get Task ID if configured as [task ID,Parent Task ID]
+	private "_taskID";
+	if (_task isEqualType []) then {
+		_taskID = _task select 0;
+	} else {
+		_taskID = _task;
 	};
-	
-	[_task] call BIS_fnc_taskCompleted;
+
+	private _taskExists = [_task] call BIS_fnc_taskExists;
+	private "_taskState"; 
+	if (_taskExists) then {
+		_taskState = [_task] call BIS_fnc_taskState;
+	} else {
+		_taskState = "";
+	};
+
+	[_task,_taskExists,_taskState]
 };
 
-private _completedTasks = [];
+private _taskInfoArray = [];
 ONL_taskIdsAndInfo apply {
-	if ([_x] call _fn_isTaskComplete) then {
-		_completedTasks pushBack _x;
-	};
+	private _taskInfo = [_x] call _fn_taskStatus;
+	_taskInfoArray pushBack _taskInfo;
 };
 // add to master
-_ONLSaveData pushBack _completedTasks;
+_ONLSaveData pushBack _taskInfoArray;
 
 
 

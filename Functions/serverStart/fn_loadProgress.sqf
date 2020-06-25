@@ -3,7 +3,7 @@ if !(isServer) exitWith {};
 (profileNamespace getVariable "ONL_saveData") params [
 	"_vehicleSaveInfoArray",
 	"_savedGroupsInfoArray",
-	"_completedTasks",
+	"_taskInfo",
 	"_specialSaveData",
 	"_dependencies"
 ];
