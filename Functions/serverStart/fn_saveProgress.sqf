@@ -3,7 +3,7 @@ if (!isServer) exitWith {};
 private _ONLSaveData = [];
 
 
-//////////////////////////////////Vehicles/////////
+//////////////////////////////////Vehicles/////////////////////////////////////////////////////////////////////////////////////////
 // filter vehicles
 private _vehiclesToSave = vehicles select {
 	alive _x AND 
@@ -44,7 +44,9 @@ _vehiclesToSave apply {
 _ONLSaveData pushBack _vehicleSaveInfoArray;
 
 
-//////////////////////////////////Groups/////////
+
+
+//////////////////////////////////Groups///////////////////////////////////////////////////////////////////////////////////////////
 private _groupsSaveInfoArray = [];
 
 private _groupsToSave = allGroups select {
@@ -127,7 +129,8 @@ _ONLSaveData pushBack _groupsSaveInfoArray;
 
 
 
-//////////////////////////////////Tasks/////////
+
+//////////////////////////////////Tasks///////////////////////////////////////////////////////////////////////////////////////////
 private _fn_isTaskComplete = {
 	params ["_task"];
 
@@ -167,10 +170,43 @@ _tasks apply {
 _ONLSaveData pushBack _completedTasks;
 
 
-//////////////////////////////////Dependencies/////////
+
+
+//////////////////////////////////Specials/////////////////////////////////////////////////////////////////////////////////////
+private _specialSaveData = [];
+
+private _fn_aliveAndHasCrew = {
+	params ["_vehicle"];
+	
+	(alive _vehicle AND {!((crew _vehicle) isEqualTo [])})
+};
+
+// arty pieces, decide if they need eventhandelers
+private ["_artyAlive_1","_artyAlive_2"];
+if ([ONL_arty_1] call _fn_aliveAndHasCrew) then {
+	_artyAlive_1 = true;
+} else {
+	_artyAlive_1 = false;
+};
+if ([ONL_arty_2] call _fn_aliveAndHasCrew) then {
+	_artyAlive_2 = true;
+} else {
+	_artyAlive_2 = false;
+};
+
+_specialSaveData pushBack _artyAlive_1;
+_specialSaveData pushBack _artyAlive_2;
+
+// helicopter patrols
+private _blackSiteHeliAlive = [ONL_blackSitePatrolHelicopter] call _fn_aliveAndHasCrew;
+private _baseHeliAlive = [ONL_basePatrolHelicopter] call _fn_aliveAndHasCrew;
+
+
+_ONLSaveData pushBack _specialSaveData;
+
+//////////////////////////////////Dependencies/////////////////////////////////////////////////////////////////////////////////////
 _ONLSaveData pushBack [ONL_snowTigersLoaded,ONL_CUPVehiclesLoaded,ONL_RHSUSFVehiclesLoaded,ONL_CUPUnitsLoaded,ONL_FSGLoaded];
 
-
-//////////////////////////////////SAVE/////////
+//////////////////////////////////SAVE/////////////////////////////////////////////////////////////////////////////////////////////
 profileNamespace setVariable ["ONL_saveData",_ONLSaveData];
 saveProfileNamespace;

@@ -6,7 +6,6 @@ if (!ONL_CUPUnitsLoaded) then {
 };
 
 
-
 // Extraction Helicopter
 call ONL_fnc_createExtractionHeli;
 
@@ -25,6 +24,8 @@ if !(ONL_loadSave) then {
 } else {
 	call ONL_fnc_loadSave;
 };
+
+// add arty event
 
 uiSleep 2;
 
