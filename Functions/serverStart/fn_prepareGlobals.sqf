@@ -65,23 +65,23 @@ ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
 // Task Ids for saves
-ONL_taskIds = [
-	FindHeadScientist_TaskID,
-	CollectBaseIntel_TaskID,
-	DestroyComs_TaskID,
-	DestroyArty_taskID,
-	CollectBlackSiteIntel_TaskID,
-	CollectRockSample_TaskID,
-	DestroyBlackSiteServers_TaskID,
-	InvestigateBlackSite_TaskID,
-	CollectCaveData_TaskID,
-	CollectDeviceLogs_TaskID,
-	DestroyCaveServers_TaskID,
-	DestroyTheDevices_TaskID,
-	InvestigateFacility_TaskID,
-	SearchLodging_TaskID,
-	SecureApollo_TaskID,
-	Extract_TaskID
+ONL_taskIdsAndInfo = [
+	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"],
+	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo"],
+	[DestroyComs_TaskID,"DestroyComs_TaskInfo"],
+	[DestroyArty_taskID,"DestroyArty_taskInfo"],
+	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"],
+	[CollectRockSample_TaskID,"CollectRockSample_TaskInfo"],
+	[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"],
+	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo"],
+	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"],
+	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo"],
+	[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"],
+	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"],
+	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo"],
+	[SearchLodging_TaskID,"SearchLodging_TaskInfo"],
+	[SecureApollo_TaskID,"SecureApollo_TaskInfo"],
+	[Extract_TaskID,"Extract_TaskInfo"]
 ];
 
 ////// Prepare music globals

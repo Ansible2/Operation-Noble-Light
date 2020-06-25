@@ -68,13 +68,11 @@ class CollectDeviceLogs_TaskInfo
 	title		= "Collect Device Logs";
 	description	= "Go to the two devices and collect their logs.";
 };
-
 class DestroyCaveServers_TaskInfo
 {
 	title		= "Destroy The Project Servers";
 	description	= "We can't leave anything behind here.";
 };
-
 class DestroyTheDevices_TaskInfo
 {
 	title		= "Destroy The Devices";

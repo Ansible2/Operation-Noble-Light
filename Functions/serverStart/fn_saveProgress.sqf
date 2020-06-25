@@ -3,7 +3,7 @@ if (!isServer) exitWith {};
 private _ONLSaveData = [];
 
 
-//////////////////////////////////Vehicles/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////Vehicles (and turrets)/////////////////////////////////////////////////////////////////////////////////////////
 // filter vehicles
 private _vehiclesToSave = vehicles select {
 	alive _x AND 
@@ -144,7 +144,7 @@ private _fn_isTaskComplete = {
 };
 
 private _completedTasks = [];
-ONL_taskIds apply {
+ONL_taskIdsAndInfo apply {
 	if ([_x] call _fn_isTaskComplete) then {
 		_completedTasks pushBack _x;
 	};

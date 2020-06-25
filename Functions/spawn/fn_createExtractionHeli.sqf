@@ -1,6 +1,5 @@
 if (!isServer) exitWith {};
 
-
 ONL_extractHeli = createVehicle [["B_Heli_Transport_03_F","CUP_B_UH60M_US"] select ONL_CUPVehiclesLoaded,[7213.91,5574.56,46.871],[],0,"FLY"];
 
 if (ONL_CUPVehiclesLoaded) then {
@@ -46,5 +45,8 @@ ONL_extractHeli hideObjectGlobal true;
 // to be used in player respawn script
 missionNamespace setVariable ["ONL_extractHeli",ONL_extractHeli,true];
 
+
 // exclude from saves
 ONL_extractHeli setVariable ["ONL_saveExcluded",true];
+ONL_extractHeliTurrets_group setVariable ["ONL_saveExcluded",true];
+ONL_extractHeli_group setVariable ["ONL_saveExcluded",true];
