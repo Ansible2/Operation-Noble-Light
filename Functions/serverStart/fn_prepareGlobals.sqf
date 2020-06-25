@@ -7,6 +7,17 @@ publicVariable "ONL_charge_3";
 
 // load save game
 ONL_loadSave = [false,true] select (["LoadSave",0] call BIS_fnc_getParamValue);
+if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData"]) isEqualTo []}) then {
+	ONL_loadSave = false;
+
+	[
+		{
+			["WARNING: SAVE NOT FOUND, NEW GAME STARTED"] remoteExec ["KISKA_fnc_dataLinkMsg",allPlayers,true];
+		},
+		[],
+		15
+	] call CBA_fnc_waitAndExecute;
+};
 
 // check optional mods
 ONL_snowTigersLoaded = ["IP_CSAT_ST"] call KISKA_fnc_isPatchLoaded;
@@ -53,6 +64,25 @@ ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select
 
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
+// Task Ids for saves
+ONL_taskIds = [
+	FindHeadScientist_TaskID,
+	CollectBaseIntel_TaskID,
+	DestroyComs_TaskID,
+	DestroyArty_taskID,
+	CollectBlackSiteIntel_TaskID,
+	CollectRockSample_TaskID,
+	DestroyBlackSiteServers_TaskID,
+	InvestigateBlackSite_TaskID,
+	CollectCaveData_TaskID,
+	CollectDeviceLogs_TaskID,
+	DestroyCaveServers_TaskID,
+	DestroyTheDevices_TaskID,
+	InvestigateFacility_TaskID,
+	SearchLodging_TaskID,
+	SecureApollo_TaskID,
+	Extract_TaskID
+];
 
 ////// Prepare music globals
 private _musicType = ["CCM","NONE"/*,"KISKA"*/] select (["MusicType",0] call BIS_fnc_getParamValue);

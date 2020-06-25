@@ -92,4 +92,7 @@ call ONL_fnc_createBaseHeliPatrol;
 			ONL_deadArty = 1;
 		};
 	}];
+
+	_group setVariable ["ONL_saveExcluded",true];
+	_x setVariable ["ONL_saveExcluded",true];
 };

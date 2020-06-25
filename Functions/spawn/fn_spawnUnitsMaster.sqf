@@ -22,10 +22,10 @@ if !(ONL_loadSave) then {
 
 	call ONL_fnc_spawnUnitsFacility;
 } else {
-	call ONL_fnc_loadSave;
+	call ONL_fnc_loadProgress;
 };
 
-// add arty event
+// add arty events
 
 uiSleep 2;
 

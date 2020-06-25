@@ -47,19 +47,21 @@ _ONLSaveData pushBack _vehicleSaveInfoArray;
 
 
 //////////////////////////////////Groups///////////////////////////////////////////////////////////////////////////////////////////
-private _groupsSaveInfoArray = [];
-
+// filter groups
 private _groupsToSave = allGroups select {
 	!(_x getVariable ["ONL_saveExcluded",false]) AND
 	{!(isNull _x)} AND
 	{((side _x) isEqualTo OPFOR) OR {(side _x) isEqualTo independent}}
 };
 
+// create storage array
+private _savedGroupsInfoArray = [];
+
 _groupsToSave apply {
 	// group info
 	private _group = _x;
 
-	// specific units info
+	// specific units info ///////////////////////
 	private _unitsInfo = [];
 	(units _group) apply {
 		private _unit = _x;
@@ -85,7 +87,7 @@ _groupsToSave apply {
 	};
 
 
-	// waypoints
+	// waypoints ////////////////////////
 	private _waypoints = waypoints _group;
 	private _savedWaypoints = [];
 	if !(_waypoints isEqualTo []) then {
@@ -110,7 +112,7 @@ _groupsToSave apply {
 		};
 	};
 
-	// misc group info for spawning
+	// misc group info for spawning /////////////////////
 	private _groupBehaviour = behaviour _group;
 	private _combatMode = combatMode _group;
 	private _groupSide = side _group;
@@ -122,10 +124,10 @@ _groupsToSave apply {
 	private _onCreateCode = _group getVariable ["ONL_loadCreationCode",{}];
 
 	// add to master group list
-	_groupsSaveInfoArray pushBack [_groupSide,_isGroupDySimmed,_combatMode,_groupBehaviour,_groupFormation,_deleteWhenEmpty,_unitsInfo,_savedWaypoints,_onCreateCode];
+	_savedGroupsInfoArray pushBack [_groupSide,_isGroupDySimmed,_combatMode,_groupBehaviour,_groupFormation,_deleteWhenEmpty,_unitsInfo,_savedWaypoints,_onCreateCode];
 };
-// add masters to actual save
-_ONLSaveData pushBack _groupsSaveInfoArray;
+// add master
+_ONLSaveData pushBack _savedGroupsInfoArray;
 
 
 
@@ -141,27 +143,8 @@ private _fn_isTaskComplete = {
 	[_task] call BIS_fnc_taskCompleted;
 };
 
-private _tasks = [
-	FindHeadScientist_TaskID,
-	CollectBaseIntel_TaskID,
-	DestroyComs_TaskID,
-	DestroyArty_taskID,
-	CollectBlackSiteIntel_TaskID,
-	CollectRockSample_TaskID,
-	DestroyBlackSiteServers_TaskID,
-	InvestigateBlackSite_TaskID,
-	CollectCaveData_TaskID,
-	CollectDeviceLogs_TaskID,
-	DestroyCaveServers_TaskID,
-	DestroyTheDevices_TaskID,
-	InvestigateFacility_TaskID,
-	SearchLodging_TaskID,
-	SecureApollo_TaskID,
-	Extract_TaskID
-];
-
 private _completedTasks = [];
-_tasks apply {
+ONL_taskIds apply {
 	if ([_x] call _fn_isTaskComplete) then {
 		_completedTasks pushBack _x;
 	};
@@ -181,7 +164,6 @@ private _fn_aliveAndHasCrew = {
 };
 
 // arty pieces, decide if they need eventhandelers
-private ["",""];
 private _artyAlive_1 = [ONL_arty_1] call _fn_aliveAndHasCrew;
 private _artyAlive_2 = [ONL_arty_2] call _fn_aliveAndHasCrew;
 _specialSaveData pushBack _artyAlive_1;
@@ -193,9 +175,11 @@ private _baseHeliAlive = [ONL_basePatrolHelicopter] call _fn_aliveAndHasCrew;
 _specialSaveData pushBack _blackSiteHeliAlive;
 _specialSaveData pushBack _baseHeliAlive;
 
-
-
+// add to master
 _ONLSaveData pushBack _specialSaveData;
+
+
+
 
 //////////////////////////////////Dependencies/////////////////////////////////////////////////////////////////////////////////////
 _ONLSaveData pushBack [ONL_snowTigersLoaded,ONL_CUPVehiclesLoaded,ONL_RHSUSFVehiclesLoaded,ONL_CUPUnitsLoaded,ONL_FSGLoaded];
