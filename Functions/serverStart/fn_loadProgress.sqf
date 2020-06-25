@@ -3,7 +3,7 @@ if !(isServer) exitWith {};
 (profileNamespace getVariable "ONL_saveData") params [
 	"_vehicleSaveInfoArray",
 	"_savedGroupsInfoArray",
-	"_taskInfo",
+	"_taskInfoArray",
 	"_specialSaveData",
 	"_dependencies"
 ];
@@ -39,7 +39,12 @@ if !(_activeDependencies isEqualTo _dependencies) exitWith {
 ////////////////TASKS////////////////////////////////////////////////////////////////////
 // need more details about tasks
 // e.g. what ones were created
-_completedTasks apply {
+_taskInfoArray apply {
+	_x params ["_task","_taskExists","_taskState"];
+
+	if (_taskExists) then {
+		if (_taskState == "COMPLETED")
+	};
 	_x call KISKA_fnc_setTaskComplete;
 }; 
 
