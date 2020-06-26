@@ -62,14 +62,17 @@ class ONL
 	class serverStart
 	{
 		file = "Functions\serverStart";
-		class saveProgress
-		{};
 		class loadProgress
-		{};
-		class startServerLoops
 		{};
 		class prepareGlobals
 		{};
+		class saveProgress
+		{};
+		class saveQuery
+		{};
+		class startServerLoops
+		{};
+		
 	};
 	class serverEvents
 	{

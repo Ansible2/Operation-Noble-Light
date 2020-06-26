@@ -182,8 +182,6 @@ call ONL_fnc_waitToAddBlackSiteTasks;
 ] call KISKA_fnc_waitUntil;
 
 
-
-
 // start random music system
 waitUntil {
 	if (time > 0) exitWith {

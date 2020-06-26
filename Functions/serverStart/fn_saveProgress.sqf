@@ -1,4 +1,8 @@
 if (!isServer) exitWith {};
+
+if ((admin remoteExecutedOwner) != 2 AND {remoteExecutedOwner != 2}) exitWith {};
+
+
 // master array
 private _ONLSaveData = [];
 

@@ -98,6 +98,18 @@ _player createDiaryRecord ["Diary",["Support",
 <br></br>
 1x Predator UAV armed with guided munitions."],taskNull,"",true];
 
+// save game (only admins or hosts will be able to save)
+_player createDiaryRecord ["Diary", ["SAVE GAME", 
+    "(Only hosts and admins can save, WARNING: this will be intensive)
+	<br></br>
+	<br></br>
+	<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>"
+]];
+
+
+player createDiaryRecord ["diary", ["Record 3", 
+    "Go to <execute expression='diaryRec1 call funcProcessDiaryLink'>Record 1</execute>"
+]];
 
 waitUntil {
 	if !(isNil "ONL_startingVehicles") exitWith {[_player] call ONL_fnc_addCargoActions; true};
