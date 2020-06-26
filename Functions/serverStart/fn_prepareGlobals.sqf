@@ -66,23 +66,24 @@ ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
 // Task Ids for saves
 ONL_taskIdsAndInfo = [
-	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"],
-	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo"],
-	[DestroyComs_TaskID,"DestroyComs_TaskInfo"],
-	[DestroyArty_taskID,"DestroyArty_taskInfo"],
-	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"],
-	[CollectRockSample_TaskID,"CollectRockSample_TaskInfo"],
-	[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"],
-	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo"],
-	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"],
-	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo"],
-	[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"],
-	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"],
-	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo"],
-	[SearchLodging_TaskID,"SearchLodging_TaskInfo"],
-	[SecureApollo_TaskID,"SecureApollo_TaskInfo"],
-	[Extract_TaskID,"Extract_TaskInfo"]
+	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo",objNull,"SEARCH"],
+	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo",objNull,"SEARCH"],
+	[DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"DESTROY"],
+	[DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"DESTROY"],
+	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo",objNull,"SEARCH"],
+	[CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"INTERACT"],
+	[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"DESTROY"],
+	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo",objNull,"SEARCH"],
+	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo",objNull,"INTERACT"],
+	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo",objNull,"INTERACT"],
+	[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo",ONL_caveServer_1,"DESTROY"],
+	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo",objNull,"DESTROY"],
+	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo",objNull,"SEARCH"],
+	[SearchLodging_TaskID,"SearchLodging_TaskInfo",objNull,"SEARCH"],
+	[SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"MEET"]
+	//[Extract_TaskID,"Extract_TaskInfo"] not needed, will be created when jumping into AO anyway
 ];
+
 
 ////// Prepare music globals
 private _musicType = ["CCM","NONE"/*,"KISKA"*/] select (["MusicType",0] call BIS_fnc_getParamValue);

@@ -37,15 +37,21 @@ if !(_activeDependencies isEqualTo _dependencies) exitWith {
 
 
 ////////////////TASKS////////////////////////////////////////////////////////////////////
-// need more details about tasks
-// e.g. what ones were created
 _taskInfoArray apply {
-	_x params ["_task","_taskExists","_taskState"];
+	_x params ["_task","_taskInfo","_taskLocation","_taskType","_taskStatusArray"];
+	_taskStatusArray params ["_taskExists","_taskState"];
+	
+	// some task IDs are configured in an array with their parent taskId, this seperates them for other functions
+	private "_taskId";
+	if (_task isEqualType []) then {
+		_taskId = _task select 0;
+	} else {
+		_taskId = _task;
+	};
 
 	if (_taskExists) then {
-		if (_taskState == "COMPLETED")
+		[true,_task,_taskInfo,_taskLocation,_taskState,5,true,_taskType,false] call BIS_fnc_taskCreate;	
 	};
-	_x call KISKA_fnc_setTaskComplete;
 }; 
 
 

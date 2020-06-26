@@ -153,13 +153,17 @@ private _fn_taskStatus = {
 		_taskState = "";
 	};
 
-	[_task,_taskExists,_taskState]
+	[_taskExists,_taskState]
 };
 
 private _taskInfoArray = [];
 ONL_taskIdsAndInfo apply {
-	private _taskInfo = [_x] call _fn_taskStatus;
-	_taskInfoArray pushBack _taskInfo;
+	private _taskIdAndInfo = _x
+	private _taskIdGlobal = _taskIdAndInfo select 0;
+
+	private _taskStatus = [_x] call _fn_taskStatus;
+	_taskIdAndInfo pushBack _taskStatus;
+	_taskInfoArray pushBack _taskIdAndInfo;
 };
 // add to master
 _ONLSaveData pushBack _taskInfoArray;

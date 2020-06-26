@@ -13,7 +13,7 @@ private _id = [
 
 		["ONL_village_spawnReinforcements_Event"] call CBA_fnc_ServerEvent;
 		
-		[SecureApollo_TaskID, "SUCCEEDED", true] call BIS_fnc_taskSetState;
+		[SecureApollo_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
 		
 		if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskCompleted) then {
 			[true,InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo",objNull,"ASSIGNED",10,true,"SEARCH",false] call BIS_fnc_taskCreate;

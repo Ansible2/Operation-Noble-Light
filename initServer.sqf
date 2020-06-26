@@ -29,11 +29,13 @@ call ONL_fnc_placeVehicles;
 // start audio effects at start base
 call ONL_fnc_startingBaseAudio;
 
-// initial Task
-[true,SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"ASSIGNED",5,true,"MEET",false] call BIS_fnc_taskCreate;
-
 // spawn most enemy units
 call ONL_fnc_spawnUnitsMaster;
+
+// initial Task
+if !([SecureApollo_TaskID] call BIS_fnc_taskExists) then {
+	[true,SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"ASSIGNED",5,true,"MEET",false] call BIS_fnc_taskCreate;
+};
 
 // for plane at start
 ONL_cargoPlane flyInHeight 500; 
