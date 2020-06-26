@@ -15,30 +15,30 @@ private _id = [
 		
 		[SecureApollo_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
 		
-		if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskCompleted) then {
+		if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskExists) then {
 			[true,InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo",objNull,"ASSIGNED",10,true,"SEARCH",false] call BIS_fnc_taskCreate;
 		};
 
-		if !([CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskCompleted) then {
+		if !([CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskExists) then {
 			[true,CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo",objNull,"AUTOASSIGNED",10,true,"SEARCH",false] call BIS_fnc_taskCreate;
 		};
 
-		if !([FindHeadScientist_TaskID] call BIS_fnc_taskCompleted) then {
+		if !([FindHeadScientist_TaskID] call BIS_fnc_taskExists) then {
 			[true,FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
 		};
 		
 		// check if coms were already destroyed to create task or not
-		if !([DestroyComs_TaskID] call BIS_fnc_taskCompleted) then {
+		if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {
 			[
 				{
-					if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then {
+					if !([CollectBaseIntel_TaskID] call BIS_fnc_taskExists) then {
 						["Recommend you knock out CSAT long range coms before kicking the hornets nest. BREAK"] remoteExec ["KISKA_fnc_DataLinkMsg",[0,-2] select isDedicated];
 						["The relay is located at GRID 142-035",4,false] remoteExec ["KISKA_fnc_DataLinkMsg",[0,-2] select isDedicated]; 
 						
 						[true,CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo",ONL_BaseFile,"AUTOASSIGNED",5,true,"LISTEN",false] call BIS_fnc_taskCreate;
 					};
 
-					if !([DestroyComs_TaskID] call BIS_fnc_taskCompleted) then {
+					if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {
 						[true,DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 					};					
 					

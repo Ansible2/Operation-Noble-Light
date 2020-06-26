@@ -31,7 +31,7 @@ if !(isServer) exitWith {};
 
 			[SearchLodging_TaskID,"SearchLodging_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-			if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
+			if !([InvestigateFacility_TaskID] call BIS_fnc_taskExists) then {
 				[true,InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
 			};
 		};

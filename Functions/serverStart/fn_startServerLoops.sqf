@@ -21,8 +21,10 @@ call ONL_fnc_waitToAddBlackSiteTasks;
 				[
 					{
 						ONL_cargoPlane attachTo [ONL_logic_jumpPosition,[0,0,0]];
-
-						[true,Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"AUTOASSIGNED",5,false,"takeoff",false] call BIS_fnc_taskCreate;
+						
+						if !([Extract_TaskID] call BIS_fnc_taskExists) then {
+							[true,Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"AUTOASSIGNED",5,false,"takeoff",false] call BIS_fnc_taskCreate;
+						};
 
 						ONL_airfieldRespawn call BIS_fnc_removeRespawnPosition;
 						

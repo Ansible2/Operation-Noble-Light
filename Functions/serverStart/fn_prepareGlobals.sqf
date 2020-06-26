@@ -80,8 +80,8 @@ ONL_taskIdsAndInfo = [
 	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo",objNull,"DESTROY"],
 	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo",objNull,"SEARCH"],
 	[SearchLodging_TaskID,"SearchLodging_TaskInfo",objNull,"SEARCH"],
-	[SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"MEET"]
-	//[Extract_TaskID,"Extract_TaskInfo"] not needed, will be created when jumping into AO anyway
+	[SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"MEET"],
+	[Extract_TaskID,"Extract_TaskInfo"]
 ];
 
 
