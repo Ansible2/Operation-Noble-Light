@@ -179,7 +179,11 @@ ONL_getToExtract_EventID = ["ONL_getToExtraction_Event",_id];
 	{
 		private _type = selectRandomWeighted ONL_CSATVehicleVariants;
 		private _vehicle = createVehicle [_type,selectRandom [ONL_logic_extraction_spawn_1,ONL_logic_extraction_spawn_2,ONL_logic_extraction_spawn_3],[],20,"NONE"];
+		_vehicle setVariable ["ONL_saveExcluded",true];
+		
 		private _group = createVehicleCrew _vehicle;
+		_group setVariable ["ONL_saveExcluded",true];
+		
 		private _waypoint = _group addWaypoint [ONL_logic_extraction,250];
 		_waypoint setWaypointType "SAD";
 	}
@@ -189,6 +193,8 @@ ONL_getToExtract_EventID = ["ONL_getToExtraction_Event",_id];
 	"ONL_spawnGroup_Event",
 	{
 		private _group = [6,ONL_CSATVariants,opfor,selectRandom [ONL_logic_extraction_spawn_2,ONL_logic_extraction_spawn_3]] call KISKA_fnc_spawnGroup;
+		_group setVariable ["ONL_saveExcluded",true];
+		
 		private _waypoint = _group addWaypoint [ONL_logic_extraction,100];
 		_waypoint setWaypointType "SAD";
 	}

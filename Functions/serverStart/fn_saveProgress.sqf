@@ -100,7 +100,7 @@ _groupsToSave apply {
 			private _wp = _x;
 			
 			// check if current waypoint
-			private _currentWaypoint = currentWaypoint isEqualTo _wp;
+			private _currentWaypoint = (currentWaypoint _group) isEqualTo _wp;
 
 			// get info for waypoint
 			private _waypointType = waypointType _wp;
@@ -162,7 +162,7 @@ private _fn_taskStatus = {
 
 private _taskInfoArray = [];
 ONL_taskIdsAndInfo apply {
-	private _taskIdAndInfo = _x
+	private _taskIdAndInfo = _x;
 	private _taskIdGlobal = _taskIdAndInfo select 0;
 
 	private _taskStatus = [_x] call _fn_taskStatus;
