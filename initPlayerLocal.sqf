@@ -13,11 +13,9 @@ _player setCustomAimCoef 0.15;
 
 call ONL_fnc_addBaseActions;
 call ONL_fnc_addBlackSiteActions;
-
 call ONL_fnc_addCaveActions;
 call ONL_fnc_addLodgingActions;
 call ONL_fnc_addVillageActions;
-
 call ONL_fnc_addPlayerActions;
 
 if (viewDistance > 1700) then {
@@ -28,6 +26,8 @@ if ((getObjectViewDistance select 0) > 1500) then {
 	setObjectViewDistance 1500;
 };
 
+
+//// diary records
 // Situation
 _player createDiaryRecord ["Diary",["Situation","In a bid to garner more influence among Europe and its talks with the Russian Federation, CSAT's soft expansion has brought it to Scandinavia.
 <br></br>
@@ -98,7 +98,7 @@ _player createDiaryRecord ["Diary",["Support",
 <br></br>
 1x Predator UAV armed with guided munitions."],taskNull,"",true];
 
-// save game (only admins or hosts will be able to save)
+// save game (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
 _player createDiaryRecord ["Diary", ["SAVE GAME", 
     "(Only hosts and admins can save, WARNING: this will be intensive)
 	<br></br>
@@ -106,10 +106,6 @@ _player createDiaryRecord ["Diary", ["SAVE GAME",
 	<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>"
 ]];
 
-
-player createDiaryRecord ["diary", ["Record 3", 
-    "Go to <execute expression='diaryRec1 call funcProcessDiaryLink'>Record 1</execute>"
-]];
 
 waitUntil {
 	if !(isNil "ONL_startingVehicles") exitWith {[_player] call ONL_fnc_addCargoActions; true};
