@@ -87,6 +87,8 @@ class ONL
 		{};
 		class spawnUnitsMaster
 		{};
+		class spawnUnitsNewGame
+		{};
 	};
 
 };
