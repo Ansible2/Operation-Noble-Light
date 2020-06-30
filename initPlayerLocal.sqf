@@ -11,13 +11,7 @@ ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
 _player setCustomAimCoef 0.15;
 
-call ONL_fnc_addBaseActions;
-call ONL_fnc_addBlackSiteActions;
-call ONL_fnc_addCaveActions;
-call ONL_fnc_addLodgingActions;
-call ONL_fnc_addVillageActions;
-call ONL_fnc_addPlayerActions;
-
+call ONL_fnc_addActionsMaster;
 
 // adjust viewDistances
 if (viewDistance > 1700) then {

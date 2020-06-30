@@ -3,23 +3,14 @@ class ONL
 	class actions 
 	{
 		file = "Functions\actions";
-		class addBaseActions
-		{};
-		class addBlackSiteActions
+		class addActionsMaster
 		{};
 		class addCargoActions
 		{};
-		class addCaveActions
-		{};
 		class addDefusalActions
 		{};
-		class addLodgingActions
-		{};
 		class addPlayerActions
-		{};
-		class addVillageActions
-		{};
-		
+		{};		
 	};
 	class effects 
 	{
