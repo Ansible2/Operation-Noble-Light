@@ -1,3 +1,8 @@
+//// why is this a seperate file instead of in the fn_addActionMaster?
+// suspension (use of waitUntil) and the desire to save on perfomance for the conidition checks on each of the seperate actions
+// for a 6 hour mission, there is no point in having 3 condition checks every frame if it can easily be avoided. 
+// this function is called upon entering the cave
+
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
@@ -86,7 +91,7 @@ if !(isNull ONL_charge_3) then {
 
 
 
-// remove action event, actions persist even when the charge is detonated
+// remove action event, actions will persist even when the charge is detonated
 if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false])) then {
 	[
 		"ONL_removeDefusalAction_Event",

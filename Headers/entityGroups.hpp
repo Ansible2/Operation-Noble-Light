@@ -1,3 +1,5 @@
+// these are seperate from fn_prepareGlobals due to that function only being called on the server, I want these available to everyone ahead of the init.sqf
+
 ONL_blackSiteCollects = [
     ONL_blackSiteCollect_1,
     ONL_blackSiteCollect_2,

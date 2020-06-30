@@ -18,10 +18,11 @@ call ONL_fnc_addLodgingActions;
 call ONL_fnc_addVillageActions;
 call ONL_fnc_addPlayerActions;
 
+
+// adjust viewDistances
 if (viewDistance > 1700) then {
 	setViewDistance 1700;
 };
-
 if ((getObjectViewDistance select 0) > 1500) then {
 	setObjectViewDistance 1500;
 };

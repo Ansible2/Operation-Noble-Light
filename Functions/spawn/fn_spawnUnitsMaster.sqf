@@ -1,31 +1,18 @@
 if (!isServer) exitWith {false};
 
-// this is used to assign vanilla loadouts
+// this is used to assign vanilla loadouts if needed
 if (!ONL_CUPUnitsLoaded) then {
 	ONL_PMCUnits = [];
 };
-
 
 // Extraction Helicopter
 call ONL_fnc_createExtractionHeli;
 
 if !(ONL_loadSave) then {
-	call ONL_fnc_spawnUnitsVillage;
-
-	call ONL_fnc_spawnUnitsCave;
-
-	call ONL_fnc_spawnUnitsLodging;
-
-	call ONL_fnc_spawnUnitsBlacksite;
-
-	call ONL_fnc_spawnUnitsBase;
-
-	call ONL_fnc_spawnUnitsFacility;
+	call ONL_fnc_spawnUnitsNewGame;
 } else {
 	call ONL_fnc_loadProgress;
 };
-
-// add arty events
 
 uiSleep 2;
 

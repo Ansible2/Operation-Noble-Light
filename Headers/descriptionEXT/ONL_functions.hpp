@@ -56,38 +56,31 @@ class ONL
 		{};
 		class waitToAddCaveTasks
 		{};
-		class waitToAddBlackSiteTasks
-		{};
 	};
-	class serverStart
+	class saveSystem
 	{
-		file = "Functions\serverStart";
+		file = "Functions\saveSystem";
 		class loadProgress
-		{};
-		class prepareGlobals
 		{};
 		class saveProgress
 		{};
 		class saveQuery
 		{};
-		class startServerLoops
-		{};
-		
 	};
-	class serverEvents
+	class serverStart
 	{
-		file = "Functions\serverEvents";
-		class baseEvents
-		{};
-		class blackSiteEvents
-		{};
-		class caveEvents
+		file = "Functions\serverStart";
+		class addServerEvents
 		{};
 		class extractionEvents
 		{};
-		class miscEvents
+		class placeVehicles
 		{};
-		class villageEvents
+		class prepareGlobals
+		{};
+		class startServerLoops
+		{};
+		class startingVehiclesInit
 		{};
 	};
 	class spawn
@@ -101,23 +94,7 @@ class ONL
 		{};
 		class createExtractionHeli
 		{};
-		class placeVehicles
-		{};
-		class spawnUnitsBase
-		{};
-		class spawnUnitsBlacksite
-		{};
-		class spawnUnitsCave
-		{};
-		class spawnUnitsFacility
-		{};
-		class spawnUnitsLodging
-		{};
 		class spawnUnitsMaster
-		{};
-		class spawnUnitsVillage
-		{};
-		class startingVehiclesInit
 		{};
 	};
 

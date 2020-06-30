@@ -64,7 +64,7 @@ ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select
 
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
-// Task Ids for saves
+// Task stuff for saves
 ONL_taskIdsAndInfo = [
 	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo",objNull,"SEARCH"],
 	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo",objNull,"SEARCH"],

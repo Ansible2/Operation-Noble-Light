@@ -1,7 +1,5 @@
 if (!isServer) exitWith {};
 
-call ONL_fnc_waitToAddBlackSiteTasks;
-
 // cargo plane takeoff loop
 [
 	2,
@@ -47,7 +45,36 @@ call ONL_fnc_waitToAddBlackSiteTasks;
 ] call KISKA_fnc_waitUntil;
 
 
-// music loops
+
+
+// wait to set investigate black site task complete
+[
+	3,
+	{
+		[InvestigateBlackSite_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
+	},
+	{[CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskCompleted AND {[CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted} AND {[DestroyBlackSiteServers_TaskID select 0] call BIS_fnc_taskCompleted}}
+] call KISKA_fnc_waitUntil;
+
+
+// waiting to add some blacksite tasks
+if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
+    [
+        3,
+        {		
+            [true,CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;            
+            [true,DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
+
+            call ONL_fnc_blackSiteArty;
+        },
+        {!(((call CBA_fnc_players) findIf {(_x distance2D ONL_glowingRock) < 10}) isEqualTo -1)}
+    ] call KISKA_fnc_waitUntil;
+};
+
+
+
+
+//// Near location loops
 
 // village
 [

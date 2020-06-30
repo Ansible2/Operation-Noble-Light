@@ -22,8 +22,6 @@ class CfgTaskDescriptions
 class CfgFunctions
 {
 	#include "headers\descriptionEXT\ONL_functions.hpp"
-
-	#include "headers\descriptionEXT\KISKA_functions.hpp"
 };
 class Params
 {
