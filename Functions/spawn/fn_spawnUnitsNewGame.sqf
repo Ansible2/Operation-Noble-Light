@@ -1,3 +1,26 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_spawnUnitsNewGame
+
+Description:
+	Opposite of ONL_fnc_loadProgress.
+	This will spawn most of the enemy units in the mission when starting a new game.
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn ONL_fnc_spawnUnitsNewGame;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 //////////////////////////////
@@ -11,14 +34,11 @@ call {
 		_x moveInGunner (_turrets select _forEachIndex);
 	} forEach _turretUnits;
 
-
 	uiSleep 1;
-
 
 	// Entry checkpoint
 	private _checkpointUnits = [3,3,ONL_CSATVariants,ONL_base_checkPoint_positions] call KISKA_fnc_spawn;
 	(_checkpointUnits select 2) moveInTurret [ONL_baseIfrit_1,[0]];
-
 
 	uiSleep 1;
 
@@ -45,26 +65,20 @@ call {
 	// building interiors
 	[5,5,ONL_CSATVariants,ONL_base_buildingInterior_positions] call KISKA_fnc_spawn;
 
-
 	uiSleep 1;
 
 	// building exteriors
 	[5,5,ONL_CSATVariants,ONL_base_buildingExterior_positions] call KISKA_fnc_spawn;
 
-
 	uiSleep 1;
-
 
 	// general positions
 	[10,1,ONL_CSATVariants,ONL_base_general_positions,true] call KISKA_fnc_spawn;
 
-
 	uiSleep 1;
-
 
 	// bunker interior
 	[8,4,ONL_CSATVariants,ONL_base_bunkerInterior_positions] call KISKA_fnc_spawn;
-
 
 	uiSleep 1;
 
@@ -72,9 +86,7 @@ call {
 	private _bunkerUnits = [5,1,ONL_CSATVariants,ONL_base_bunkerExterior_positions] call KISKA_fnc_spawn;
 	(_bunkerUnits select 4) moveInTurret [ONL_baseIfrit_2,[0]];
 
-
 	uiSleep 1;
-
 
 	//// bunker patrols
 	// patrol 1
@@ -100,7 +112,6 @@ call {
 	[_patrol2,ONL_baseBunker_patrolLogic_2,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 	uiSleep 1;
-
 
 	// Helicopter Patrol
 	call ONL_fnc_createBaseHeliPatrol;
@@ -150,18 +161,13 @@ call {
 
 	[ONL_maridLogic_1,ONL_CSAT_APCWheeled] call _fn_create;
 
-
 	uiSleep 1;
-
 
 	[ONL_kamyshLogic_1,ONL_CSAT_APCTracked] call _fn_create;
 
-
 	uiSleep 1;
 
-
 	[ONL_varsukLogic_1,ONL_CSAT_MBT] call _fn_create;
-
 
 	uiSleep 1;
 
@@ -183,7 +189,6 @@ call {
 
 	// Helicopter Patrol
 	call ONL_fnc_createBlackSiteHeliPatrol;
-
 
 	uiSleep 1;
 
@@ -230,38 +235,27 @@ call {
 		};
 	};
 
-
 	[ONL_turret_checkpoint1,ONL_rg31Logic_5,ONL_blackSite_checkpointPositions_1] call _fn_popCheckpoint;
 
-
 	uiSleep 1;
-
 
 	[ONL_turret_checkpoint2,ONL_rg31Logic_3,ONL_blackSite_checkpointPositions_2] call _fn_popCheckpoint;
 
-
 	uiSleep 1;
-
 
 	[ONL_turret_checkpoint3,ONL_rg31Logic_4,ONL_blackSite_checkpointPositions_3] call _fn_popCheckpoint;
 
-
 	uiSleep 1;
-
 
 	// interior
 	[4,1,ONL_CSATVariants,ONL_blackSite_interiorPositions_1a] call KISKA_fnc_spawn;
 
-
 	uiSleep 1;
-
 
 	// exterior
 	[4,1,ONL_CSATVariants,ONL_blackSite_exteriorPositions,true] call KISKA_fnc_spawn;
 
-
 	uiSleep 1;
-
 
 	// dig site
 	[4,1,ONL_CSATVariants,ONL_blackSite_interiorPositions_1b,false,true,opfor] call KISKA_fnc_spawn;

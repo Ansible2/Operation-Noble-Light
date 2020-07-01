@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_createBaseHeliPatrol
+
+Description:
+	Creates a patroling helicopter around the base.
+	
+	It is executed from "ONL_fnc_spawnUnitsNewGame" OR possibly "ONL_fnc_loadProgress".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_createBaseHeliPatrol;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 ONL_basePatrolHelicopter = createVehicle [ONL_CSATHelicopterAttack,position ONL_baseHelipad,[],0,"NONE"];
 
 // if snow tigers is not loaded, make the heli black

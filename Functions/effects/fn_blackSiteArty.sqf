@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_blackSiteArty
+
+Description:
+	Calls an artillery strike onto the Black Site. The artillery pieces are those located at the base.
+	Strike will only happen if they are alive.
+	Executed from loop inside ONL_fnc_startServerLoops.
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn ONL_fnc_blackSiteArty;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {};
 
 if (!isServer) exitWith {};

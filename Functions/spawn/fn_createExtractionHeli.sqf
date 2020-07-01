@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_createExtractionHeli
+
+Description:
+	Creates the extraction helicopter for the players.
+
+	Executed from "ONL_fnc_spawnUnitsMaster".
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_createExtractionHeli;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 ONL_extractHeli = createVehicle [["B_Heli_Transport_03_F","CUP_B_UH60M_US"] select ONL_CUPVehiclesLoaded,[7213.91,5574.56,46.871],[],0,"FLY"];

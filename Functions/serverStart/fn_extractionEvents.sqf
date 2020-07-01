@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_extractionEvents
+
+Description:
+	This adds CBA events relevant to the extraction defense of the mission.
+	
+	It is executed from the "ONL_fnc_addServerEvents".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_extractionEvents
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
 private _id = [

@@ -1,11 +1,33 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_saveProgress
+
+Description:
+	Essentially saves the mission state.
+	
+	Executed from "ONL_fnc_saveQuery" which was used to obtain the remoteExecutedOwner var.
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_saveProgress;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 if ((admin remoteExecutedOwner) != 2 AND {remoteExecutedOwner != 2}) exitWith {};
 
-
 // master array
 private _ONLSaveData = [];
-
 
 //////////////////////////////////Vehicles (and turrets)/////////////////////////////////////////////////////////////////////////////////////////
 // filter vehicles

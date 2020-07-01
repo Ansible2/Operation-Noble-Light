@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_testingAreaDoors
+
+Description:
+	Either opens or closes the testing area doors inside the cave depending upon the input param.
+
+	Executed from the hold actions added from "ONL_fnc_addActionsMaster"
+
+Parameters:
+	0: _open : <BOOL> - Should the doors open or close
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn ONL_fnc_testingAreaDoors;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+
 if (!canSuspend) exitWith {};
 
 params [

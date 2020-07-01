@@ -1,3 +1,29 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_waitToAddCaveTasks
+
+Description:
+	Starts several loops that search for a near player before adding some tasks inside the cave.
+
+    Executed from the server event "ONL_Cave_entered_Event" which is located inside "ONL_fnc_addServerEvents"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_waitToAddCaveTasks;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+if (!isServer) exitWith {};
+
 if !([CollectDeviceLogs_TaskID select 0] call BIS_fnc_taskExists) then {
     [
         1,

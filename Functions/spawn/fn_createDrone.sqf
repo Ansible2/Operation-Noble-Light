@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_createDrone
+
+Description:
+	Creates the UAV predator for the players
+	
+	It is executed from "ONL_fnc_waitToDeletePlane".
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_createDrone;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 ONL_drone = ([[18728,14207.7,1137.77], 180, "USAF_MQ9", west] call BIS_fnc_spawnVehicle) select 0;

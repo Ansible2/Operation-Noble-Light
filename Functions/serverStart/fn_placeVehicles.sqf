@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_placeVehicles
+
+Description:
+	The function spawns in all simple object vehicles across the mission.
+	The function was used to support the multiple add ons that are possible to use with ONL.
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_placeVehicles
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 private _fn_createSimple = {

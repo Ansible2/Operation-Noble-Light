@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_baseBunkerRadio
+
+Description:
+	Starts a loop that will find if a player is nearby the base's bunker and start player ambient radio chatter once near.
+	Also deletes the audio once players move away.
+	Executed from the near location loop for the base in ONL_fnc_startServerLoops. Was place in a seperate function for readability.
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_baseBunkerRadio;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+
 if (!isServer) exitWith {};
 
 [

@@ -1,3 +1,25 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_addPlayerActions
+
+Description:
+	Adds actions that are specifically attached to the player object, called in "ONL_fnc_addActionsMaster" & "onPlayerRespawn"
+
+Parameters:
+	0: _player : <OBJECT> - The player object
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [player] spawn ONL_fnc_addPlayerActions;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {

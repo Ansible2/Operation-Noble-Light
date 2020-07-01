@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_addServerEvents
+
+Description:
+	This adds CBA events and general eventHandlers to the server.
+	These CBA events were used for certain "insignificant" things I did not want functions for and more so are reactions to players.
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_addServerEvents
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 //////////////////////////////
@@ -92,7 +117,7 @@ call {
 			if (missionNamespace getVariable ["ONL_cave_GeneratorDeadCount",0] isEqualTo 0) then {
 				ONL_cave_GeneratorDeadCount = 1;
 			} else {
-				[] spawn ONL_fnc_shutOffLights;
+				null = [] spawn ONL_fnc_shutOffLights;
 				
 				ONL_Cave_generatorShutOff_Event_ID call CBA_fnc_removeEventHandler;
 			};

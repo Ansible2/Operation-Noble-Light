@@ -1,3 +1,5 @@
+// All the possible loadouts for units; also includes civilian gear pieces. All is for randomization by selecting from array
+
 // CSAT mask loadouts
 ONL_O_T_Recon_F = [
 	[["arifle_CTAR_blk_F","muzzle_snds_58_blk_F","acc_pointer_IR","optic_ACO_grn",["30Rnd_580x42_Mag_F",30],[],""],[],["hgun_Rook40_F","muzzle_snds_L","","",["16Rnd_9x21_Mag",16],[],""],["U_O_T_Soldier_F",[["FirstAidKit",1],["30Rnd_580x42_Mag_F",3,30]]],["V_HarnessO_ghex_F",[["30Rnd_580x42_Mag_F",6,30],["16Rnd_9x21_Mag",2,16],["MiniGrenade",2,1],["SmokeShell",1,1],["SmokeShellRed",1,1],["Chemlight_red",2,1]]],[],"H_HelmetSpecO_ghex_F","G_AirPurifyingRespirator_02_olive_F",["Binocular","","","",[],[],""],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch","O_NVGoggles_ghex_F"]]

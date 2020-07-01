@@ -1,3 +1,5 @@
+// All the possible sound files to player from "ONL_fnc_newsRadio"
+
 ONL_newsSounds = [
 	"News_arrest",
 	"News_BackOnline",

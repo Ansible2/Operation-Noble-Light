@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_waitToDeletePlane
+
+Description:
+	Waits until all players are outside of the drop plane before deleting it.
+
+    Executed from cargo plane takeoff loop which is located inside "ONL_fnc_startServerLoops"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_waitToDeletePlane;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
 [

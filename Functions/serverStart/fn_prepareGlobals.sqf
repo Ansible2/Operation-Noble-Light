@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_prepareGlobals
+
+Description:
+	Does exactly what it says. Most globals in the scenario are initialized here.
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_prepareGlobals
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 // so that the defusal actions can check if these are alive

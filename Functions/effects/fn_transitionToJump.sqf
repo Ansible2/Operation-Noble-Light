@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_transitionToJump
+
+Description:
+	Fades player's screen while plane is teleported to drop zone, then fades back.
+	Also reduces sound volume for the horrendous engine note of the USAF mod's c-17.
+
+	Executed from cargo plane takeoff loop inside "ONL_fnc_startServerLoops"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_transitionToJump;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!hasInterface) exitWIth {};
 
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Some Time Later...</t>", "BLACK OUT", 3, true, true]; 

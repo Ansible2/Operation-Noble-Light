@@ -1,5 +1,26 @@
-if (!hasInterface) exitWith {};
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_enterCave
 
+Description:
+	Executes from "--Enter Bunker" action which is added in "ONL_fnc_addPlayerActions"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_enterCave;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+if (!hasInterface) exitWith {};
 
 ["ONL_Cave_entered_Event"] call CBA_fnc_serverEvent;
 		

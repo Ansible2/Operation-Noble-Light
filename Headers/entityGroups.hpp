@@ -1,4 +1,5 @@
-// these are seperate from fn_prepareGlobals due to that function only being called on the server, I want these available to everyone ahead of the init.sqf
+// A list of global arrays I wanted all connected machines to have access to
+
 
 ONL_blackSiteCollects = [
     ONL_blackSiteCollect_1,

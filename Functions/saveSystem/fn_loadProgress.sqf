@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_loadProgress
+
+Description:
+	Opposite of "ONL_fnc_spawnUnitsNewGame".
+	This will spawn most of the enemy units in the mission from a save in the server's profileNamespace.
+	
+	Executed from "ONL_fnc_spawnUnitsMaster"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn ONL_fnc_loadProgress;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
 (profileNamespace getVariable "ONL_saveData") params [

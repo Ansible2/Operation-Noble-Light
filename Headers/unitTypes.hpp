@@ -1,3 +1,5 @@
+// unit type arrays used to renaomly select from their strings during spawns
+
 // CSAT
 ONL_FSTCSAT_unitTypes = [
 	"IP_O_Soldier_A_FST",

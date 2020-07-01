@@ -1,3 +1,26 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_caveMusic
+
+Description:
+	Initiates music once the cave is entered.
+	Executed from the server event "ONL_Cave_entered_Event" which can be found in ONL_fnc_addServerEvents.
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_caveMusic;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 private _randomArray = [ONL_caveMusicTracks,count ONL_caveMusicTracks] call CBA_fnc_selectRandomArray;

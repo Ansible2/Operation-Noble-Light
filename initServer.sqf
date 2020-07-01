@@ -54,7 +54,9 @@ ONL_cargoPlaneGroup setVariable ["ONL_saveExcluded",true];
 // add arsenals
 [[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
 
+
 uiSleep 30;
+
 
 [] spawn KISKA_fnc_balanceHeadless;
 

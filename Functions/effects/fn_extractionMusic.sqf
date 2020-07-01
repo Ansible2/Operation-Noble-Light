@@ -1,5 +1,28 @@
-if (!hasInterface) exitWith {};
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_extractionMusic
 
+Description:
+	Plays music during the extraction site defense.
+
+	Executes from the event "ONL_getToExtraction_Event" which is located in ONL_fnc_extractionEvents.
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_extractionMusic;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+if (!hasInterface) exitWith {};
 
 if (!ONL_CCMLoaded AND {!ONL_KISKAMusicLoaded}) exitWith {false};
 
@@ -46,5 +69,4 @@ if (ONL_KISKAMusicLoaded) exitWith {
 		[],
 		(["Kiska_Whereabouts"] call KISKA_fnc_getMusicDuration) + 30
 	] call CBA_fnc_waitAndExecute;
-
 };

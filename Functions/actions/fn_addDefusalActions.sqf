@@ -1,8 +1,25 @@
-//// why is this a seperate file instead of in the fn_addActionMaster?
-// suspension (use of waitUntil) and the desire to save on perfomance for the conidition checks on each of the seperate actions
-// for a 6 hour mission, there is no point in having 3 condition checks every frame if it can easily be avoided. 
-// this function is called upon entering the cave
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_addDefusalActions
 
+Description:
+	Adds defuse actionst to the charges inside the cave, called in "ONL_fnc_enterCave"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn ONL_fnc_addDefusalActions;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
@@ -11,8 +28,6 @@ if (!canSuspend) exitWith {
 
 waitUntil {player isEqualTo player};
 
-// cave In charges
-// Defuse chages actions
 if !(isNull ONL_charge_1) then {
 	ONL_charge_1_ID = [	
 		player,

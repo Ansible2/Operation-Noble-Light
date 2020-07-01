@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_prepareGlobals
+
+Description:
+	Discerns if load or new game spawns are to take place.
+	Also changes AI skills.
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	BOOL
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_prepareGlobals
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
 // this is used to assign vanilla loadouts if needed

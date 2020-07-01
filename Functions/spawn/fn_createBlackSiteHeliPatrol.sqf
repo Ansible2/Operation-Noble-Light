@@ -1,3 +1,27 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_createBlackSiteHeliPatrol
+
+Description:
+	Creates a patroling helicopter around the black site.
+	
+	It is executed from "ONL_fnc_waitToDeletePlane".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_createBlackSiteHeliPatrol;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 ONL_blackSitePatrolHelicopter = createVehicle [ONL_orca,position ONL_blackSite_heliPad,[],0,"NONE"];
 
 if !(ONL_snowTigersLoaded) then {

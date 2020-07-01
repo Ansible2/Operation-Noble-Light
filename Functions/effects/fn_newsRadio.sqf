@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_newsRadio
+
+Description:
+	Starts a radio broadcast from an object for a specified duration
+
+	Executes from Lodging's and Black Site's near location loops from "ONL_fnc_startServerLoops"
+
+Parameters:
+	0: _radio : <OBJECT> - The object to play the sounds from
+	1: _duration : <NUMBER> - What is the total amount of time the radio will be playing sounds (includes the down time between sounds)
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		null = [] spawn ONL_fnc_newsRadio;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 params [

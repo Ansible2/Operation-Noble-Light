@@ -65,7 +65,7 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
             [true,CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;            
             [true,DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 
-            call ONL_fnc_blackSiteArty;
+            null = [] spawn ONL_fnc_blackSiteArty;
         },
         {!(((call CBA_fnc_players) findIf {(_x distance2D ONL_glowingRock) < 10}) isEqualTo -1)}
     ] call KISKA_fnc_waitUntil;
@@ -126,14 +126,15 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
 
 				call ONL_fnc_baseBunkerRadio;
 
+				// fire some ambient arty shots to alert players to their location
 				if (alive ONL_arty_1) then {
-					null = [ONL_arty_1,ONL_extractHeliMove_Logic,5,200,300,[9,10,11]] spawn KISKA_fnc_arty;
+					null = [ONL_arty_1,ONL_extractHeliMove_Logic,5,200,300,[10,11,12]] spawn KISKA_fnc_arty;
 				};
 
 				sleep 3;
 
 				if (alive ONL_arty_2) then {
-					null = [ONL_arty_2,ONL_extractHeliMove_Logic,5,200,300,[9,10,11]] spawn KISKA_fnc_arty;
+					null = [ONL_arty_2,ONL_extractHeliMove_Logic,5,200,300,[11,12,13]] spawn KISKA_fnc_arty;
 				};
 
 				sleep 45;

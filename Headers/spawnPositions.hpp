@@ -1,3 +1,5 @@
+// literally all the possible spawn positions for each area's enemies
+
 // dig site
 ONL_blackSite_exteriorPositions = [
     [11741.4,12051,4.36952],

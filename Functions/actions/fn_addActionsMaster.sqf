@@ -1,3 +1,25 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_addActionsMaster
+
+Description:
+	Adds all relevant actions across the map, called in "initPlayerLocal"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_addActionsMaster;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if !(hasInterface) exitWith {};
 
 //////////////////////////////

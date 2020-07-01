@@ -1,3 +1,28 @@
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_startingVehiclesInit
+
+Description:
+	Clears cargo of all starter vehicles (all the ones player's can choose from at the start).
+	Also discerns whether add-ons are installed and which vehicles to also spawn in accordance with the player preference.
+	
+	It is executed from the "initServer.sqf".
+	
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_startingVehiclesInit
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
 if (!ONL_CUPVehiclesLoaded AND {!ONL_RHSUSFVehiclesLoaded}) exitWith {

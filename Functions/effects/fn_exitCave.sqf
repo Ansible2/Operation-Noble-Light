@@ -1,5 +1,26 @@
-if (!hasInterface) exitWith {};
+/* ----------------------------------------------------------------------------
+Function: ONL_fnc_exitCave
 
+Description:
+	Executes from "--Exit Bunker" action which is added in "ONL_fnc_addPlayerActions"
+
+Parameters:
+	NONE
+
+Returns:
+	Nothing
+
+Examples:
+    (begin example)
+
+		call ONL_fnc_exitCave;
+
+    (end)
+
+Author:
+	Ansible2 // Cipher
+---------------------------------------------------------------------------- */
+if (!hasInterface) exitWith {};
 
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Exiting...</t>", "BLACK OUT", 3, true, true];
 
