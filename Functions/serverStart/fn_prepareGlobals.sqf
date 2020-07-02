@@ -24,10 +24,6 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
-// so that the defusal actions can check if these are alive
-publicVariable "ONL_charge_1";
-publicVariable "ONL_charge_2";
-publicVariable "ONL_charge_3";
 
 // load save game
 ONL_loadSave = [false,true] select (["LoadSave",0] call BIS_fnc_getParamValue);
@@ -42,6 +38,11 @@ if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData"]) isEqualTo 
 		15
 	] call CBA_fnc_waitAndExecute;
 };
+
+// so that the defusal actions can check if these are alive
+publicVariable "ONL_charge_1";
+publicVariable "ONL_charge_2";
+publicVariable "ONL_charge_3";
 
 // check optional mods
 ONL_snowTigersLoaded = ["IP_CSAT_ST"] call KISKA_fnc_isPatchLoaded;

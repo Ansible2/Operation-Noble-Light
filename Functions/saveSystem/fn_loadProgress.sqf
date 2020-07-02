@@ -228,7 +228,8 @@ _specialSaveData params [
 	"_artyAlive_1",
 	"_artyAlive_2",
 	"_blackSiteHeliAlive",
-	"_baseHeliAlive"
+	"_baseHeliAlive",
+	"_chargesAlive"
 ];
 
 // arty 1
@@ -280,4 +281,12 @@ if (_blackSiteHeliAlive) then {
 // base heli
 if (_baseHeliAlive) then {
 	call ONL_fnc_createBaseHeliPatrol;
+};
+
+
+// cave charges
+if !(_chargesAlive) then {
+	[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
+		deleteVehicle _x;
+	};
 };

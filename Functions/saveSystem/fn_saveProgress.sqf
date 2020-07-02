@@ -217,6 +217,16 @@ private _baseHeliAlive = [ONL_basePatrolHelicopter] call _fn_aliveAndHasCrew;
 _specialSaveData pushBack _blackSiteHeliAlive;
 _specialSaveData pushBack _baseHeliAlive;
 
+// cave charges
+private "_chargesAlive";
+if (!isNull ONL_charge_1 OR {!isNull ONL_charge_2} OR {!isNull ONL_charge_3}) then {
+	_chargesAlive = true;
+	_specialSaveDate pushBack _chargesAlive;
+} else {
+	_chargesAlive = false;
+	_specialSaveDate pushBack _chargesAlive;
+};
+
 // add to master
 _ONLSaveData pushBack _specialSaveData;
 

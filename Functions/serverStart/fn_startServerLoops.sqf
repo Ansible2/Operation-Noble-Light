@@ -48,13 +48,15 @@ if (!isServer) exitWith {};
 
 
 // wait to set investigate black site task complete
-[
-	3,
-	{
-		[InvestigateBlackSite_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
-	},
-	{[CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskCompleted AND {[CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted} AND {[DestroyBlackSiteServers_TaskID select 0] call BIS_fnc_taskCompleted}}
-] call KISKA_fnc_waitUntil;
+if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskCompleted) then {
+	[
+		3,
+		{
+			[InvestigateBlackSite_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
+		},
+		{[CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskCompleted AND {[CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted} AND {[DestroyBlackSiteServers_TaskID select 0] call BIS_fnc_taskCompleted}}
+	] call KISKA_fnc_waitUntil;
+};
 
 
 // waiting to add some blacksite tasks
