@@ -102,7 +102,6 @@ _vehicleSaveInfoArray apply {
 	};
 };
 
-copyToClipboard str _crewedVehicles;
 
 ////////////////GROUPS////////////////////////////////////////////////////////////////////
 private _fn_assignVehiclePosition = {
@@ -187,18 +186,30 @@ _savedGroupsInfoArray apply {
 			"_unitPositionWorld"
 		];
 
-		private _unit = _unitType createVehicle [0,0,0];
+		private _unit = _group createUnit [_unitType,[0,0,0],[],0,"NONE"];
+
+		//private _unit = _unitType createVehicle [0,0,0];
 		[_unit] joinSilent _group;
 		if !((getUnitLoadout _unit) isEqualTo _unitLoadout) then {
 			// for use AFTER headless rebalance
 			_unit setVariable ["ONL_savedLoadout",_unitLoadout];
 		};
 		
+		// check if in vehicle and if pre placed turret
 		if !(_vehicleInfo isEqualTo []) then {
-			_vehicleInfo params ["_vehicleIndex","_vehicleRoleInfo"];
-			[_unit,_crewedVehicles select _vehicleIndex,_vehicleRoleInfo] call _fn_assignVehiclePosition;
+			_vehicleInfo params ["_vehicleIndex","_vehicleRoleInfo","_prePlacedVehicle"];
+
+			private "_vehicle";
+			if (_prePlacedVehicle) then {
+				_vehicle = ONL_prePlacedVehicles select _vehicleIndex;
+			} else {
+				_vehicle = _crewedVehicles select _vehicleIndex;
+			};
+
+			[_unit,_vehicle,_vehicleRoleInfo] call _fn_assignVehiclePosition;
 		} else {
 			_unit setPosWorld _unitPositionWorld;
+			//doStop _unit;
 		};
 		
 		if (!_canUnitMove) then {

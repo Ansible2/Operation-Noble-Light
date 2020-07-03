@@ -36,6 +36,7 @@ private _vehiclesToSave = vehicles select {
 	{!(isNull _x)} AND 
 	{!(_x isKindOf "THING")} AND
 	{!(_x in ONL_startingVehicles)} AND 
+	{!(_x in ONL_prePlacedVehicles)} AND
 	{!(_x getVariable ["ONL_saveExcluded",false])}
 };
 
@@ -73,6 +74,7 @@ _ONLSaveData pushBack _vehicleSaveInfoArray;
 
 
 
+
 //////////////////////////////////Groups///////////////////////////////////////////////////////////////////////////////////////////
 // filter groups
 private _groupsToSave = allGroups select {
@@ -95,15 +97,25 @@ _groupsToSave apply {
 
 		// if unit is in a vehicle, find its index in the vehicles with crew array that was made 
 		/// so that we can load units into that vehicle index when the save is loaded and the vehicles created 
-		private _vehicleInfo = [];
+		private "_vehicleInfo";
 		private _unitVehicle = objectParent _unit;
 		if !(isNull _unitVehicle) then {
-			private _vehicleIndex = _vehiclesWithCrew findIf {_x isEqualTo _unitVehicle};
+			private "_vehicleIndex";
+			private "_prePlacedVehicle";
+			// check if vehicle is pre placed turret
+			if !(_unitVehicle in ONL_prePlacedVehicles) then {
+				_vehicleIndex = _vehiclesWithCrew findIf {_x isEqualTo _unitVehicle};
+				_prePlacedVehicle = false;
+			} else {
+				_vehicleIndex = ONL_prePlacedVehicles findIf {_x isEqualTo _unitVehicle};
+				_prePlacedVehicle = true;
+			};
 			private _vehicleCrew = fullCrew _unitVehicle;
 			private _vehicleRole = _vehicleCrew select (_vehicleCrew findIf {(_x select 0) isEqualTo _unit});
 
-			_vehicleInfo pushBack _vehicleIndex;
-			_vehicleInfo pushBack _vehicleRole;
+			_vehicleInfo = [_vehicleIndex,_vehicleRole,_prePlacedVehicle];
+		} else {
+			_vehicleInfo = [];
 		};
 
 		// push unit info to group info array
@@ -200,7 +212,7 @@ _ONLSaveData pushBack _taskInfoArray;
 
 
 //////////////////////////////////Specials/////////////////////////////////////////////////////////////////////////////////////
-private _specialSaveData = [];
+private "_specialSaveData";
 private _fn_aliveAndHasCrew = {
 	params ["_vehicle"];
 	
@@ -210,14 +222,10 @@ private _fn_aliveAndHasCrew = {
 // arty pieces, decide if they need eventhandelers
 private _artyAlive_1 = [ONL_arty_1] call _fn_aliveAndHasCrew;
 private _artyAlive_2 = [ONL_arty_2] call _fn_aliveAndHasCrew;
-_specialSaveData pushBack _artyAlive_1;
-_specialSaveData pushBack _artyAlive_2;
 
 // helicopter patrols
 private _blackSiteHeliAlive = [ONL_blackSitePatrolHelicopter] call _fn_aliveAndHasCrew;
 private _baseHeliAlive = [ONL_basePatrolHelicopter] call _fn_aliveAndHasCrew;
-_specialSaveData pushBack _blackSiteHeliAlive;
-_specialSaveData pushBack _baseHeliAlive;
 
 // cave charges
 private "_chargesAlive";
@@ -226,8 +234,8 @@ if (isNull ONL_charge_1 AND {isNull ONL_charge_2} AND {isNull ONL_charge_3}) the
 } else {
 	_chargesAlive = true;
 };
-_specialSaveData pushBack _chargesAlive;
 
+_specialSaveData = [_artyAlive_1,_artyAlive_2,_blackSiteHeliAlive,_baseHeliAlive,_chargesAlive];
 // add to master
 _ONLSaveData pushBack _specialSaveData;
 

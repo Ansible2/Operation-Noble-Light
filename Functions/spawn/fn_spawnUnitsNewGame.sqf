@@ -460,16 +460,16 @@ call {
 
 		if (_i isEqualTo 1) then {
 			_group setVariable ["ONL_loadCreationCode",{
-				params ["_group"];
-				ONL_villagePatrol_1 = _group;
+				private _group = param [0];
+				missionNamespace setVariable ["ONL_villagePatrol_1",_group];
 				[_group] call CBA_fnc_clearWaypoints;
 				private _randomPosition = [ONL_logic_village,500] call CBA_fnc_randPos;
 				[_group,_randomPosition,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 			}];
 		} else {
 			_group setVariable ["ONL_loadCreationCode",{
-				params ["_group"];
-				ONL_villagePatrol_2 = _group;
+				private _group = param [0];
+				missionNamespace setVariable ["ONL_villagePatrol_2",_group];
 				[_group] call CBA_fnc_clearWaypoints;
 				private _randomPosition = [ONL_logic_village,500] call CBA_fnc_randPos;
 				[_group,_randomPosition,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;

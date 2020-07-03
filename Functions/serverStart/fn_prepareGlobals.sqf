@@ -87,7 +87,13 @@ ONL_taruPodsVariants = [ONL_taruPodsVariants_vanilla,ONL_taruPodsVariants_FST] s
 ONL_ifritVariants = [ONL_ifritVariants_vanilla,ONL_ifritVariants_FST] select ONL_snowTigersLoaded;
 ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select ONL_snowTigersLoaded;
 
+
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
+
+ONL_prePlacedVehicles = vehicles select {
+	!(_x isKindOf "THING") AND
+	{!(_x in ONL_startingVehicles)}
+};
 
 // Task stuff for saves
 ONL_taskIdsAndInfo = [
