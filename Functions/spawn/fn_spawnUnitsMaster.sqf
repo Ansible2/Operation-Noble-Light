@@ -39,6 +39,9 @@ if !(ONL_loadSave) then {
 	call ONL_fnc_loadProgress;
 };
 
+ONL_unitsSpawned = true;
+publicVariable "ONL_unitsSpawned";
+
 uiSleep 2;
 
 allUnits apply {

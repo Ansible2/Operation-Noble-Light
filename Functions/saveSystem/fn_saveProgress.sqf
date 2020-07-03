@@ -34,6 +34,7 @@ private _ONLSaveData = [];
 private _vehiclesToSave = vehicles select {
 	alive _x AND 
 	{!(isNull _x)} AND 
+	{!(_x isKindOf "THING")} AND
 	{!(_x in ONL_startingVehicles)} AND 
 	{!(_x getVariable ["ONL_saveExcluded",false])}
 };
@@ -110,7 +111,8 @@ _groupsToSave apply {
 		private _unitLoadout = getUnitLoadout _unit;
 		private _isManSimulated = simulationEnabled _unit;	
 		private _canUnitMove = _unit checkAIFeature "PATH";
-		_unitsInfo pushBack [_unitType,_unitLoadout,_isManSimulated,_vehicleInfo,_canUnitMove];
+		private _unitPositionWorld = getPosWorldVisual _unit;
+		_unitsInfo pushBack [_unitType,_unitLoadout,_isManSimulated,_vehicleInfo,_canUnitMove,_unitPositionWorld];
 	};
 
 
@@ -140,7 +142,7 @@ _groupsToSave apply {
 	};
 
 	// misc group info for spawning /////////////////////
-	private _groupBehaviour = behaviour _group;
+	private _groupBehaviour = behaviour (leader _group);
 	private _combatMode = combatMode _group;
 	private _groupSide = side _group;
 	private _isGroupDySimmed = dynamicSimulationEnabled _group;
@@ -171,10 +173,10 @@ private _fn_taskStatus = {
 		_taskID = _task;
 	};
 
-	private _taskExists = [_task] call BIS_fnc_taskExists;
+	private _taskExists = [_taskID] call BIS_fnc_taskExists;
 	private "_taskState"; 
 	if (_taskExists) then {
-		_taskState = [_task] call BIS_fnc_taskState;
+		_taskState = [_taskID] call BIS_fnc_taskState;
 	} else {
 		_taskState = "";
 	};
@@ -187,7 +189,7 @@ ONL_taskIdsAndInfo apply {
 	private _taskIdAndInfo = _x;
 	private _taskIdGlobal = _taskIdAndInfo select 0;
 
-	private _taskStatus = [_x] call _fn_taskStatus;
+	private _taskStatus = [_taskIdGlobal] call _fn_taskStatus;
 	_taskIdAndInfo pushBack _taskStatus;
 	_taskInfoArray pushBack _taskIdAndInfo;
 };
@@ -219,13 +221,12 @@ _specialSaveData pushBack _baseHeliAlive;
 
 // cave charges
 private "_chargesAlive";
-if (!isNull ONL_charge_1 OR {!isNull ONL_charge_2} OR {!isNull ONL_charge_3}) then {
-	_chargesAlive = true;
-	_specialSaveDate pushBack _chargesAlive;
-} else {
+if (isNull ONL_charge_1 AND {isNull ONL_charge_2} AND {isNull ONL_charge_3}) then {
 	_chargesAlive = false;
-	_specialSaveDate pushBack _chargesAlive;
+} else {
+	_chargesAlive = true;
 };
+_specialSaveData pushBack _chargesAlive;
 
 // add to master
 _ONLSaveData pushBack _specialSaveData;
@@ -239,3 +240,7 @@ _ONLSaveData pushBack [ONL_snowTigersLoaded,ONL_CUPVehiclesLoaded,ONL_RHSUSFVehi
 //////////////////////////////////SAVE/////////////////////////////////////////////////////////////////////////////////////////////
 profileNamespace setVariable ["ONL_saveData",_ONLSaveData];
 saveProfileNamespace;
+
+
+// inform players save has been completed
+["Save Completed"] remoteExecCall ["hint",[0,-2] select isDedicated];

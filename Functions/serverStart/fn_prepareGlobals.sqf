@@ -27,7 +27,7 @@ if (!isServer) exitWith {};
 
 // load save game
 ONL_loadSave = [false,true] select (["LoadSave",0] call BIS_fnc_getParamValue);
-if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData"]) isEqualTo []}) then {
+if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData",[]]) isEqualTo []}) then {
 	ONL_loadSave = false;
 
 	[
@@ -91,22 +91,22 @@ ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
 
 // Task stuff for saves
 ONL_taskIdsAndInfo = [
-	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo",objNull,"SEARCH"],
-	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo",objNull,"SEARCH"],
+	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo","","SEARCH"],
+	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo","","SEARCH"],
 	[DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"DESTROY"],
-	[DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"DESTROY"],
-	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo",objNull,"SEARCH"],
+	[DestroyArty_taskID,"DestroyArty_taskInfo","","DESTROY"],
+	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo","","SEARCH"],
 	[CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"INTERACT"],
 	[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"DESTROY"],
-	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo",objNull,"SEARCH"],
-	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo",objNull,"INTERACT"],
-	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo",objNull,"INTERACT"],
+	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo","","SEARCH"],
+	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo","","INTERACT"],
+	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo","","INTERACT"],
 	[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo",ONL_caveServer_1,"DESTROY"],
-	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo",objNull,"DESTROY"],
-	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo",objNull,"SEARCH"],
-	[SearchLodging_TaskID,"SearchLodging_TaskInfo",objNull,"SEARCH"],
+	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo","","DESTROY"],
+	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo","","SEARCH"],
+	[SearchLodging_TaskID,"SearchLodging_TaskInfo","","SEARCH"],
 	[SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"MEET"],
-	[Extract_TaskID,"Extract_TaskInfo"]
+	[Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"TAKEOFF"]
 ];
 
 

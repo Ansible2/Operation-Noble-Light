@@ -94,12 +94,20 @@ _player createDiaryRecord ["Diary",["Support",
 1x Predator UAV armed with guided munitions."],taskNull,"",true];
 
 // save game (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
-_player createDiaryRecord ["Diary", ["SAVE GAME", 
-    "(Only hosts and admins can save, WARNING: this will be intensive)
-	<br></br>
-	<br></br>
-	<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>"
-]];
+[
+	5,
+	{
+		(_this select 0) createDiaryRecord ["Diary", ["SAVE GAME", 
+			"(Only hosts and admins can save)
+			<br></br>
+			<br></br>
+			<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>"
+		]];
+	},
+	{!(isNil "ONL_unitsSpawned")},
+	[_player]
+] call KISKA_fnc_waitUntil;
+
 
 
 waitUntil {

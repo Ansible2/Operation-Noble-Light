@@ -23,6 +23,8 @@ Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 ONL_blackSitePatrolHelicopter = createVehicle [ONL_orca,position ONL_blackSite_heliPad,[],0,"NONE"];
+ONL_blackSitePatrolHelicopter setVariable ["ONL_saveExcluded",true];
+
 
 if !(ONL_snowTigersLoaded) then {
 	[

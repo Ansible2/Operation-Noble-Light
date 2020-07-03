@@ -23,6 +23,7 @@ Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
 ONL_basePatrolHelicopter = createVehicle [ONL_CSATHelicopterAttack,position ONL_baseHelipad,[],0,"NONE"];
+ONL_basePatrolHelicopter setVariable ["ONL_saveExcluded",true];
 
 // if snow tigers is not loaded, make the heli black
 if !(ONL_snowTigersLoaded) then {

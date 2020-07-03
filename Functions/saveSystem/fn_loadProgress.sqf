@@ -50,10 +50,11 @@ if !(_activeDependencies isEqualTo _dependencies) exitWith {
 };
 
 
-
 ////////////////TASKS////////////////////////////////////////////////////////////////////
+copyToClipboard str _taskInfoArray;
 _taskInfoArray apply {
 	_x params ["_task","_taskInfo","_taskLocation","_taskType","_taskStatusArray"];
+	
 	_taskStatusArray params ["_taskExists","_taskState"];
 	
 	// some task IDs are configured in an array with their parent taskId, this seperates them for other functions
@@ -62,6 +63,10 @@ _taskInfoArray apply {
 		_taskId = _task select 0;
 	} else {
 		_taskId = _task;
+	};
+
+	if (_taskLocation isEqualTo "") then {
+		_taskLocation = objNull;
 	};
 
 	if (_taskExists) then {
@@ -97,7 +102,7 @@ _vehicleSaveInfoArray apply {
 	};
 };
 
-
+copyToClipboard str _crewedVehicles;
 
 ////////////////GROUPS////////////////////////////////////////////////////////////////////
 private _fn_assignVehiclePosition = {
@@ -170,11 +175,6 @@ _savedGroupsInfoArray apply {
 
 	// create group
 	private _group = createGroup _groupSide;
-	_group enableDynamicSimulation _isGroupDySimmed;
-	_group setCombatMode _combatMode;
-	_group setBehaviour _groupBehaviour;
-	_group setFormation _groupFormation;
-	_group deleteGroupWhenEmpty _deleteWhenEmpty;
 	
 	// create units
 	_unitsInfo apply {
@@ -183,10 +183,12 @@ _savedGroupsInfoArray apply {
 			"_unitLoadout",
 			"_isManSimulated",
 			"_vehicleInfo",
-			"_canUnitMove"
+			"_canUnitMove",
+			"_unitPositionWorld"
 		];
 
 		private _unit = _unitType createVehicle [0,0,0];
+		[_unit] joinSilent _group;
 		if !((getUnitLoadout _unit) isEqualTo _unitLoadout) then {
 			// for use AFTER headless rebalance
 			_unit setVariable ["ONL_savedLoadout",_unitLoadout];
@@ -195,6 +197,8 @@ _savedGroupsInfoArray apply {
 		if !(_vehicleInfo isEqualTo []) then {
 			_vehicleInfo params ["_vehicleIndex","_vehicleRoleInfo"];
 			[_unit,_crewedVehicles select _vehicleIndex,_vehicleRoleInfo] call _fn_assignVehiclePosition;
+		} else {
+			_unit setPosWorld _unitPositionWorld;
 		};
 		
 		if (!_canUnitMove) then {
@@ -208,6 +212,12 @@ _savedGroupsInfoArray apply {
 		_unit triggerDynamicSimulation false;
 		_unit enableSimulationGlobal _isManSimulated;
 	};
+
+	_group enableDynamicSimulation _isGroupDySimmed;
+	_group setCombatMode _combatMode;
+	_group setBehaviour _groupBehaviour;
+	_group setFormation _groupFormation;
+	_group deleteGroupWhenEmpty _deleteWhenEmpty;
 
 	// setup waypoints
 	if !(_savedWaypoints isEqualTo []) then {
@@ -231,6 +241,7 @@ _specialSaveData params [
 	"_baseHeliAlive",
 	"_chargesAlive"
 ];
+
 
 // arty 1
 if (_artyAlive_1) then {

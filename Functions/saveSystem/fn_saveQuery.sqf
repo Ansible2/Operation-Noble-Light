@@ -25,6 +25,4 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-Executed from a briefing meny expression added in the "initPlayerLocal.sqf"
-
 remoteExecCall ["ONL_fnc_saveProgress",2];

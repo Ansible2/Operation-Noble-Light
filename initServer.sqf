@@ -46,10 +46,9 @@ ONL_cargoPlane flyInHeight 500;
 // distribute AI amongst headless client(s) save for some groups
 KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup];
 // exclude from saves
-ONL_redGroup setVariable ["ONL_saveExcluded",true];
-ONL_blueGroup setVariable ["ONL_saveExcluded",true];
-ONL_cargoPlane setVariable ["ONL_saveExcluded",true];
-ONL_cargoPlaneGroup setVariable ["ONL_saveExcluded",true];
+[ONL_caveGroup_1,ONL_caveGroup_2,ONL_caveGroup_3,ONL_caveGroup_4,ONL_caveGroup_5,ONL_redGroup,ONL_blueGroup,ONL_cargoPlane,ONL_cargoPlaneGroup] apply {
+	_x setVariable ["ONL_saveExcluded",true];
+};
 
 // add arsenals
 [[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
