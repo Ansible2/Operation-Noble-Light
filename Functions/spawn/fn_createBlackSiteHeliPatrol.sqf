@@ -74,11 +74,11 @@ _group2 enableDynamicSimulation false;
 };
 
 // prepare save code
-_pilotsGroup setVariable ["ONL_loadCreationCode",{
-	params ["_group"];
+_pilotsGroup setVariable ["ONL_loadCreationCode","
+	params ['_group'];
 	ONL_blackSitePatrolHelicopter = objectParent (leader _group);
 	ONL_blackSitePatrolHelicopter engineOn true; 
-	[ONL_blackSitePatrolHelicopter,[ONL_heliPatroLogic_blackSite_1,ONL_heliPatroLogic_blackSite_2,ONL_heliPatroLogic_blackSite_3,ONL_heliPatroLogic_blackSite_4],500,100,"LIMITED"] call KISKA_fnc_heliPatrol;
-}];
+	[ONL_blackSitePatrolHelicopter,[ONL_heliPatroLogic_blackSite_1,ONL_heliPatroLogic_blackSite_2,ONL_heliPatroLogic_blackSite_3,ONL_heliPatroLogic_blackSite_4],500,100,'LIMITED'] call KISKA_fnc_heliPatrol;
+"];
 
 [ONL_blackSitePatrolHelicopter,[ONL_heliPatroLogic_blackSite_1,ONL_heliPatroLogic_blackSite_2,ONL_heliPatroLogic_blackSite_3,ONL_heliPatroLogic_blackSite_4],500,100,"LIMITED"] call KISKA_fnc_heliPatrol;

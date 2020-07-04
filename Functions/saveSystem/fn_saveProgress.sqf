@@ -162,7 +162,7 @@ _groupsToSave apply {
 	private _groupFormation = formation _group;
 
 	// special code to run upon creating the group when loading a save
-	private _onCreateCode = _group getVariable ["ONL_loadCreationCode",{}];
+	private _onCreateCode = _group getVariable ["ONL_loadCreationCode",""];
 
 	// add to master group list
 	_savedGroupsInfoArray pushBack [_groupSide,_isGroupDySimmed,_combatMode,_groupBehaviour,_groupFormation,_deleteWhenEmpty,_unitsInfo,_savedWaypoints,_onCreateCode];

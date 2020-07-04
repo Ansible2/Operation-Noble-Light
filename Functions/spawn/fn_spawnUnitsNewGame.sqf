@@ -53,12 +53,12 @@ call {
 
 		[_group,_randomPosition,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
-		_group setVariable ["ONL_loadCreationCode",{
-			params ["_group"];
+		_group setVariable ["ONL_loadCreationCode","
+			params ['_group'];
 			[_group] call CBA_fnc_clearWaypoints;
 			private _randomPosition = [ONL_logic_base_2,300] call CBA_fnc_randPos;
-			[_group,_randomPosition,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-		}];
+			[_group,_randomPosition,300,4,'MOVE','AWARE','YELLOW','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+		"];
 	};
 
 
@@ -92,11 +92,11 @@ call {
 	// patrol 1
 	private _patrol1 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_1] call KISKA_fnc_spawnGroup;
 
-	_patrol1 setVariable ["ONL_loadCreationCode",{
-		params ["_group"];
+	_patrol1 setVariable ["ONL_loadCreationCode","
+		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
-		[_group,ONL_baseBunker_patrolLogic_1,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-	}];
+		[_group,ONL_baseBunker_patrolLogic_1,300,4,'MOVE','AWARE','YELLOW','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
 
 	[_patrol1,ONL_baseBunker_patrolLogic_1,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
@@ -104,11 +104,13 @@ call {
 
 	// patrol 2
 	private _patrol2 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_2] call KISKA_fnc_spawnGroup;
-	_patrol2 setVariable ["ONL_loadCreationCode",{
-		params ["_group"];
+	
+	_patrol2 setVariable ["ONL_loadCreationCode","
+		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
-		[_group,ONL_baseBunker_patrolLogic_2,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-	}];
+		[_group,ONL_baseBunker_patrolLogic_2,300,4,'MOVE','AWARE','YELLOW','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
+	
 	[_patrol2,ONL_baseBunker_patrolLogic_2,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 	uiSleep 1;
@@ -176,11 +178,11 @@ call {
 	private _patrolGroup = [6,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 	[_patrolGroup,ONL_logic_blackSite_perimeter,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
-	_patrolGroup setVariable ["ONL_loadCreationCode",{
-		params ["_group"];
+	_patrolGroup setVariable ["ONL_loadCreationCode","
+		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
-		[_group,ONL_logic_blackSite_perimeter,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-	}];
+		[_group,ONL_logic_blackSite_perimeter,500,5,'MOVE','AWARE','YELLOW','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
 
 	if !(ONL_CUPUnitsLoaded) then {
 		ONL_PMCUnits append (units _patrolGroup);
@@ -336,22 +338,22 @@ call {
 	private _patrol1 = [3,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 	[_patrol1,ONL_logic_facility,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
-	_patrol1 setVariable ["ONL_loadCreationCode",{
-		params ["_group"];
+	_patrol1 setVariable ["ONL_loadCreationCode","
+		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
-		[_group,ONL_logic_facility,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-	}];
+		[_group,ONL_logic_facility,300,5,'MOVE','AWARE','RED','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
 
 	// patrol 2
 	private _randomPosition = [ONL_logic_facility,300] call CBA_fnc_randPos;
 	private _patrol2 = [3,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 	[_patrol2,ONL_logic_facility,300,5,"MOVE","AWARE","RED","LMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
-	_patrol2 setVariable ["ONL_loadCreationCode",{
-		params ["_group"];
+	_patrol2 setVariable ["ONL_loadCreationCode","
+		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
-		[_group,ONL_logic_facility,300,5,"MOVE","AWARE","RED","LMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-	}];
+		[_group,ONL_logic_facility,300,5,'MOVE','AWARE','RED','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
 
 
 	if !(ONL_CUPUnitsLoaded) then {
@@ -379,13 +381,13 @@ call {
 	// patrol
 	private _randomPosition = [ONL_logic_lodging,300] call CBA_fnc_randPos;
 	private _pmcGroup = [4,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
-	[_pmcGroup,ONL_logic_lodging,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+	[_pmcGroup,ONL_logic_lodging,300,5,'MOVE','AWARE','RED','LIMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
 
-	_pmcGroup setVariable ["ONL_loadCreationCode",{
-		params ["_group"];
+	_pmcGroup setVariable ["ONL_loadCreationCode","
+		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
-		[_group,ONL_logic_lodging,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-	}];
+		[_group,ONL_logic_lodging,300,5,'MOVE','AWARE','RED','LIMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
 
 	uiSleep 1;
 
@@ -459,21 +461,21 @@ call {
 		[_group,_randomPosition,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 		if (_i isEqualTo 1) then {
-			_group setVariable ["ONL_loadCreationCode",{
-				private _group = param [0];
-				missionNamespace setVariable ["ONL_villagePatrol_1",_group];
+			_group setVariable ["ONL_loadCreationCode","
+				params ['_group'];
+				missionNamespace setVariable ['ONL_villagePatrol_1',_group];
 				[_group] call CBA_fnc_clearWaypoints;
 				private _randomPosition = [ONL_logic_village,500] call CBA_fnc_randPos;
-				[_group,_randomPosition,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-			}];
+				[_group,_randomPosition,500,5,'MOVE','AWARE','YELLOW','LIMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+			"];
 		} else {
-			_group setVariable ["ONL_loadCreationCode",{
-				private _group = param [0];
-				missionNamespace setVariable ["ONL_villagePatrol_2",_group];
+			_group setVariable ["ONL_loadCreationCode","
+				params ['_group'];
+				missionNamespace setVariable ['ONL_villagePatrol_2',_group];
 				[_group] call CBA_fnc_clearWaypoints;
 				private _randomPosition = [ONL_logic_village,500] call CBA_fnc_randPos;
-				[_group,_randomPosition,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
-			}];
+				[_group,_randomPosition,500,5,'MOVE','AWARE','YELLOW','LIMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+			"];
 		};
 	};
 

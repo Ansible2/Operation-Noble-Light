@@ -231,14 +231,17 @@ _savedGroupsInfoArray apply {
 	_group deleteGroupWhenEmpty _deleteWhenEmpty;
 
 	// setup waypoints
+	/*
 	if !(_savedWaypoints isEqualTo []) then {
 		_savedWaypoints apply {
 			(_x + [_group]) call _fn_createWaypoint;
 		};
 	};
+	*/
 
-	if !(_onCreateCode isEqualTo {}) then {
-		[_group] call _onCreateCode;
+	if !(_onCreateCode isEqualTo "") then {
+		_code = compileFinal _onCreateCode;
+		[_group] call _code;
 	};
 };
 
