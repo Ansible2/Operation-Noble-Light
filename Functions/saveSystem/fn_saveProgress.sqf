@@ -212,7 +212,6 @@ _ONLSaveData pushBack _taskInfoArray;
 
 
 //////////////////////////////////Specials/////////////////////////////////////////////////////////////////////////////////////
-private "_specialSaveData";
 private _fn_aliveAndHasCrew = {
 	params ["_vehicle"];
 	
@@ -235,9 +234,21 @@ if (isNull ONL_charge_1 AND {isNull ONL_charge_2} AND {isNull ONL_charge_3}) the
 	_chargesAlive = true;
 };
 
+// supply Drop Checks
+private _supplyDropsUsed = [missionNamespace getVariable ["ONL_supplyDrop1Used",false],missionNamespace getVariable ["ONL_supplyDrop2Used",false]];
 
-_specialSaveData = [_artyAlive_1,_artyAlive_2,_blackSiteHeliAlive,_baseHeliAlive,_chargesAlive,ONL_deadVehicleIndexes];
+
 // add to master
+private _specialSaveData = [
+	_artyAlive_1,
+	_artyAlive_2,
+	_blackSiteHeliAlive,
+	_baseHeliAlive,
+	_chargesAlive,
+	ONL_deadVehicleIndexes,
+	_supplyDropsUsed,
+	ONL_skipLoopsAndEvents
+];
 _ONLSaveData pushBack _specialSaveData;
 
 
@@ -252,4 +263,4 @@ saveProfileNamespace;
 
 
 // inform players save has been completed
-["Save Completed"] remoteExecCall ["hint",[0,-2] select isDedicated];
+["Checkpoint Saved"] remoteExecCall ["CBA_fnc_notify",[0,-2] select isDedicated];

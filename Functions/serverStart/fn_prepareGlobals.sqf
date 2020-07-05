@@ -96,6 +96,8 @@ ONL_prePlacedVehicles = vehicles select {
 };
 // this is prepared for saves to put the index of dead vehicles so they can be deleted when loading a game
 ONL_deadVehicleIndexes = [];
+// this is for loops and events that do not need to be created again after loading a save
+ONL_skipLoopsAndEvents = [];
 
 
 // Task stuff for saves

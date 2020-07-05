@@ -53,6 +53,9 @@ if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			[InvestigateBlackSite_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
+			////////////SaveGame/////////////
+			call ONL_fnc_saveQuery;
+			////////////SaveGame/////////////
 		},
 		{[CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskCompleted AND {[CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted} AND {[DestroyBlackSiteServers_TaskID select 0] call BIS_fnc_taskCompleted}}
 	] call KISKA_fnc_waitUntil;
@@ -77,7 +80,6 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
 
 
 //// Near location loops
-
 // village
 [
 	3,

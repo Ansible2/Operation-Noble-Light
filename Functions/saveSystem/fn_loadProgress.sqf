@@ -231,13 +231,13 @@ _savedGroupsInfoArray apply {
 	_group deleteGroupWhenEmpty _deleteWhenEmpty;
 
 	// setup waypoints
-	/*
+	
 	if !(_savedWaypoints isEqualTo []) then {
 		_savedWaypoints apply {
 			(_x + [_group]) call _fn_createWaypoint;
 		};
 	};
-	*/
+	
 
 	if !(_onCreateCode isEqualTo "") then {
 		_code = compileFinal _onCreateCode;
@@ -254,7 +254,9 @@ _specialSaveData params [
 	"_blackSiteHeliAlive",
 	"_baseHeliAlive",
 	"_chargesAlive",
-	"_deadVehicleIndexes"
+	"_deadVehicleIndexes",
+	"_supplyDropsUsed",
+	"_skippedLoopsAndEvents"
 ];
 
 
@@ -323,3 +325,19 @@ if !(_deadVehicleIndexes isEqualTo []) then {
 		deleteVehicle _vehicle;
 	};
 };
+
+// used supply drops
+{
+	if (_x) then {
+		deleteVehicle ([ONL_supplyDropTrigger_1,ONL_supplyDropTrigger_2] select _forEachIndex);
+	};
+} forEach _supplyDropsUsed;
+
+// skip loop and event creation
+_skippedLoopsAndEvents apply {
+	missionNamespace setVariable [_x,true];
+};
+
+
+
+true

@@ -49,7 +49,11 @@ call {
 			if !([SearchLodging_TaskID] call BIS_fnc_taskExists) then {
 				[true,SearchLodging_TaskID,"SearchLodging_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
 			};
-			
+
+			////////////SaveGame/////////////
+			call ONL_fnc_saveQuery;
+			////////////SaveGame/////////////
+
 			ONL_base_readFile_EventID call CBA_fnc_removeEventHandler;
 		}
 	] call CBA_fnc_addEventHandler;
@@ -72,6 +76,10 @@ call {
 
 			if (_destroyedServersCount_plusOne isEqualTo ONL_blackSite_destroyableServers_count) then {
 				[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"] call Kiska_fnc_setTaskComplete;
+				
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
 			} else {
 				ONL_blackSite_destroyedServers_count = _destroyedServersCount_plusOne;
 			};	
@@ -95,6 +103,11 @@ call {
 
 			if (_collectedIntelCount_plusOne isEqualTo ONL_blackSite_collectableIntel_count) then {
 				[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
+
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
+
 				ONL_blackSite_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
 			} else {
 				ONL_blackSite_collectedIntel_count = _collectedIntelCount_plusOne;
@@ -159,6 +172,10 @@ call {
 
 			if (_destroyedServersCount_plusOne isEqualTo ONL_cave_destroyableServers_count) then {
 				[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"] call KISKA_fnc_setTaskComplete;
+
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
 			} else {
 				ONL_cave_destroyedServers_count = _destroyedServersCount_plusOne;
 			};	
@@ -183,6 +200,11 @@ call {
 
 			if (_collectedIntelCount_plusOne isEqualTo ONL_cave_collectableIntel_count) then {
 				[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"] call KISKA_fnc_setTaskComplete;
+
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
+
 				ONL_Cave_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
 			} else {
 				ONL_cave_collectedIntel_count = _collectedIntelCount_plusOne;
@@ -200,6 +222,10 @@ call {
 				ONL_cave_devicesDead = 1;
 			} else {
 				[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"] call KISKA_fnc_setTaskComplete;
+
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
 			};
 		}];
 	};
@@ -258,6 +284,10 @@ call {
 	// Dead scientist EH
 	ONL_headScientist addEventHandler ["Killed", { 
 		[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"] call KISKA_fnc_setTaskComplete;
+
+		////////////SaveGame/////////////
+		call ONL_fnc_saveQuery;
+		////////////SaveGame/////////////
 
 		["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
 	}];
@@ -378,7 +408,11 @@ call {
 
 						if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {
 							[true,DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
-						};					
+						};
+
+						////////////SaveGame/////////////
+						call ONL_fnc_saveQuery;
+						////////////SaveGame/////////////				
 						
 					},
 					[],
@@ -401,14 +435,12 @@ call {
 		{
 			// create apc
 			private _group1 = createGroup resistance;
-
 			for "_i" from 1 to 3 do {
 				_group1 createUnit [ONL_spetsnaz_crewman,[0,0,0],[],0,"NONE"];
 			}; 
 			
 			private _apc = createVehicle [ONL_spetsnaz_apc,[7028.84,12029,0]];
-			_apc setDir 102;
-
+			_apc setDir 102;			
 			if !(ONL_FSGLoaded) then {
 				[
 					_apc,
@@ -420,19 +452,16 @@ call {
 			{
 				[_x moveInTurret [_apc,[[0,0],[1]] select ONL_FSGLoaded],_x moveInDriver _apc,_x moveInGunner _apc] select _forEachIndex;
 			} forEach (units _group1);
-
 			(units _group1) joinSilent _group1;
 
 
 			// Create car
 			private _group2 = createGroup resistance;
-
 			for "_i" from 1 to 2 do {
 				_group2 createUnit [ONL_spetsnaz_crewman,[0,0,0],[],0,"NONE"];
 			}; 
 			
 			private _car = createVehicle [ONL_spetsnaz_carArmed,ONL_logic_village_reinforcements];
-
 			[
 				_car,
 				["Green",1], 
@@ -442,7 +471,6 @@ call {
 			{
 				[_x moveInDriver _car,_x moveInGunner _car] select _forEachIndex;
 			} forEach (units _group2);
-
 			(units _group2) joinSilent _group2;
 
 
@@ -593,6 +621,8 @@ call {
 				["_caller",objNull,[objNull]],
 				["_radio",-1,[1]]
 			];
+
+			ONL_supplyDrop1Used = true;
 			
 			[_classNames,_altittude,_caller,_radio] remoteExec ["KISKA_fnc_supplyDrop",2];
 
@@ -612,6 +642,8 @@ call {
 				["_caller",objNull,[objNull]],
 				["_radio",-1,[1]]
 			];
+
+			ONL_supplyDrop2Used = true;
 			
 			[_classNames,_altittude,_caller,_radio] remoteExec ["KISKA_fnc_supplyDrop",2];
 
