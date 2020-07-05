@@ -4,6 +4,9 @@ Function: ONL_fnc_addServerEvents
 Description:
 	This adds CBA events and general eventHandlers to the server.
 	These CBA events were used for certain "insignificant" things I did not want functions for and more so are reactions to players.
+
+	You'll see several if statements wrapping events with globals ending in '_skip'.
+	These are used to track if an event has fired in order to have it be null when loading a save.
 	
 	It is executed from the "initServer.sqf".
 	
@@ -30,34 +33,41 @@ if (!isServer) exitWith {};
 //////////////////////////////
 call {
 	// destroy coms
-	ONL_comRelay addEventHandler ["Killed", {
-		[DestroyComs_TaskID,"DestroyComs_TaskInfo"] call Kiska_fnc_setTaskComplete;
-	}];
+	if !(missionNamespace getVariable ["ONL_comsAlive_skip",false]) then {
+		ONL_comRelay addEventHandler ["Killed", {
+			[DestroyComs_TaskID,"DestroyComs_TaskInfo"] call Kiska_fnc_setTaskComplete;
+
+			ONL_skipLoopsAndEvents pushBack "ONL_comsAlive_skip";
+		}];
+	};
 
 	// read file
-	private _id = [
-		"ONL_base_readFile_Event",
-		{
-			params [
-				["_file",objNull,[objNull]]
-			];
+	if !(missionNamespace getVariable ["ONL_baseFileRead_skip",false]) then {
+		private _id = [
+			"ONL_base_readFile_Event",
+			{
+				params [
+					["_file",objNull,[objNull]]
+				];
 
-			[_file] remoteExec ["deleteVehicle",_file];
+				[_file] remoteExec ["deleteVehicle",_file];
 
-			[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
+				[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
 
-			if !([SearchLodging_TaskID] call BIS_fnc_taskExists) then {
-				[true,SearchLodging_TaskID,"SearchLodging_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
-			};
+				if !([SearchLodging_TaskID] call BIS_fnc_taskExists) then {
+					[true,SearchLodging_TaskID,"SearchLodging_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
+				};
 
-			////////////SaveGame/////////////
-			call ONL_fnc_saveQuery;
-			////////////SaveGame/////////////
+				ONL_skipLoopsAndEvents pushBack "ONL_baseFileRead_skip";
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
 
-			ONL_base_readFile_EventID call CBA_fnc_removeEventHandler;
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_base_readFile_EventID = ["ONL_base_readFile_Event",_id];
+				ONL_base_readFile_EventID call CBA_fnc_removeEventHandler;
+			}
+		] call CBA_fnc_addEventHandler;
+		ONL_base_readFile_EventID = ["ONL_base_readFile_Event",_id];
+	};
 };
 
 
@@ -67,55 +77,60 @@ call {
 //////////////////////////////
 call {
 	// Black Site Server Destruction
-	private _blackSiteServers = (getMissionLayerEntities "Black Site Servers") select 0;
-	ONL_blackSite_destroyableServers_count = count _blackSiteServers;
+	if !(missionNamespace getVariable ["ONL_blackSiteServersDestroyed_skip",false]) then {
+		private _blackSiteServers = (getMissionLayerEntities "Black Site Servers") select 0;
+		ONL_blackSite_destroyableServers_count = count _blackSiteServers;
 
-	_blackSiteServers apply {
-		_x addEventHandler ["Killed", {
-			private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_destroyedServers_count",0]) + 1;
+		_blackSiteServers apply {
+			_x addEventHandler ["Killed", {
+				private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_destroyedServers_count",0]) + 1;
 
-			if (_destroyedServersCount_plusOne isEqualTo ONL_blackSite_destroyableServers_count) then {
-				[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"] call Kiska_fnc_setTaskComplete;
-				
-				////////////SaveGame/////////////
-				call ONL_fnc_saveQuery;
-				////////////SaveGame/////////////
-			} else {
-				ONL_blackSite_destroyedServers_count = _destroyedServersCount_plusOne;
-			};	
-		}];
+				if (_destroyedServersCount_plusOne isEqualTo ONL_blackSite_destroyableServers_count) then {
+					[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"] call Kiska_fnc_setTaskComplete;
+					
+					ONL_skipLoopsAndEvents pushBack "ONL_blackSiteServersDestroyed_skip";
+					////////////SaveGame/////////////
+					call ONL_fnc_saveQuery;
+					////////////SaveGame/////////////
+				} else {
+					ONL_blackSite_destroyedServers_count = _destroyedServersCount_plusOne;
+				};	
+			}];
+		};
 	};
 
-
 	// Collect BlackSite intel
-	ONL_blackSite_collectableIntel_count = count ((getMissionLayerEntities "Black Site Collects") select 0);
+	if !(missionNamespace getVariable ["ONL_blackSite_CollectedIntelEvent_skip",false]) then {
+		ONL_blackSite_collectableIntel_count = count ((getMissionLayerEntities "Black Site Collects") select 0);
 
-	private _id = [
-		"ONL_blackSite_CollectedIntel_Event",
-		{
-			params [
-				["_intelObject",objNull,[objNull]]
-			];
-			
-			deleteVehicle _intelObject;
+		private _id = [
+			"ONL_blackSite_CollectedIntel_Event",
+			{
+				params [
+					["_intelObject",objNull,[objNull]]
+				];
+				
+				deleteVehicle _intelObject;
 
-			private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_collectedIntel_count",0]) + 1;
+				private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_collectedIntel_count",0]) + 1;
 
-			if (_collectedIntelCount_plusOne isEqualTo ONL_blackSite_collectableIntel_count) then {
-				[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
+				if (_collectedIntelCount_plusOne isEqualTo ONL_blackSite_collectableIntel_count) then {
+					[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
+					
+					ONL_skipLoopsAndEvents pushBack "ONL_blackSite_CollectedIntelEvent_skip";
+					////////////SaveGame/////////////
+					call ONL_fnc_saveQuery;
+					////////////SaveGame/////////////
 
-				////////////SaveGame/////////////
-				call ONL_fnc_saveQuery;
-				////////////SaveGame/////////////
-
-				ONL_blackSite_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
-			} else {
-				ONL_blackSite_collectedIntel_count = _collectedIntelCount_plusOne;
-			};
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_blackSite_CollectedIntel_Event_ID = ["ONL_blackSite_CollectedIntel_Event",_id];
-};
+					ONL_blackSite_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
+				} else {
+					ONL_blackSite_collectedIntel_count = _collectedIntelCount_plusOne;
+				};
+			}
+		] call CBA_fnc_addEventHandler;
+		ONL_blackSite_CollectedIntel_Event_ID = ["ONL_blackSite_CollectedIntel_Event",_id];
+	};
+};	
 
 
 
@@ -164,72 +179,80 @@ call {
 
 
 	// Cave Server Destruction
-	ONL_cave_destroyableServers_count = count ONL_caveServers;
+	if !(missionNamespace getVariable ["ONL_caveServersDestroyed_skip",false]) then {
+		ONL_cave_destroyableServers_count = count ONL_caveServers;
 
-	ONL_caveServers apply {
-		_x addEventHandler ["Killed", {
-			private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_cave_destroyedServers_count",0]) + 1;
+		ONL_caveServers apply {
+			_x addEventHandler ["Killed", {
+				private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_cave_destroyedServers_count",0]) + 1;
 
-			if (_destroyedServersCount_plusOne isEqualTo ONL_cave_destroyableServers_count) then {
-				[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"] call KISKA_fnc_setTaskComplete;
+				if (_destroyedServersCount_plusOne isEqualTo ONL_cave_destroyableServers_count) then {
+					[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-				////////////SaveGame/////////////
-				call ONL_fnc_saveQuery;
-				////////////SaveGame/////////////
-			} else {
-				ONL_cave_destroyedServers_count = _destroyedServersCount_plusOne;
-			};	
-		}];
+					ONL_skipLoopsAndEvents pushBack "ONL_caveServersDestroyed_skip";
+					////////////SaveGame/////////////
+					call ONL_fnc_saveQuery;
+					////////////SaveGame/////////////
+				} else {
+					ONL_cave_destroyedServers_count = _destroyedServersCount_plusOne;
+				};	
+			}];
+		};
 	};
 
 
 
 	// Collect Cave Intel Event
-	ONL_cave_collectableIntel_count = count ONL_caveCollectDevices;
+	if !(missionNamespace getVariable ["ONL_collectedCaveIntel_skip",false]) then {
+		ONL_cave_collectableIntel_count = count ONL_caveCollectDevices;
 
-	private _id1 = [
-		"ONL_cave_CollectedIntel_Event",
-		{
-			params [
-				["_intelObject",objNull,[objNull]]
-			];
-			
-			deleteVehicle _intelObject;
+		private _id1 = [
+			"ONL_cave_CollectedIntel_Event",
+			{
+				params [
+					["_intelObject",objNull,[objNull]]
+				];
+				
+				deleteVehicle _intelObject;
 
-			private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_cave_collectedIntel_count",0]) + 1;
+				private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_cave_collectedIntel_count",0]) + 1;
 
-			if (_collectedIntelCount_plusOne isEqualTo ONL_cave_collectableIntel_count) then {
-				[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"] call KISKA_fnc_setTaskComplete;
+				if (_collectedIntelCount_plusOne isEqualTo ONL_cave_collectableIntel_count) then {
+					[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-				////////////SaveGame/////////////
-				call ONL_fnc_saveQuery;
-				////////////SaveGame/////////////
+					ONL_skipLoopsAndEvents pushBack "ONL_collectedCaveIntel_skip";
+					////////////SaveGame/////////////
+					call ONL_fnc_saveQuery;
+					////////////SaveGame/////////////
 
-				ONL_Cave_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
-			} else {
-				ONL_cave_collectedIntel_count = _collectedIntelCount_plusOne;
-			};
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_Cave_generatorShutOff_Event_ID = ["ONL_Cave_CollectedIntel_Event",_id1];
+					ONL_Cave_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
+				} else {
+					ONL_cave_collectedIntel_count = _collectedIntelCount_plusOne;
+				};
+			}
+		] call CBA_fnc_addEventHandler;
+		ONL_Cave_generatorShutOff_Event_ID = ["ONL_Cave_CollectedIntel_Event",_id1];
+	};
 
 
 
 	// Destroy cave devices
-	ONL_caveDevices apply {
-		_x addEventHandler ["Killed", { 
-			if (missionNamespace getVariable ["ONL_cave_devicesDead",0] isEqualTo 0) then {
-				ONL_cave_devicesDead = 1;
-			} else {
-				[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"] call KISKA_fnc_setTaskComplete;
+	if !(missionNamespace getVariable ["ONL_caveDevicesDestroyed_skip",false]) then { 
+		ONL_caveDevices apply {
+			_x addEventHandler ["Killed", { 
+				if (missionNamespace getVariable ["ONL_cave_devicesDead",0] isEqualTo 0) then {
+					ONL_cave_devicesDead = 1;
+				} else {
+					[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-				////////////SaveGame/////////////
-				call ONL_fnc_saveQuery;
-				////////////SaveGame/////////////
-			};
-		}];
+					ONL_skipLoopsAndEvents pushBack "ONL_caveDevicesDestroyed_skip";
+					////////////SaveGame/////////////
+					call ONL_fnc_saveQuery;
+					////////////SaveGame/////////////
+				};
+			}];
+		};
 	};
-
 
 
 	// Entered Facility Event
@@ -282,76 +305,83 @@ call {
 
 
 	// Dead scientist EH
-	ONL_headScientist addEventHandler ["Killed", { 
-		[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"] call KISKA_fnc_setTaskComplete;
+	if !(missionNamespace getVariable ["ONL_scientistDead_skip",false]) then { 
+		ONL_headScientist addEventHandler ["Killed", { 
+			[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-		////////////SaveGame/////////////
-		call ONL_fnc_saveQuery;
-		////////////SaveGame/////////////
+			ONL_skipLoopsAndEvents pushBack "ONL_scientistDead_skip";
+			////////////SaveGame/////////////
+			call ONL_fnc_saveQuery;
+			////////////SaveGame/////////////
 
-		["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
-	}];
+			["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+		}];
+	};
 
 
 
 	// cave in event
-	private _id3 = [
-		"ONL_caveIn_event",
-		{
-			if (alive ONL_charge_1 OR {alive ONL_charge_2} OR {alive ONL_charge_3}) then {
-				[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
-					if (alive _x) then {
-						_x enableSimulationGlobal true;
-						_x allowDamage true;
-						_x setDamage 1;
+	if !(missionNamespace getVariable ["ONL_caveChargesDead_skip",false]) then {
+		private _id3 = [
+			"ONL_caveIn_event",
+			{
+				if (alive ONL_charge_1 OR {alive ONL_charge_2} OR {alive ONL_charge_3}) then {
+					[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
+						if (alive _x) then {
+							_x enableSimulationGlobal true;
+							_x allowDamage true;
+							_x setDamage 1;
+						};
 					};
-				};
 
-				// remove defusal actions
-				["ONL_charge_1_ID","ONL_charge_2_ID","ONL_charge_3_ID"] apply {
-					["ONL_removeDefusalAction_Event",[_x],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
-				};
-		
-				sleep 1;
-				
-				// show rock cave in
-				((getMissionLayerEntities "Cave In") select 0) apply {
-					_x hideObjectGlobal false;
-				};
-				
-			};
-
-			ONL_caveIn_EventID call CBA_fnc_removeEventHandler;
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_caveIn_EventID = ["ONL_caveIn_event",_id3];
-
-
-
-	// device defused
-	private _id4 = [
-		"ONL_deviceDefused_event",
-		{
-			params [
-				["_charge",objNull,[objNull]],
-				["_chargeGlobalName","",[""]]
-			];
-
-			deleteVehicle _charge;
+					// remove defusal actions
+					["ONL_charge_1_ID","ONL_charge_2_ID","ONL_charge_3_ID"] apply {
+						["ONL_removeDefusalAction_Event",[_x],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
+					};
 			
-			private _defusedCharges_plusOne = (missionNamespace getVariable ["ONL_defusedCharges_count",0]) + 1;
+					sleep 1;
+					
+					// show rock cave in
+					((getMissionLayerEntities "Cave In") select 0) apply {
+						_x hideObjectGlobal false;
+					};
+					
+					ONL_skipLoopsAndEvents pushBack "ONL_caveInHappened_skip";
+				};
 
-			if (_defusedCharges_plusOne isEqualTo 3) then {
-				//[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"] call Kiska_fnc_setTaskComplete; // need a defuse charges task
-				ONL_deviceDefused_eventID call CBA_fnc_removeEventHandler;
-			} else {
-				ONL_defusedCharges_count = _defusedCharges_plusOne;
+				ONL_skipLoopsAndEvents pushBack "ONL_caveChargesDead_skip";
+				ONL_caveIn_EventID call CBA_fnc_removeEventHandler;
+			}
+		] call CBA_fnc_addEventHandler;
+		ONL_caveIn_EventID = ["ONL_caveIn_event",_id3];
+	
 
-				["ONL_removeDefusalAction_Event",[_chargeGlobalName],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
-			};
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_deviceDefused_eventID = ["ONL_deviceDefused_event",_id4];
+
+		// device defused
+		private _id4 = [
+			"ONL_deviceDefused_event",
+			{
+				params [
+					["_charge",objNull,[objNull]],
+					["_chargeGlobalName","",[""]]
+				];
+
+				deleteVehicle _charge;
+				
+				private _defusedCharges_plusOne = (missionNamespace getVariable ["ONL_defusedCharges_count",0]) + 1;
+
+				if (_defusedCharges_plusOne isEqualTo 3) then {
+					//[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"] call Kiska_fnc_setTaskComplete; // need a defuse charges task
+					ONL_deviceDefused_eventID call CBA_fnc_removeEventHandler;
+				} else {
+					ONL_defusedCharges_count = _defusedCharges_plusOne;
+
+					["ONL_removeDefusalAction_Event",[_chargeGlobalName],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
+				};
+			}
+		] call CBA_fnc_addEventHandler;
+		ONL_deviceDefused_eventID = ["ONL_deviceDefused_event",_id4];
+	};
 };
 
 
@@ -368,6 +398,7 @@ call ONL_fnc_extractionEvents;
 /////////////VILLAGE//////////
 //////////////////////////////
 call {
+	
 	private _id = [
 		"ONL_village_CollectedIntel_Event",
 		{
@@ -409,6 +440,7 @@ call {
 						if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {
 							[true,DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 						};
+						
 
 						////////////SaveGame/////////////
 						call ONL_fnc_saveQuery;
