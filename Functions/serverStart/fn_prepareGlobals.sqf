@@ -94,6 +94,9 @@ ONL_prePlacedVehicles = vehicles select {
 	!(_x isKindOf "THING") AND
 	{!(_x in ONL_startingVehicles)}
 };
+// this is prepared for saves to put the index of dead vehicles so they can be deleted when loading a game
+ONL_deadVehicleIndexes = [];
+
 
 // Task stuff for saves
 ONL_taskIdsAndInfo = [

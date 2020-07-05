@@ -253,7 +253,8 @@ _specialSaveData params [
 	"_artyAlive_2",
 	"_blackSiteHeliAlive",
 	"_baseHeliAlive",
-	"_chargesAlive"
+	"_chargesAlive",
+	"_deadVehicleIndexes"
 ];
 
 
@@ -308,10 +309,17 @@ if (_baseHeliAlive) then {
 	call ONL_fnc_createBaseHeliPatrol;
 };
 
-
 // cave charges
 if !(_chargesAlive) then {
 	[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
 		deleteVehicle _x;
+	};
+};
+
+// delete dead vehicles
+if !(_deadVehicleIndexes isEqualTo []) then {
+	_deadVehicleIndexes apply {
+		private _vehicle = ONL_deadVehicleIndexes select _x;
+		deleteVehicle _vehicle;
 	};
 };

@@ -620,3 +620,15 @@ call {
 	] call CBA_fnc_addEventHandler;
 	ONL_supplyDrop_2_EventID = ["ONL_supplyDrop_2_Event",_id1];
 };
+
+
+
+//////////////////////////////
+/////////////MISC/////////////
+//////////////////////////////
+ONL_prePlacedVehicles apply {
+	_x addEventHandler ["KILLED",{
+		private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
+		ONL_deadVehicleIndexes pushBack _index;
+	}];
+};

@@ -235,7 +235,8 @@ if (isNull ONL_charge_1 AND {isNull ONL_charge_2} AND {isNull ONL_charge_3}) the
 	_chargesAlive = true;
 };
 
-_specialSaveData = [_artyAlive_1,_artyAlive_2,_blackSiteHeliAlive,_baseHeliAlive,_chargesAlive];
+
+_specialSaveData = [_artyAlive_1,_artyAlive_2,_blackSiteHeliAlive,_baseHeliAlive,_chargesAlive,ONL_deadVehicleIndexes];
 // add to master
 _ONLSaveData pushBack _specialSaveData;
 
