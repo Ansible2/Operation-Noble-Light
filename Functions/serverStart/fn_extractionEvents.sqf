@@ -24,10 +24,12 @@ Author:
 ---------------------------------------------------------------------------- */
 if !(isServer) exitWith {};
 
+missionNameSpace setVariable ["ONL_extractionEventsAdded",true];
+
 private _id = [
 	"ONL_getToExtraction_Event",
 	{
-		
+		ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
 		[
 			3,
 			{

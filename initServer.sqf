@@ -11,6 +11,9 @@
 // prepare all the global variables to account for different mods
 call ONL_fnc_prepareGlobals;
 
+// add arsenals
+[[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
+
 // Server Event Calls and loop Starts
 call ONL_fnc_addServerEvents;
 
@@ -49,9 +52,6 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTur
 [ONL_caveGroup_1,ONL_caveGroup_2,ONL_caveGroup_3,ONL_caveGroup_4,ONL_caveGroup_5,ONL_redGroup,ONL_blueGroup,ONL_cargoPlane,ONL_cargoPlaneGroup] apply {
 	_x setVariable ["ONL_saveExcluded",true];
 };
-
-// add arsenals
-[[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
 
 
 uiSleep 30;

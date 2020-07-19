@@ -272,7 +272,7 @@ call {
 				60*15
 			] call CBA_fnc_waitAndExecute;
 
-			// wait to show units at end of tunnel and zombies
+			// wait to show units at end of tunnel
 			[
 				1,
 				{
@@ -372,6 +372,7 @@ call {
 
 				if (_defusedCharges_plusOne isEqualTo 3) then {
 					//[CollectCaveData_TaskID,"CollectCaveData_TaskInfo"] call Kiska_fnc_setTaskComplete; // need a defuse charges task
+					ONL_skipLoopsAndEvents pushBack "ONL_caveChargesDead_skip";
 					ONL_deviceDefused_eventID call CBA_fnc_removeEventHandler;
 				} else {
 					ONL_defusedCharges_count = _defusedCharges_plusOne;

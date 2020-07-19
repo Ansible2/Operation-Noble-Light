@@ -333,10 +333,30 @@ if !(_deadVehicleIndexes isEqualTo []) then {
 	};
 } forEach _supplyDropsUsed;
 
+
 // skip loop and event creation
 _skippedLoopsAndEvents apply {
 	missionNamespace setVariable [_x,true];
 };
+//// These are globals that are checked from the step directly above to see if certain special events happened
+// delete charges if they were killed
+if (missionNamespace getVariable ["ONL_caveChargesDead_skip",false]) then {
+	[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
+		deleteVehicle _x;
+	};
+};
+// call extraction event immediately
+if (missionNamespace getVariable ["ONL_extractionReady_skip",true]) then {
+	[
+		5,
+		{
+			["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+		},
+		{missionNamespace getVariable ["ONL_extractionEventsAdded",false]}
+	] call KISKA_fnc_waitUntil;
+	["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+};
+
 
 
 
