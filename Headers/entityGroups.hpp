@@ -1,5 +1,4 @@
-// A list of global arrays I wanted all connected machines to have access to
-
+// A list of global arrays that I wanted all connected machines to have access to
 
 ONL_blackSiteCollects = [
     ONL_blackSiteCollect_1,

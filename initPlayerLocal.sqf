@@ -9,11 +9,11 @@ params [
 ONL_CCMLoaded = ["CCM_music"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
+// filthy casuals
 _player setCustomAimCoef 0.15;
 
 call ONL_fnc_addActionsMaster;
 
-// adjust viewDistances
 if (viewDistance > 1700) then {
 	setViewDistance 1700;
 };
@@ -93,7 +93,7 @@ _player createDiaryRecord ["Diary",["Support",
 <br></br>
 1x Predator UAV armed with guided munitions."],taskNull,"",true];
 
-// save game (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
+// wait to add save game button (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
 [
 	5,
 	{
@@ -108,7 +108,7 @@ _player createDiaryRecord ["Diary",["Support",
 	[_player]
 ] call KISKA_fnc_waitUntil;
 
-
+null = [] spawn KISKA_fnc_rallyPointActionLoop;
 
 waitUntil {
 	if !(isNil "ONL_startingVehicles") exitWith {[_player] call ONL_fnc_addCargoActions; true};

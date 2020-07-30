@@ -106,7 +106,7 @@ if !(isNull ONL_charge_3) then {
 
 
 
-// remove action event, actions will persist even when the charge is detonated
+// remove action event, keeps actions from persisting even when the charge is detonated
 if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false])) then {
 	[
 		"ONL_removeDefusalAction_Event",

@@ -26,9 +26,9 @@ if (!canSuspend) exitWith {
 	"ONL_fnc_addplayerActions must be run in scheduled envrionment" call BIS_fnc_error;
 };
 
-params ["_player",player,[objNull]];
+waitUntil {!isNull player};
 
-waitUntil {!isNull _player};
+params ["_player",player,[objNull]];
 
 ONL_enterBunkerAction_ID = _player addAction [ 
 	"--Enter Bunker",  

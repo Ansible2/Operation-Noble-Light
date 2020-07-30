@@ -6,28 +6,19 @@
 #include "headers\entityGroups.hpp";
 #include "headers\newsSounds.hpp";
 
-[[[ONL_redGroup],[ONL_blueGroup]]] call KISKA_fnc_initializeRespawnSystem;
+//[[[ONL_redGroup],[ONL_blueGroup]]] call KISKA_fnc_initializeRespawnSystem;
 
-// prepare all the global variables to account for different mods
 call ONL_fnc_prepareGlobals;
 
-// add arsenals
 [[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
 
-// Server Event Calls and loop Starts
 call ONL_fnc_addServerEvents;
-
 // place all static vehicles and the ones the players can choose from at the start
 call ONL_fnc_startingVehiclesInit;
 call ONL_fnc_placeVehicles;
-
-// start audio effects at start base
 call ONL_fnc_startingBaseAudio;
-
-// spawn most enemy units
+// spawn MOST enemy units
 call ONL_fnc_spawnUnitsMaster;
-
-// start loops for server
 call ONL_fnc_startServerLoops;
 
 // create initial Task
@@ -46,16 +37,15 @@ ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Air
 // for plane at start
 ONL_cargoPlane flyInHeight 500; 
 
-// distribute AI amongst headless client(s) save for some groups
+// distribute AI amongst headless client(s) save for these groups
 KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup];
 // exclude from saves
 [ONL_caveGroup_1,ONL_caveGroup_2,ONL_caveGroup_3,ONL_caveGroup_4,ONL_caveGroup_5,ONL_redGroup,ONL_blueGroup,ONL_cargoPlane,ONL_cargoPlaneGroup] apply {
 	_x setVariable ["ONL_saveExcluded",true];
 };
 
-
+// to keep gear from being lost when transfering AI, they need to sleep for a bit
 uiSleep 30;
-
 
 [] spawn KISKA_fnc_balanceHeadless;
 

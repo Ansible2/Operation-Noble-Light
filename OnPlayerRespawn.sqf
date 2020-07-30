@@ -16,7 +16,7 @@ _newunit setCustomAimCoef 0.15;
 			2 fadeSound 0.1;
 		};
 
-		// if people are in the extraction helicopter, move the person into it cuz we. are. leaving.
+		// if people are in the extraction helicopter, move the person into it cuz we. are. leeeaaaving.
 		if !(((call CBA_fnc_players) findIf {(objectParent _x) isEqualTo ONL_extractHeli}) isEqualTo -1) then {
 			_newUnit moveInCargo ONL_extractHeli;
 		};

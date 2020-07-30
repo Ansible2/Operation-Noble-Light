@@ -1,4 +1,4 @@
-// unit type arrays used to renaomly select from their strings during spawns
+// unit type arrays used to randomly select from their strings during spawns
 
 // CSAT
 ONL_FSTCSAT_unitTypes = [

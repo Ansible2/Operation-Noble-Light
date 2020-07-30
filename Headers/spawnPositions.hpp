@@ -18,7 +18,7 @@ ONL_blackSite_exteriorPositions = [
     [11728.6,12009.5,0.196442],
     [11703.5,11945.9,-0.00189209]
 ];
-ONL_blackSite_interiorPositions_1a = [ // These are at the base
+ONL_blackSite_interiorPositions_1a = [ // These are at the base compound
     [11776.1,12038.2,0.68956],
     [11727.8,12013,0.229385],
     [11720.6,12015.1,0.281387],
@@ -593,6 +593,7 @@ ONL_cave_storageArea_positions = [
     [958.028,4366.47,0]
 ];
 
+// these are the positions that are on the main road
 ONL_cave_center_positions_1 = [
     [1041.79,4176.66,0.00228882],
     [1028.12,4172.59,0.00228882],

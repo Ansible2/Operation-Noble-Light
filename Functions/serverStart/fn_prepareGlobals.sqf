@@ -40,6 +40,8 @@ if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData",[]]) isEqual
 };
 
 // so that the defusal actions can check if these are alive
+// interesting note. as of 1.98, global names assigned in the Eden Editor for mines
+/// are NOT propigated across all machines unlike literally every other object.
 publicVariable "ONL_charge_1";
 publicVariable "ONL_charge_2";
 publicVariable "ONL_charge_3";
