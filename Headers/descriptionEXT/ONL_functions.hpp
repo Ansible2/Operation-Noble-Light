@@ -51,6 +51,10 @@ class ONL
 	class saveSystem
 	{
 		file = "Functions\saveSystem";
+		class deleteSave
+		{};
+		class deleteSaveQuery
+		{};
 		class loadProgress
 		{};
 		class saveProgress

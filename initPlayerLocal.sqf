@@ -101,7 +101,10 @@ _player createDiaryRecord ["Diary",["Support",
 			"(Only hosts and admins can save)
 			<br></br>
 			<br></br>
-			<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>"
+			<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>
+			<br></br>
+			<br></br>
+			<execute expression='call ONL_fnc_saveQuery'>DELETE SAVE (clear profileNamespace)</execute>"
 		]];
 	},
 	{!(isNil "ONL_unitsSpawned")},

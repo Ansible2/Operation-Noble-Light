@@ -26,7 +26,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!isServer) exitWith {};
+if (!isServer) exitWith {false};
 
 //////////////////////////////
 /////////////BASE/////////////
@@ -688,8 +688,11 @@ call {
 
 	// saving dead pre placed vics
 	ONL_prePlacedVehicles apply {
-	_x addEventHandler ["KILLED",{
-		private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
-		ONL_deadVehicleIndexes pushBack _index;
-	}];
+		_x addEventHandler ["KILLED",{
+			private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
+			ONL_deadVehicleIndexes pushBack _index;
+		}];
+	};
 };
+
+true
