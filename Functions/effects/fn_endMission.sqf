@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: ONL_fnc_caveMusic
+Function: ONL_fnc_endMission
 
 Description:
 	Executes from the event "ONL_getToExtraction_Event" which is located in ONL_fnc_extractionEvents
