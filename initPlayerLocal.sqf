@@ -9,7 +9,7 @@ params [
 ONL_CCMLoaded = ["CCM_music"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
-// filthy casuals
+// filthy casuals reducing weapon sway
 _player setCustomAimCoef 0.15;
 
 call ONL_fnc_addActionsMaster;
@@ -20,7 +20,6 @@ if (viewDistance > 1700) then {
 if ((getObjectViewDistance select 0) > 1500) then {
 	setObjectViewDistance 1500;
 };
-
 
 //// diary records
 // Situation
@@ -36,7 +35,7 @@ Civil war amongst several of its territories has enabled CSAT to obtain land wit
 NATO in response and at the request of the federal body has deployed troops to the same AO. This has developed into the tense standoff between our forces.
 <br></br>
 <br></br>
-However, after CSAT’s attacks in Takistan several hours ago, we are severing this peace at 0500 tomorrow morning. Lines have been drawn.
+However, after CSAT’s attacks in Takistan several hours ago, we are severing this peace at 0500 tomorrow morning.
 <br></br>
 <br></br>
 Prior to this, you will insert to extract an asset, code named Apollo.
@@ -104,7 +103,7 @@ _player createDiaryRecord ["Diary",["Support",
 			<execute expression='call ONL_fnc_saveQuery'>SAVE GAME</execute>
 			<br></br>
 			<br></br>
-			<execute expression='call ONL_fnc_saveQuery'>DELETE SAVE (clear profileNamespace)</execute>"
+			<execute expression='call ONL_fnc_deleteSaveQuery'>DELETE SAVE (clear profileNamespace)</execute>"
 		]];
 	},
 	{!(isNil "ONL_unitsSpawned")},
