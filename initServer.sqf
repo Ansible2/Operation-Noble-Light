@@ -47,12 +47,12 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeli_group,ONL_extractHeliTur
 // to keep gear from being lost when transfering AI, they need to sleep for a bit
 uiSleep 30;
 
-[] spawn KISKA_fnc_balanceHeadless;
+null = [] spawn KISKA_fnc_balanceHeadless;
 
 // reassign loadouts for vanilla if needed
 if (!ONL_CUPUnitsLoaded AND {!(ONL_loadSave)}) then {
 	uiSleep 100;
-	["ONL_",ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
+	null = ["ONL_",ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
 };
 // assign loadouts if save was loaded
 if (ONL_loadSave) then {
