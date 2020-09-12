@@ -41,7 +41,7 @@ if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData",[]]) isEqual
 
 // so that the defusal actions can check if these are alive
 // interesting note. as of 1.98, global names assigned in the Eden Editor for mines
-/// are NOT propigated across all machines unlike literally every other object.
+/// are NOT propigated across all machines unlike every other object.
 publicVariable "ONL_charge_1";
 publicVariable "ONL_charge_2";
 publicVariable "ONL_charge_3";
@@ -97,6 +97,7 @@ ONL_prePlacedVehicles = vehicles select {
 	{!(_x in ONL_startingVehicles)}
 };
 // this is prepared for saves to put the index of dead vehicles so they can be deleted when loading a game
+// in other words, since they are created in a certain order, the exact vehicle can be deleted through an array index
 ONL_deadVehicleIndexes = [];
 // this is for loops and events that do not need to be created again after loading a save
 ONL_skipLoopsAndEvents = [];
