@@ -354,7 +354,7 @@ if (missionNamespace getVariable ["ONL_extractionReady_skip",true]) then {
 		},
 		{missionNamespace getVariable ["ONL_extractionEventsAdded",false]}
 	] call KISKA_fnc_waitUntil;
-	["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+	//["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
 };
 
 

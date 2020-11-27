@@ -6,8 +6,6 @@
 #include "headers\entityGroups.hpp";
 #include "headers\newsSounds.hpp";
 
-//[[[ONL_redGroup],[ONL_blueGroup]]] call KISKA_fnc_initializeRespawnSystem;
-
 call ONL_fnc_prepareGlobals;
 
 [[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
@@ -57,9 +55,11 @@ if (!ONL_CUPUnitsLoaded AND {!(ONL_loadSave)}) then {
 // assign loadouts if save was loaded
 if (ONL_loadSave) then {
 	uiSleep 100;
+	private "_loadout_temp";
 	allUnits apply {
-		if (!isNil {_unit getVariable "ONL_savedLoadout"}) then {
-			_unit setUnitLoadout (_unit getVariable "ONL_savedLoadout");
+		_loadout_temp = _x getVariable ["ONL_savedLoadout",[]];
+		if !(_loadout_temp isEqualTo []) then {
+			_x setUnitLoadout _loadout_temp;
 		};
 	};
 };

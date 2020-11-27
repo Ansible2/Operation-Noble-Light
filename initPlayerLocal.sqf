@@ -1,10 +1,10 @@
+#include "headers\entityGroups.hpp";
+
 if (!hasInterface) exitWith {};
 
 params [
 	["_player",player]
 ];
-
-#include "headers\entityGroups.hpp";
 
 ONL_CCMLoaded = ["CCM_music"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
@@ -65,8 +65,9 @@ _player createDiaryRecord ["Diary",["Execution","1. Load your equipment into the
 _player createDiaryRecord ["Diary",["Loading Vehicles","Simply drive the corresponding vehicle (carefully) into the aircraft.  
 <br></br>
 <br></br>
-Make sure to use '--Strap Cargo' and '--Untstrap Cargo' actions once in place. 
+Make sure to use '--Strap Cargo' action once in place.
 <br></br>
+You can unmount the vehicle using its '--Unstrap Cargo' action.
 <br></br>
 DO NOT use any other methods of loading the vehicles.
 <br></br>
@@ -120,7 +121,7 @@ waitUntil {
 };
 
 
-[] spawn {
+null = [] spawn {
 	
 	sleep 10;
   
@@ -128,11 +129,13 @@ waitUntil {
 		
 		"Simply drive the corresponding vehicle (carefully) into the aircraft.", 
 
-		"Make sure to use '--Strap Cargo' & '--Untstrap Cargo' actions once in place.", 
+		"Make sure to use '--Strap Cargo' action once in place.", 
+
+		"You can unmount the vehicle using its '--Unstrap Cargo' action.",
 
 		"DO NOT use any other methods of loading the vehicles.",
 
-		"If the aircraft decides to launch, simply use the action on the switch box near all the computers in the hangar.",
+		"If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.",
 
 		"The aircraft will take off once all PLAYERS are in seats.",
 
