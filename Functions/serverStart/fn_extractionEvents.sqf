@@ -90,7 +90,7 @@ private _id = [
 
 										sleep 1;
 																				
-										remoteExec ["ONL_fnc_endMission",0,true];
+										null = remoteExec ["ONL_fnc_endMission",0,true];
 									},
 									{!(((call CBA_fnc_players) findIf {(_x distance2D ONL_logic_extractionComplete) < 350}) isEqualTo -1)}
 								] call KISKA_fnc_waitUntil;
@@ -137,7 +137,7 @@ private _id = [
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
 						};
 
-						["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];				
+						null = ["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];				
 					},
 					[],
 					60
