@@ -22,8 +22,17 @@ class CfgTaskDescriptions
 class CfgFunctions
 {
 	#include "headers\descriptionEXT\ONL_functions.hpp"
+	#include "KISKA Systems\KISKA Functions.hpp"
 };
 class Params
 {
 	#include "headers\descriptionEXT\missionParameters.hpp"
+};
+class cfgCommunicationMenu
+{
+
+};
+class cfgSounds
+{
+	#include "KISKA Systems\KISKA Sounds.hpp"
 };
