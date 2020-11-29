@@ -121,6 +121,8 @@ call {
 			2, 
 			false 
 		];
+		
+		sleep 1;
 	};
 };
 
