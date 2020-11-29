@@ -227,10 +227,10 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 waitUntil {
 	if (time > 0) exitWith {
 		if (ONL_CCMLoaded) then {
-			[ONL_randomMusicTracksCCM,[300,360,420]] spawn KISKA_fnc_randomMusic;
+			null = [false,"",ONL_randomMusicTracksCCM,[300,360,420]] spawn KISKA_fnc_randomMusic;
 		} else {
 			if (ONL_KISKAMusicLoaded) then {
-				[ONL_randomMusicTracksKISKA,[300,360,420]] spawn KISKA_fnc_randomMusic;
+				null = [false,"",ONL_randomMusicTracksKISKA,[300,360,420]] spawn KISKA_fnc_randomMusic;
 			};
 		};
 		true
