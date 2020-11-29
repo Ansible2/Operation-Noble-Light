@@ -24,7 +24,9 @@ class KISKA
 		class addCargoActions
 		{};
 		class addCargoEvents
-		{};
+		{
+			postInit = 1;
+		};
 		class cargoDrop
 		{};
 		class strapCargo
