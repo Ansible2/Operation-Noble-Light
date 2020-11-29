@@ -26,7 +26,7 @@ if (!hasInterface) exitWith {};
 		
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Entering...</t>", "BLACK OUT", 3, true, true];
 
-[] spawn ONL_fnc_addDefusalActions;
+null = [] spawn ONL_fnc_addDefusalActions;
 
 3 fadeSound 0;
 
