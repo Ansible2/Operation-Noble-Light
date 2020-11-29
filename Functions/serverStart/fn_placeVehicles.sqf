@@ -32,7 +32,7 @@ private _fn_createSimple = {
 	];
 	
 	private "_object";
-	if (_type isEqualTo "fsg_tigr_1") then {
+	if (_type == "fsg_tigr_1") then {
 		_object = createVehicle [_type, getPosATL _logic];
 		_object enableSimulationGlobal false;
 		_object setVectorDirAndUp [vectorDir _logic,vectorUp _logic];
