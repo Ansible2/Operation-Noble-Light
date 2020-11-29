@@ -46,7 +46,7 @@ waitUntil {
 	
 	ONL_usedNewsSounds pushBack _randomNews;
 
-	[_randomNews,_radio,20,2,true] spawn KISKA_fnc_playSound3d;
+	null = [_randomNews,_radio,20,2,true] spawn KISKA_fnc_playSound3d;
 	
 	sleep (random [30,35,40]);
 
