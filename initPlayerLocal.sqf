@@ -6,7 +6,18 @@ params [
 	["_player",player]
 ];
 
-ONL_CCMLoaded = ["CCM_music"] call KISKA_fnc_isPatchLoaded;
+/*
+*
+*
+*
+*			YOU NEEED TO CHANGE THIS BACK TO :
+*			ONL_CCMLoaded = ["CCM_MUSIC"] call KISKA_fnc_isPatchLoaded;
+*			After release as the pack in the mod PBO has this one
+*
+*
+*
+*/
+ONL_CCMLoaded = ["CCM_PM"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
 // filthy casuals reducing weapon sway
