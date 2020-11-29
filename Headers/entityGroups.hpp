@@ -67,9 +67,7 @@ ONL_caveServers = [
     ONL_caveServer_3,
     ONL_caveServer_4,
     ONL_caveServer_5,
-    ONL_caveServer_6,
-    ONL_caveServer_7,
-    ONL_caveServer_8
+    ONL_caveServer_6
 ];
 
 ONL_tempestCompatLogics = [
