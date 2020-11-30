@@ -272,7 +272,6 @@ call {
 			// cave in charges timer begins
 			[
 				{
-					hint "cave";
 					["ONL_caveIn_event"] call CBA_fnc_serverEvent;
 				},
 				[],
