@@ -137,10 +137,8 @@ KISKA_fnc_CD_deployChutes = {
 		private _randomWindDriftx = random [-15,0,15];
 		private _randomWindDriftY = random [-50,-55,-60];
 
-		private "_chuteVelocity";
 		private _chuteHeight = (getPosATLVisual _mainChute) select 2;
 		while {_chuteHeight > 200} do {
-			_chuteVelocity = velocity _mainChute;
 			if (_chuteHeight > 250) then {
 				[_mainChute,[_randomWindDriftX,_randomWindDriftY,-240]] remoteExecCall ["setVelocity",_mainChute];
 			} else {
@@ -148,7 +146,6 @@ KISKA_fnc_CD_deployChutes = {
 			};
 			_chuteHeight = (getPosATLVisual _mainChute) select 2;
 			sleep 0.25;
-		
 		};
 	};
 
