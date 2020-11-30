@@ -139,7 +139,7 @@ KISKA_fnc_CD_deployChutes = {
 
 		private "_chuteVelocity";
 		private _chuteHeight = (getPosATLVisual _mainChute) select 2;
-		while {_chuteHeight > 50} do {
+		while {_chuteHeight > 200} do {
 			_chuteVelocity = velocity _mainChute;
 			if (_chuteHeight > 250) then {
 				_mainChute setVelocity [_randomWindDriftX,_randomWindDriftY,-240];;
