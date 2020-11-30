@@ -235,7 +235,10 @@ if (isNull ONL_charge_1 AND {isNull ONL_charge_2} AND {isNull ONL_charge_3}) the
 };
 
 // supply Drop Checks
-private _supplyDropsUsed = [missionNamespace getVariable ["ONL_supplyDrop1Used",false],missionNamespace getVariable ["ONL_supplyDrop2Used",false]];
+private _supplyDropsUsed = [
+	missionNamespace getVariable ["ONL_supplyDrop1Used",false],
+	missionNamespace getVariable ["ONL_supplyDrop2Used",false]
+];
 
 
 // add to master
