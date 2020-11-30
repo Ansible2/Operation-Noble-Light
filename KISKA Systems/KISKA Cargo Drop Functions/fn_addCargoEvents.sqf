@@ -16,7 +16,6 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-
 // Strap Cargo
 [
 	"KISKA_cargoStrapped_Event",
