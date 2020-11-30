@@ -272,6 +272,7 @@ call {
 			// cave in charges timer begins
 			[
 				{
+					hint "cave";
 					["ONL_caveIn_event"] call CBA_fnc_serverEvent;
 				},
 				[],
@@ -283,8 +284,8 @@ call {
 				1,
 				{
 					[((getMissionLayerEntities "CaveAI") select 0),true,true] call KISKA_fnc_showHide;
-				},
-				{!(((call CBA_fnc_players) findIf {(_x distance2D ONL_logic_cave_3) < 10}) isEqualTo -1)}
+				},// check if a player is within 10m of either ONL_logic_cave_3 or ONL_logic_cave_4
+				{!(((call CBA_fnc_players) findIf {(_x distance2D ONL_logic_cave_3) < 10 OR {(_x distance2D ONL_logic_cave_4) < 10}}) isEqualTo -1)}
 			] call KISKA_fnc_waitUntil;
 
 			// start music
@@ -331,32 +332,34 @@ call {
 		private _id3 = [
 			"ONL_caveIn_event",
 			{
-				if (alive ONL_charge_1 OR {alive ONL_charge_2} OR {alive ONL_charge_3}) then {
-					[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
-						if (alive _x) then {
-							_x enableSimulationGlobal true;
-							_x allowDamage true;
-							_x setDamage 1;
+				null = [] spawn {
+					if (alive ONL_charge_1 OR {alive ONL_charge_2} OR {alive ONL_charge_3}) then {
+						[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
+							if (alive _x) then {
+								_x enableSimulationGlobal true;
+								_x allowDamage true;
+								_x setDamage 1;
+							};
 						};
+
+						// remove defusal actions
+						["ONL_charge_1_ID","ONL_charge_2_ID","ONL_charge_3_ID"] apply {
+							["ONL_removeDefusalAction_Event",[_x],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
+						};
+				
+						sleep 1;
+						
+						// show rock cave in
+						((getMissionLayerEntities "Cave In") select 0) apply {
+							_x hideObjectGlobal false;
+						};
+						
+						ONL_skipLoopsAndEvents pushBack "ONL_caveInHappened_skip";
 					};
 
-					// remove defusal actions
-					["ONL_charge_1_ID","ONL_charge_2_ID","ONL_charge_3_ID"] apply {
-						["ONL_removeDefusalAction_Event",[_x],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
-					};
-			
-					sleep 1;
-					
-					// show rock cave in
-					((getMissionLayerEntities "Cave In") select 0) apply {
-						_x hideObjectGlobal false;
-					};
-					
-					ONL_skipLoopsAndEvents pushBack "ONL_caveInHappened_skip";
+					ONL_skipLoopsAndEvents pushBack "ONL_caveChargesDead_skip";
+					ONL_caveIn_EventID call CBA_fnc_removeEventHandler;
 				};
-
-				ONL_skipLoopsAndEvents pushBack "ONL_caveChargesDead_skip";
-				ONL_caveIn_EventID call CBA_fnc_removeEventHandler;
 			}
 		] call CBA_fnc_addEventHandler;
 		ONL_caveIn_EventID = ["ONL_caveIn_event",_id3];
