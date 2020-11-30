@@ -34,7 +34,7 @@ player allowDamage false;
 
 // get out interior action
 ONL_getoutActionID = player addAction [
-	"--Get Out Interior",  
+	"<t color='#039e00'>--Get Out Interior--</t>",  
 	{
 		params [
 			["_player",player,[objNull]]
@@ -46,7 +46,7 @@ ONL_getoutActionID = player addAction [
 
 		[
 			{
-				player switchMove "AidlPercMstpSrasWrflDnon_G01_player";
+				player switchMove "";
 			},
 			[],
 			1

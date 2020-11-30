@@ -265,13 +265,15 @@ if (_artyAlive_1) then {
 	private _group = createVehicleCrew ONL_arty_1;
 	_group enableDynamicSimulation true;
 
-	ONL_arty_1 addEventHandler ["KILLED", {
-		private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
-		
-		if (_deadCount isEqualTo 1) then {
-			[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
-		} else {
-			ONL_deadArty = 1;
+	ONL_arty_1 addMPEventHandler ["MPKILLED", {
+		if (isServer) then {
+			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
+			
+			if (_deadCount isEqualTo 1) then {
+				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
+			} else {
+				ONL_deadArty = 1;
+			};
 		};
 	}];
 
@@ -286,13 +288,15 @@ if (_artyAlive_2) then {
 	private _group = createVehicleCrew ONL_arty_2;
 	_group enableDynamicSimulation true;
 
-	ONL_arty_2 addEventHandler ["KILLED", {
-		private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
-		
-		if (_deadCount isEqualTo 1) then {
-			[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
-		} else {
-			ONL_deadArty = 1;
+	ONL_arty_2 addMPEventHandler ["MPKILLED", {
+		if (isServer) then {
+			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
+			
+			if (_deadCount isEqualTo 1) then {
+				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
+			} else {
+				ONL_deadArty = 1;
+			};
 		};
 	}];
 

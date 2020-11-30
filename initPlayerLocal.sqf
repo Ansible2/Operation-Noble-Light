@@ -40,7 +40,6 @@ null = [
 ] spawn KISKA_fnc_waitUntil;
 
 
-
 call ONL_fnc_addActionsMaster;
 
 //// diary records
@@ -84,29 +83,36 @@ _player createDiaryRecord ["Diary",["Execution","1. Load your equipment into the
 3. Secure Apollo and move to the extration site."],taskNull,"",true];
 
 // Loading Vehicles
-_player createDiaryRecord ["Diary",["Loading Vehicles","Simply drive the corresponding vehicle (carefully) into the aircraft.  
-<br></br>
-<br></br>
-Make sure to use '--Strap Cargo' action once in place.
-<br></br>
-You can unmount the vehicle using its '--Unstrap Cargo' action.
-<br></br>
-DO NOT use any other methods of loading the vehicles.
-<br></br>
-<br></br>
-If the aircraft decides to launch, simply use the action on the switch box near all the computers in the hangar.
-<br></br>
-<br></br>
-The aircraft will take off once all PLAYERS are in seats.
-<br></br>
-<br></br>
-Once over the DZ, use the '--Get Out Interior' action to leave your seat (you'll skydive for a bit but settle).
-<br></br>
-<br></br>
-Lower the ramp and then go to the vehicles. Use their '--Release Vehicle' action to eject them from the aircraft.
-<br></br>
-<br></br>
-Then just follow them out the door."],taskNull,"",true];
+_player createDiaryRecord ["Diary",["READ ME","
+	The following explains how to load vehicles:
+	<br></br>
+	<br></br>
+	Simply drive the corresponding vehicle (carefully) into the aircraft. 
+	<br></br>
+	<br></br>
+	Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.
+	<br></br>
+	<br></br>
+	You can unmount the vehicle using its <t color='#039e00'>--Unstrap Vehicle--</t> action.
+	<br></br>
+	<br></br>
+	<t color='#de0000'>DO NOT use any other methods of loading the vehicles.</t>
+	<br></br>
+	<br></br>
+	If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.
+	<br></br>
+	<br></br>
+	The aircraft will take off once all PLAYERS are in seats.
+	<br></br>
+	<br></br>
+	Once over the DZ, use the '--Get Out Interior' action to leave your seat (you'll skydive for a bit but settle).
+	<br></br>
+	<br></br>
+	Lower the ramp and then go to the vehicles. Use their <t color='#de0000'>--Release Vehicle--</t> action to eject them from the aircraft.
+	<br></br>
+	<br></br>
+	Then just follow them out the door."],taskNull,"",true];
+
 
 // support
 _player createDiaryRecord ["Diary",["Support",
@@ -157,23 +163,24 @@ null = [] spawn {
 	
 	sleep 10;
   
-	"About Loading Vehicles" hintC [
+	"READ ME" hintC [
+		"The following explains how to load vehicles:",
 		
-		"Simply drive the corresponding vehicle (carefully) into the aircraft.", 
+		parseText "Simply drive the corresponding vehicle (carefully) into the aircraft.", 
 
-		"Make sure to use '--Strap Cargo' action once in place.", 
+		parseText "Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.", 
 
-		"You can unmount the vehicle using its '--Unstrap Cargo' action.",
+		parseText "You can unmount the vehicle using its <t color='#039e00'>--Unstrap Vehicle--</t> action.",
 
-		"DO NOT use any other methods of loading the vehicles.",
+		parseText "<t color='#de0000'>DO NOT use any other methods of loading the vehicles.</t>",
 
 		"If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.",
 
 		"The aircraft will take off once all PLAYERS are in seats.",
 
-		"Once over the DZ, use the '--Get Out Interior' action to leave your seat (you'll skydive for a bit but settle).",
+		parseText "Once over the DZ, use the <t color='#039e00'>--Get Out Interior--</t> action to leave your seat (you'll skydive for a bit but settle).",
 
-		"Lower the ramp and then go to the vehicles. Use their '--Release Vehicle' action to eject them from the aircraft.",
+		parseText "Lower the ramp and then go to the vehicles. Use their <t color='#de0000'>--Release Vehicle--</t> action to eject them from the aircraft.",
 
 		"Then just follow them out the door."
 	];

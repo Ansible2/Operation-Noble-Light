@@ -65,7 +65,7 @@ if (_vehicles isEqualType objNull) then {
 		if (alive _x) then {
 
 			private _id1 = _x addAction [ 
-				"--Strap Vehicle",  
+				"<t color='#3fbfd9'>--Strap Vehicle--</t>",  
 				{
 					private _vehicleToLoad = param [0,objNull,[objNull]];
 					private _aircraftClass = param [3];
@@ -85,7 +85,7 @@ if (_vehicles isEqualType objNull) then {
 			uiSleep 0.5;
 
 			private _id2 = _x addAction [    
-				"--Unstrap Vehicle",  
+				"<t color='#039e00'>--Unstrap Vehicle--</t>",  
 				{ 
 					params ["_vehicleToUnLoad"]; 
 					
@@ -104,7 +104,7 @@ if (_vehicles isEqualType objNull) then {
 			uiSleep 0.5;
 
 			private _id3 = _x addAction [ 
-				"--Release Vehicle",  
+				"<t color='#de0000'>--Release Vehicle--</t>",  
 				{ 
 					params ["_vehicleToUnLoad"]; 
 						

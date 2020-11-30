@@ -36,10 +36,12 @@ if (!isServer) exitWith {false};
 call {
 	// destroy coms
 	if !(missionNamespace getVariable ["ONL_comsAlive_skip",false]) then {
-		ONL_comRelay addEventHandler ["Killed", {
-			[DestroyComs_TaskID,"DestroyComs_TaskInfo"] call Kiska_fnc_setTaskComplete;
+		ONL_comRelay addMPEventHandler ["MPKilled", {
+			if (isServer) then {
+				[DestroyComs_TaskID,"DestroyComs_TaskInfo"] call Kiska_fnc_setTaskComplete;
 
-			ONL_skipLoopsAndEvents pushBack "ONL_comsAlive_skip";
+				ONL_skipLoopsAndEvents pushBack "ONL_comsAlive_skip";
+			};
 		}];
 	};
 
@@ -86,18 +88,20 @@ call {
 		ONL_blackSite_destroyableServers_count = count _blackSiteServers;
 
 		_blackSiteServers apply {
-			_x addEventHandler ["Killed", {
-				private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_destroyedServers_count",0]) + 1;
+			_x addMPEventHandler ["MPKilled", {
+				if (isServer) then {
+					private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_destroyedServers_count",0]) + 1;
 
-				if (_destroyedServersCount_plusOne isEqualTo ONL_blackSite_destroyableServers_count) then {
-					[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"] call Kiska_fnc_setTaskComplete;
-					
-					ONL_skipLoopsAndEvents pushBack "ONL_blackSiteServersDestroyed_skip";
-					////////////SaveGame/////////////
-					call ONL_fnc_saveQuery;
-					////////////SaveGame/////////////
-				} else {
-					ONL_blackSite_destroyedServers_count = _destroyedServersCount_plusOne;
+					if (_destroyedServersCount_plusOne isEqualTo ONL_blackSite_destroyableServers_count) then {
+						[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"] call Kiska_fnc_setTaskComplete;
+						
+						ONL_skipLoopsAndEvents pushBack "ONL_blackSiteServersDestroyed_skip";
+						////////////SaveGame/////////////
+						call ONL_fnc_saveQuery;
+						////////////SaveGame/////////////
+					} else {
+						ONL_blackSite_destroyedServers_count = _destroyedServersCount_plusOne;
+					};
 				};	
 			}];
 		};
@@ -147,13 +151,15 @@ call {
 	// Destroy cave generators EHs and sound
 	private _caveGenerators = 
 	((getMissionLayerEntities "Cave Generators") select 0) apply {
-		_x addEventHandler ["Killed", { 
-			if (missionNamespace getVariable ["ONL_cave_GeneratorDeadCount",0] isEqualTo 0) then {
-				ONL_cave_GeneratorDeadCount = 1;
-			} else {
-				null = [] spawn ONL_fnc_shutOffLights;
-				
-				ONL_Cave_generatorShutOff_Event_ID call CBA_fnc_removeEventHandler;
+		_x addMPEventHandler ["MPKilled", {
+			if (isServer) then { 
+				if (missionNamespace getVariable ["ONL_cave_GeneratorDeadCount",0] isEqualTo 0) then {
+					ONL_cave_GeneratorDeadCount = 1;
+				} else {
+					null = [] spawn ONL_fnc_shutOffLights;
+					
+					ONL_Cave_generatorShutOff_Event_ID call CBA_fnc_removeEventHandler;
+				};
 			};
 		}];
 	};
@@ -189,18 +195,20 @@ call {
 		ONL_cave_destroyableServers_count = count ONL_caveServers;
 
 		ONL_caveServers apply {
-			_x addEventHandler ["Killed", {
-				private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_cave_destroyedServers_count",0]) + 1;
+			_x addMPEventHandler ["mpKilled", {
+				if (isServer) then {
+					private _destroyedServersCount_plusOne = (missionNamespace getVariable ["ONL_cave_destroyedServers_count",0]) + 1;
 
-				if (_destroyedServersCount_plusOne isEqualTo ONL_cave_destroyableServers_count) then {
-					[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"] call KISKA_fnc_setTaskComplete;
+					if (_destroyedServersCount_plusOne isEqualTo ONL_cave_destroyableServers_count) then {
+						[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-					ONL_skipLoopsAndEvents pushBack "ONL_caveServersDestroyed_skip";
-					////////////SaveGame/////////////
-					call ONL_fnc_saveQuery;
-					////////////SaveGame/////////////
-				} else {
-					ONL_cave_destroyedServers_count = _destroyedServersCount_plusOne;
+						ONL_skipLoopsAndEvents pushBack "ONL_caveServersDestroyed_skip";
+						////////////SaveGame/////////////
+						call ONL_fnc_saveQuery;
+						////////////SaveGame/////////////
+					} else {
+						ONL_cave_destroyedServers_count = _destroyedServersCount_plusOne;
+					};
 				};	
 			}];
 		};
@@ -245,16 +253,18 @@ call {
 	// Destroy cave devices
 	if !(missionNamespace getVariable ["ONL_caveDevicesDestroyed_skip",false]) then { 
 		ONL_caveDevices apply {
-			_x addEventHandler ["Killed", { 
-				if (missionNamespace getVariable ["ONL_cave_devicesDead",0] isEqualTo 0) then {
-					ONL_cave_devicesDead = 1;
-				} else {
-					[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"] call KISKA_fnc_setTaskComplete;
+			_x addMPEventHandler ["MPKilled", {
+				if (isServer) then { 
+					if (missionNamespace getVariable ["ONL_cave_devicesDead",0] isEqualTo 0) then {
+						ONL_cave_devicesDead = 1;
+					} else {
+						[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-					ONL_skipLoopsAndEvents pushBack "ONL_caveDevicesDestroyed_skip";
-					////////////SaveGame/////////////
-					call ONL_fnc_saveQuery;
-					////////////SaveGame/////////////
+						ONL_skipLoopsAndEvents pushBack "ONL_caveDevicesDestroyed_skip";
+						////////////SaveGame/////////////
+						call ONL_fnc_saveQuery;
+						////////////SaveGame/////////////
+					};
 				};
 			}];
 		};
@@ -312,15 +322,17 @@ call {
 
 	// Dead scientist EH
 	if !(missionNamespace getVariable ["ONL_scientistDead_skip",false]) then { 
-		ONL_headScientist addEventHandler ["Killed", { 
-			[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"] call KISKA_fnc_setTaskComplete;
+		ONL_headScientist addMPEventHandler ["MPKilled", {
+			if (isServer) then { 
+				[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
-			ONL_skipLoopsAndEvents pushBack "ONL_scientistDead_skip";
-			////////////SaveGame/////////////
-			call ONL_fnc_saveQuery;
-			////////////SaveGame/////////////
+				ONL_skipLoopsAndEvents pushBack "ONL_scientistDead_skip";
+				////////////SaveGame/////////////
+				call ONL_fnc_saveQuery;
+				////////////SaveGame/////////////
 
-			["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+				["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+			};
 		}];
 	};
 
@@ -660,9 +672,11 @@ call {
 
 	// saving dead pre placed vics
 	ONL_prePlacedVehicles apply {
-		_x addEventHandler ["KILLED",{
-			private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
-			ONL_deadVehicleIndexes pushBack _index;
+		_x addMPEventHandler ["MPKILLED",{
+			if (isServer) then {
+				private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
+				ONL_deadVehicleIndexes pushBack _index;
+			};
 		}];
 	};
 };

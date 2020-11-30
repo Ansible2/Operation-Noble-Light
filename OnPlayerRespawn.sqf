@@ -2,6 +2,7 @@ params ["_newUnit"];
 
 [_newUnit] spawn ONL_fnc_addPlayerActions;
 
+[_newUnit] call ONL_fnc_addPlayerKilledEHs;
 [_newUnit] joinSilent ONL_playerGroup;
 _newUnit setUnitLoadout ONL_playerLoadout;
 

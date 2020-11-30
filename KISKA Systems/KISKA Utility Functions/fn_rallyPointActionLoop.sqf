@@ -9,7 +9,7 @@ if (!canSuspend) exitWith {
 waitUntil {sleep 2; !isNull player;};
 
 
-KISKA_fnc_updateRallyAction2 = {
+KISKA_fnc_respawn_updateRallyAction = {
 	private _playerIsLeader = (leader (group player)) isEqualTo player;
 
 	if (!_playerIsLeader AND {!isNil "KISKA_spawnId"}) exitWith {
@@ -64,5 +64,5 @@ player addEventHandler ["Respawn", {
 }];
 
 while {sleep 5; alive player} do {
-	call KISKA_fnc_updateRallyAction2;
+	call KISKA_fnc_respawn_updateRallyAction;
 };

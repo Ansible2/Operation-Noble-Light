@@ -123,13 +123,15 @@ call {
 		private _group = createVehicleCrew _x;
 		_group enableDynamicSimulation true;
 
-		_x addEventHandler ["KILLED", {
-			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
-			
-			if (_deadCount isEqualTo 1) then {
-				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
-			} else {
-				ONL_deadArty = 1;
+		_x addMPEventHandler ["MPKILLED", {
+			if (isServer) then {
+				private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
+				
+				if (_deadCount isEqualTo 1) then {
+					[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
+				} else {
+					ONL_deadArty = 1;
+				};
 			};
 		}];
 
