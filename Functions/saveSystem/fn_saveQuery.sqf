@@ -25,4 +25,8 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-remoteExecCall ["ONL_fnc_saveProgress",2];
+if !(call KISKA_fnc_isAdminOrHost) then {
+	hint "Only admins or hosts can save a game";
+} else {
+	remoteExecCall ["ONL_fnc_saveProgress",2];
+};
