@@ -32,12 +32,8 @@ setObjectViewDistance 500;
 null = [
 	1,
 	{
-		if (viewDistance > 1700) then {
-			setViewDistance 1700;
-		};
-		if ((getObjectViewDistance select 0) > 1500) then {
-			setObjectViewDistance 1500;
-		};
+		setViewDistance 1700;
+		setObjectViewDistance 1500;
 	},
 	{(player distance2D ONL_airfieldRespawn_Logic) > 500}
 ] spawn KISKA_fnc_waitUntil;
