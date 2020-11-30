@@ -329,7 +329,8 @@ if !(_deadVehicleIndexes isEqualTo []) then {
 // used supply drops
 {
 	if (_x) then {
-		deleteVehicle ([ONL_supplyDropTrigger_1,ONL_supplyDropTrigger_2] select _forEachIndex);
+		private _globalString = ["ONL_supplyDrop",str (_forEachIndex + 1),"Used"] joinString "";
+		missionNamespace setVariable [_globalString,true,true];
 	};
 } forEach _supplyDropsUsed;
 

@@ -10,6 +10,10 @@ class ONL
 		class addDefusalActions
 		{};
 		class addPlayerActions
+		{};
+		class addSupplyDropSupports
+		{};
+		class removeSupplyDropSupport
 		{};		
 	};
 	class effects 
@@ -32,6 +36,8 @@ class ONL
 		class newsRadio
 		{};
 		class shutOffLights
+		{};
+		class supplyDrop
 		{};
 		class startingBaseAudio
 		{};

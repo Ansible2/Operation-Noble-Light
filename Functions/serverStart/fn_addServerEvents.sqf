@@ -658,48 +658,6 @@ call {
 	] call CBA_fnc_addEventHandler;
 
 
-	// Supply drop 1
-	private _id = [
-		"ONL_supplyDrop_1_Event",
-		{
-			params [
-				["_classNames",[],[[]]],
-				["_altittude",100,[1]],
-				["_caller",objNull,[objNull]],
-				["_radio",-1,[1]]
-			];
-
-			ONL_supplyDrop1Used = true;
-			
-			[_classNames,_altittude,_caller,_radio] remoteExec ["KISKA_fnc_supplyDrop",2];
-
-			ONL_supplyDrop_1_EventID call CBA_fnc_removeEventHandler;
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_supplyDrop_1_EventID = ["ONL_supplyDrop_1_Event",_id];
-
-
-	// Supply drop 2
-	private _id1 = [
-		"ONL_supplyDrop_2_Event",
-		{
-			params [
-				["_classNames",[],[[]]],
-				["_altittude",100,[1]],
-				["_caller",objNull,[objNull]],
-				["_radio",-1,[1]]
-			];
-
-			ONL_supplyDrop2Used = true;
-			
-			[_classNames,_altittude,_caller,_radio] remoteExec ["KISKA_fnc_supplyDrop",2];
-
-			ONL_supplyDrop_2_EventID call CBA_fnc_removeEventHandler;
-		}
-	] call CBA_fnc_addEventHandler;
-	ONL_supplyDrop_2_EventID = ["ONL_supplyDrop_2_Event",_id1];
-
-
 	// saving dead pre placed vics
 	ONL_prePlacedVehicles apply {
 		_x addEventHandler ["KILLED",{

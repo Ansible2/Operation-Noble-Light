@@ -87,6 +87,8 @@ class KISKA
 		{};
 		class radioChatter
 		{};
+		class supportRadioGlobal
+		{};
 	};
 	class KISKA_utilities
 	{

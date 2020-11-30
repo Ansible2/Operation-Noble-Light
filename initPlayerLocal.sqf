@@ -178,3 +178,5 @@ null = [] spawn {
 	];
 
 };
+
+[_player] call ONL_fnc_addSupplyDropSupports;

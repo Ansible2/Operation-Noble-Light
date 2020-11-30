@@ -28,9 +28,11 @@ class Params
 {
 	#include "headers\descriptionEXT\missionParameters.hpp"
 };
+
+
 class cfgCommunicationMenu
 {
-
+	#include "headers\descriptionEXT\supports.hpp"
 };
 class cfgSounds
 {

@@ -35,6 +35,8 @@ call ONL_fnc_createExtractionHeli;
 
 if !(ONL_loadSave) then {
 	call ONL_fnc_spawnUnitsNewGame;
+	missionNamespace setVariable ["ONL_supplyDrop1Used",false,true];
+	missionNamespace setVariable ["ONL_supplyDrop2Used",false,true];
 } else {
 	call ONL_fnc_loadProgress;
 };
