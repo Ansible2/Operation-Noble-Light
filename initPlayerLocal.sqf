@@ -118,6 +118,13 @@ _player createDiaryRecord ["Diary",["Support",
 <br></br>
 1x Predator UAV armed with guided munitions."],taskNull,"",true];
 
+// reassign zeus
+_player createDiarySubject ["ReassignZeus_entry","Reassign Zeus",""];
+
+_player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
+	"<execute expression= '[true,ONL_zeusLogic] call KISKA_fnc_reassignCurator;'>If You've Lost Zeus, Click Here</execute>"
+]];
+
 // wait to add save game button (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
 [
 	5,

@@ -6,6 +6,8 @@ _newUnit setUnitLoadout KISKA_loadout;
 
 _newunit setCustomAimCoef 0.15;
 
+[false,ONL_zeusLogic] call KISKA_fnc_reassignCurator;
+
 // set envrionmental and view distance if player respawns in or out of cave accordingly
 [
 	{

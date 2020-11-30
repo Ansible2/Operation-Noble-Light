@@ -29,7 +29,7 @@ params [
 ];
 
 // check if player is host or admin
-if (!(call BIS_fnc_admin > 0) AND {clientOwner != 2}) exitWith {
+if !(call KISKA_fnc_isAdminOrHost) exitWith {
 	if (_isManual) then {
 		hint "Only admins can be assigned curator";
 	};
