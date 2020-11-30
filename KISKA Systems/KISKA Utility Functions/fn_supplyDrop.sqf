@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		[["className1","className2"]], 500, player, -1] call KISKA_fnc_supplyDrop;
+		null = [["className1","className2"]], 500, player, -1] spawn KISKA_fnc_supplyDrop;
 
     (end)
 
@@ -59,16 +59,17 @@ _classNames apply {
 		// give chute time to deploy
 		sleep 3;
 
-		private "_chuteVelocity";
+		private _randomWindDriftx = random [-15,0,15];
+		private _randomWindDriftY = random [-60,0,60];
+
 		private _chuteHeight = (getPosATLVisual _chute) select 2;
-		while {_chuteHeight > 80} do {
-			_chuteVelocity = velocityModelSpace _chute;
-			if (_chuteHeight > 500) then {
-				_chute setVelocityModelSpace (_chuteVelocity vectorDiff [0,0,90]);
+		while {_chuteHeight > 200} do {
+			if (_chuteHeight > 250) then {
+				[_chute,[_randomWindDriftX,_randomWindDriftY,-240]] remoteExecCall ["setVelocity",_chute];
 			} else {
-				_chute setVelocityModelSpace (_chuteVelocity vectorDiff [0,0,35]);
+				[_chute,[_randomWindDriftX,_randomWindDriftY,-35]] remoteExecCall ["setVelocity",_chute];
 			};
-            _chuteHeight = (getPosATLVisual _chute) select 2;
+			_chuteHeight = (getPosATLVisual _chute) select 2;
 			sleep 0.25;
 		};
 
