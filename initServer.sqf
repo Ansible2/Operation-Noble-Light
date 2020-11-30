@@ -29,7 +29,7 @@ ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Air
 
 // make civ triggers less intensive
 [ONL_blackSiteCiv_Trigger,ONL_lodgingCiv_Trigger,ONL_facilityCiv_trigger,ONL_caveChemLights_trigger] apply {
-	_x setTriggerInterval 2;
+	_x setTriggerInterval 4;
 };
 
 // for plane at start
