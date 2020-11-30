@@ -24,7 +24,7 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
-ONL_allClientsTargetID = ONL_allClientsTargetID;
+ONL_allClientsTargetID = [0,-2] select isDedicated;
 publicVariable "ONL_allClientsTargetID";
 
 // load save game
