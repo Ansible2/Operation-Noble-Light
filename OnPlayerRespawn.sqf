@@ -32,7 +32,7 @@ _newunit setCustomAimCoef 0.15;
 			setObjectViewDistance 200;
 			setViewDistance 200;
 
-			[] spawn ONL_fnc_addDefusalActions;
+			null = [] spawn ONL_fnc_addDefusalActions;
 		} else {
 			if !(environmentEnabled isEqualTo [true,true]) then {
 				enableEnvironment [true,true];
