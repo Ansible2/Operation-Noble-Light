@@ -23,14 +23,28 @@ ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 // filthy casuals reducing weapon sway
 _player setCustomAimCoef 0.15;
 
-call ONL_fnc_addActionsMaster;
 
-if (viewDistance > 1700) then {
-	setViewDistance 1700;
-};
-if ((getObjectViewDistance select 0) > 1500) then {
-	setObjectViewDistance 1500;
-};
+// adjust player view distance for the airfield as it is very intensive
+setViewDistance 750;
+setObjectViewDistance 500;
+
+// adjust to longer ranges once out of sight of the airfield
+null = [
+	1,
+	{
+		if (viewDistance > 1700) then {
+			setViewDistance 1700;
+		};
+		if ((getObjectViewDistance select 0) > 1500) then {
+			setObjectViewDistance 1500;
+		};
+	},
+	{(player distance2D ONL_airfieldRespawn_Logic) > 500}
+] spawn KISKA_fnc_waitUntil;
+
+
+
+call ONL_fnc_addActionsMaster;
 
 //// diary records
 // Situation
@@ -125,7 +139,10 @@ _player createDiaryRecord ["Diary",["Support",
 null = [] spawn KISKA_fnc_rallyPointActionLoop;
 
 waitUntil {
-	if !(isNil "ONL_startingVehicles") exitWith {[_player] call ONL_fnc_addCargoActions; true};
+	if !(isNil "ONL_startingVehicles") exitWith {
+		[_player] call ONL_fnc_addCargoActions; 
+		true
+	};
 	
 	uiSleep 1;
 	false
