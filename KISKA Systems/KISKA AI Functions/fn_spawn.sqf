@@ -53,7 +53,7 @@ if (_numberOfUnits < 1) exitWith {
 // Is there at least on position to spawn on
 if (count _spawnPositions < 1) exitwith {
 	if (_debug) then {
-		["No spawnpoints found"] remoteExecCall ["systemChat", [0,-2] select isDedicated];
+		["No spawnpoints found"] remoteExecCall ["systemChat", ONL_allClientsTargetID];
 	};
 
 	"Less then 1 spawn position" call BIS_fnc_error;
@@ -62,7 +62,7 @@ if (count _spawnPositions < 1) exitwith {
 // Re adjust number of units if there are not enough spawn points
 if (count _spawnPositions < _numberOfUnits) then {
 	if (_debug) then {
-		["Not enough spawn points, will spawn max number"] remoteExecCall ["systemChat", [0,-2] select isDedicated];
+		["Not enough spawn points, will spawn max number"] remoteExecCall ["systemChat", ONL_allClientsTargetID];
 	};
 
 	_numberOfUnits = count _spawnPositions;

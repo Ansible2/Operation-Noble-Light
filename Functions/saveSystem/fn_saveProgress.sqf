@@ -266,4 +266,4 @@ saveProfileNamespace;
 
 
 // inform players save has been completed
-["Checkpoint Saved"] remoteExecCall ["CBA_fnc_notify",[0,-2] select isDedicated];
+["Checkpoint Saved"] remoteExecCall ["CBA_fnc_notify",ONL_allClientsTargetID];

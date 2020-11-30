@@ -31,7 +31,7 @@ private _durationArray = [];
 	private _track = _x;
 
 	if (_forEachIndex isEqualTo 0) then {
-		[_track,0,true,0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+		[_track,0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 
 		_durationArray pushBack (_track call KISKA_fnc_getMusicDuration);
 	} else {
@@ -43,7 +43,7 @@ private _durationArray = [];
 
 		[
 			{
-				[_this select 0,0,true,0.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+				[_this select 0,0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			},
 			[_track],
 			_waitTime

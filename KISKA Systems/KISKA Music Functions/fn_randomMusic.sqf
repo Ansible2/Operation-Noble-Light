@@ -88,7 +88,7 @@ if !(isDedicated) then {
 };
 
 // play song
-private _targetId = [0,-2] select isDedicated;
+private _targetId = ONL_allClientsTargetID;
 // volume is at 0.5 because ambient tracks should be a bit less pronounced
 null = [_selectedTrack,0,_doInterrupt,0.5] remoteExec ["KISKA_fnc_playMusic",_targetId];
 null = [_selectedTrack] remoteExecCall ["KISKA_fnc_setCurrentRandomMusicTrack",_targetId];

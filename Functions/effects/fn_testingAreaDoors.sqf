@@ -38,7 +38,7 @@ if (_open) then {
 	
 	sleep 10;
 
-	["Testing Area Open"] remoteExec ["hintSilent",[0,-2] select isDedicated];
+	["Testing Area Open"] remoteExec ["hintSilent",ONL_allClientsTargetID];
 	
 	ONL_entryWalls apply {
 		_x setObjectTextureGlobal [0,"#(argb,1,1,1)color(1,1,1,0,ca)"];
@@ -55,7 +55,7 @@ if (_open) then {
 		["alarm",_x,200,2] call KISKA_fnc_playSound3D;
 	};
 
-	["Testing Area Closed"] remoteExec ["hintSilent",[0,-2] select isDedicated];
+	["Testing Area Closed"] remoteExec ["hintSilent",ONL_allClientsTargetID];
 	
 	ONL_entryWalls apply {
 		_x setObjectTextureGlobal [0,"#(argb,1,1,1)color(1,1,1,1,ca)"];

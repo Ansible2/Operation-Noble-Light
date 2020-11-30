@@ -24,6 +24,8 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
+ONL_allClientsTargetID = ONL_allClientsTargetID;
+publicVariable "ONL_allClientsTargetID";
 
 // load save game
 ONL_loadSave = [false,true] select (["LoadSave",0] call BIS_fnc_getParamValue);

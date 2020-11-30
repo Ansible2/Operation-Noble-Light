@@ -444,8 +444,8 @@ call {
 				[
 					{
 						if !([CollectBaseIntel_TaskID] call BIS_fnc_taskExists) then {
-							["Recommend you knock out CSAT long range coms before kicking the hornets nest. BREAK"] remoteExec ["KISKA_fnc_DataLinkMsg",[0,-2] select isDedicated];
-							["The relay is located at GRID 142-035",4,false] remoteExec ["KISKA_fnc_DataLinkMsg",[0,-2] select isDedicated]; 
+							["Recommend you knock out CSAT long range coms before kicking the hornets nest. BREAK"] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
+							["The relay is located at GRID 142-035",4,false] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID]; 
 							
 							[true,CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo",ONL_BaseFile,"AUTOASSIGNED",5,true,"LISTEN",false] call BIS_fnc_taskCreate;
 						};
@@ -606,7 +606,7 @@ call {
 			];
 			
 			// ensure no one else has the action
-			_studiedObject setVariable ["ONL_wasStudied",true,[0,-2] select isDedicated];
+			_studiedObject setVariable ["ONL_wasStudied",true,ONL_allClientsTargetID];
 			private _typeOfObject = typeOf _studiedObject;
 
 			// checking if it was a device

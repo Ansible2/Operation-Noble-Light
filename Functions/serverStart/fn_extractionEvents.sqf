@@ -35,9 +35,9 @@ private _id = [
 			{
 				call ONL_fnc_extractionMusic;
 				
-				["Be advised, GoalPost is inbound for extract, ETA 10 minutes."] remoteExecCall ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];
+				["Be advised, GoalPost is inbound for extract, ETA 10 minutes."] remoteExecCall ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];
 
-				["Enemy reinforcements are inbound to your position, hold out.",10] remoteExecCall ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];
+				["Enemy reinforcements are inbound to your position, hold out.",10] remoteExecCall ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];
 
 				[
 					{
@@ -75,10 +75,10 @@ private _id = [
 							1,
 							{
 								if (ONL_CCMLoaded) then {
-									["CCM_sb_theoryOfMachines",0,true,1.5] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+									["CCM_sb_theoryOfMachines",0,true,1.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 								} else {
 									if (ONL_KISKAMusicLoaded) then {
-										["Kiska_MainTheme2",0,true] remoteExec ["KISKA_fnc_playMusic",[0,-2] select isDedicated];
+										["Kiska_MainTheme2",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 									};
 								};
 								 
@@ -137,7 +137,7 @@ private _id = [
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
 						};
 
-						null = ["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];				
+						null = ["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];				
 					},
 					[],
 					60
@@ -161,7 +161,7 @@ private _id = [
 							};
 						};
 
-						["About 6 minutes out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];						
+						["About 6 minutes out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];						
 					},
 					[],
 					(4.5*60)
@@ -184,7 +184,7 @@ private _id = [
 							};
 						};
 
-						["3 minutes out"] remoteExec ["KISKA_fnc_DatalinkMsg",[0,-2] select isDedicated];				
+						["3 minutes out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];				
 					},
 					[],
 					(7*60)
