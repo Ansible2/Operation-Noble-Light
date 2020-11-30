@@ -20,6 +20,7 @@ params [
 ONL_CCMLoaded = ["CCM_PM"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
+[_player] call ONL_fnc_addPlayerKilledEHs;
 // filthy casuals reducing weapon sway
 _player setCustomAimCoef 0.15;
 

@@ -19,6 +19,8 @@ class ONL
 	class effects 
 	{
 		file = "Functions\effects";
+		class addPlayerKilledEHs
+		{};
 		class baseBunkerRadio
 		{};
 		class blackSiteArty

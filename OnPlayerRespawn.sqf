@@ -2,7 +2,8 @@ params ["_newUnit"];
 
 [_newUnit] spawn ONL_fnc_addPlayerActions;
 
-_newUnit setUnitLoadout KISKA_loadout;
+[_newUnit] joinSilent ONL_playerGroup;
+_newUnit setUnitLoadout ONL_playerLoadout;
 
 _newunit setCustomAimCoef 0.15;
 
