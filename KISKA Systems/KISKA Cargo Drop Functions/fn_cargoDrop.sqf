@@ -134,11 +134,12 @@ KISKA_fnc_CD_deployChutes = {
 	// speed up the drop
 	null = [_mainChute] spawn {
 		params ["_mainChute"];
-		private _randomWindDriftx = random [-15,0,15];
-		private _randomWindDriftY = random [-50,-55,-60];
+		private _randomWindDriftx = random [-50,0,50];
+		private _randomWindDriftY = random [-50,-65,-80];
 
 		private _chuteHeight = (getPosATLVisual _mainChute) select 2;
-		while {_chuteHeight > 200} do {
+		private _stopPushingHeight = random [150,200,250];
+		while {_chuteHeight > _stopPushingHeight} do {
 			if (_chuteHeight > 250) then {
 				[_mainChute,[_randomWindDriftX,_randomWindDriftY,-240]] remoteExecCall ["setVelocity",_mainChute];
 			} else {
