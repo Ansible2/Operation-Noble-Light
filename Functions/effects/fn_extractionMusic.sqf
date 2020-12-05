@@ -29,7 +29,7 @@ if (!ONL_CCMLoaded AND {!ONL_KISKAMusicLoaded}) exitWith {false};
 if (ONL_CCMLoaded) exitWith {
 	[
 		{
-			["CCM_sb_horizons",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
+			null = ["CCM_sb_horizons",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
 		},
 		[],
 		60
@@ -37,7 +37,7 @@ if (ONL_CCMLoaded) exitWith {
 
 	[
 		{
-			["CCM_GL_classifiedInformation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
+			null = ["CCM_GL_classifiedInformation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
 		},
 		[],
 		(["CCM_sb_horizons"] call KISKA_fnc_getMusicDuration) + 62
@@ -45,7 +45,7 @@ if (ONL_CCMLoaded) exitWith {
 
 	[
 		{
-			["CCM_sb_intervention",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
+			null = ["CCM_sb_intervention",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
 		},
 		[],
 		540
@@ -56,7 +56,7 @@ if (ONL_CCMLoaded) exitWith {
 if (ONL_KISKAMusicLoaded) exitWith {
 	[
 		{
-			["Kiska_Whereabouts",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
+			null = ["Kiska_Whereabouts",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
 		},
 		[],
 		60
@@ -64,7 +64,7 @@ if (ONL_KISKAMusicLoaded) exitWith {
 
 	[
 		{
-			["Kiska_Truth",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
+			null = ["Kiska_Truth",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID]; 
 		},
 		[],
 		(["Kiska_Whereabouts"] call KISKA_fnc_getMusicDuration) + 30

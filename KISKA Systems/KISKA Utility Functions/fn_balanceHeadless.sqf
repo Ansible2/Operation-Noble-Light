@@ -68,7 +68,7 @@ _headlessClients apply {
 	_x setVariable ["KISKA_hcLocalUnitsCount",0];
 };
 
-["Headless ReBalance Is Beginning"] remoteExec ["hint",call CBA_fnc_players];
+null = ["Headless ReBalance Is Beginning"] remoteExec ["hint",call CBA_fnc_players];
 
 allGroups apply {
 	private _group = _x;
