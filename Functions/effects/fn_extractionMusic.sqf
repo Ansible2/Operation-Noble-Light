@@ -22,7 +22,7 @@ Examples:
 Author:
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWith {};
+if (!isServer) exitWith {};
 
 if (!ONL_CCMLoaded AND {!ONL_KISKAMusicLoaded}) exitWith {false};
 
