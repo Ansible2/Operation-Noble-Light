@@ -673,6 +673,8 @@ call {
 	// saving dead pre placed vics
 	ONL_prePlacedVehicles apply {
 		_x addMPEventHandler ["MPKILLED",{
+			params ["_unit"];
+			
 			if (isServer) then {
 				private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
 				ONL_deadVehicleIndexes pushBack _index;
