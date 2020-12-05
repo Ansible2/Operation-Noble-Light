@@ -41,6 +41,8 @@ private _id = [
 
 				[
 					{
+						null = ["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];
+
 						// unhide stuff
 						[ONL_extractHeli] + (crew ONL_extractHeli) apply {
 							_x hideObjectGlobal false; 
@@ -127,7 +129,7 @@ private _id = [
 
 				[
 					{
-						[] spawn {
+						null = [] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
@@ -135,9 +137,7 @@ private _id = [
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnGroup_Event"] call CBA_fnc_serverEvent;
-						};
-
-						null = ["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];				
+						};				
 					},
 					[],
 					60
@@ -145,7 +145,7 @@ private _id = [
 
 				[
 					{
-						[] spawn {
+						null = [] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
@@ -169,7 +169,7 @@ private _id = [
 
 				[
 					{
-						[] spawn {
+						null = [] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
@@ -198,6 +198,14 @@ private _id = [
 	}
 ] call CBA_fnc_addEventHandler;
 ONL_getToExtract_EventID = ["ONL_getToExtraction_Event",_id];
+
+
+
+
+
+
+
+
 
 
 [
