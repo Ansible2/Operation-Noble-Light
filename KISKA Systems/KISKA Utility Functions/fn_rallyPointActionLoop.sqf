@@ -25,7 +25,7 @@ KISKA_fnc_respawn_updateRallyAction = {
 					private _caller = param [1];
 					private _groupName = missionNamespace getVariable ["KISKA_respawnGroupID",groupId (group _caller)];
 
-					[_caller, ([_groupName,"spawnMarker"] joinString "_"), ([_groupName,"Respawn Beacon"] joinString " ")] remoteExec ["KISKA_fnc_updateRespawnMarker",2]; 		
+					null = [_caller, ([_groupName,"spawnMarker"] joinString "_"), ([_groupName,"Respawn Beacon"] joinString " ")] remoteExecCall ["KISKA_fnc_updateRespawnMarker",2]; 		
 
 					hint "Rally Point Updated";
 				},

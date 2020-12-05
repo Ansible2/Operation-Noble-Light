@@ -131,6 +131,8 @@ class KISKA
 		{};
 		class triggerWait
 		{};
+		class updateRespawnMarker
+		{};
 		class waitUntil
 		{};
 	};
