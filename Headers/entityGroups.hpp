@@ -64,10 +64,7 @@ ONL_entryWallsInvisible = [
 ONL_caveServers = [
     ONL_caveServer_1,
     ONL_caveServer_2,
-    ONL_caveServer_3,
-    ONL_caveServer_4,
-    ONL_caveServer_5,
-    ONL_caveServer_6
+    ONL_caveServer_3
 ];
 
 ONL_tempestCompatLogics = [
