@@ -570,30 +570,29 @@ call {
 			};
 
 			[_group,ONL_gazLogic_2,100,4] call CBA_fnc_taskPatrol;
-
 			((waypoints _group) select 0) setWaypointPosition [ONL_gazLogic_2,0];
-
 			[_pilotsGroup,ONL_spetsnazHeliSpawn_logic,0,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addwaypoint;
-
 			[_pilotsGroup,ONL_spetsnazHeliLand_logic,0,"TR UNLOAD","SAFE","BLUE","NORMAL"] call CBA_fnc_addwaypoint;
-
-		
+			
 			[
-				1,
-				{
-					params [
-						"_helicopter"
-					];
-
-					(crew _helicopter) apply {
-						_helicopter deleteVehicleCrew _x;
-					}; 
-
-					deleteVehicle _helicopter;
-				},
-				{(_this select 0) distance2D ONL_spetsnazHeliSpawn_logic <= 100 AND {count (crew (_this select 0)) isEqualTo 2}},
-				[_helicopter]
-			] call KISKA_fnc_waitUntil;
+				_pilotsGroup,
+				ONL_spetsnazHeliSpawn_logic,
+				0,
+				"MOVE",
+				"SAFE",
+				"BLUE",
+				"FULL",
+				"NO CHANGE",
+				"
+					private _aircraft = objectParent this;
+					thisList apply {
+						_aircraft deleteVehicleCrew _x;
+					};
+					deleteVehicle _aircraft;
+				",
+				[0,0,0],
+				50
+			] call CBA_fnc_addwaypoint;
 
 			ONL_village_spawnHeliPatrol_EventID call CBA_fnc_removeEventHandler;
 		}
