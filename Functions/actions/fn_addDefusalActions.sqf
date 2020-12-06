@@ -28,13 +28,15 @@ if (!canSuspend) exitWith {
 
 waitUntil {player isEqualTo player};
 
+hint "added defuse actions";
+
 if !(isNull ONL_charge_1) then {
 	ONL_charge_1_ID = [	
 		player,
 		"<t color='#b5041e'>Disarm Explosive 1</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"cursorObject isEqualTo ONL_charge_1", 
+		"(player distance2D ONL_charge_1) <= 2", 
 		"true", 
 		{hint "Do NOT Let Go"}, 
 		{}, 
@@ -59,7 +61,7 @@ if !(isNull ONL_charge_2) then {
 		"<t color='#b5041e'>Disarm Explosive 2</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"cursorObject isEqualTo ONL_charge_2", 
+		"(player distance2D ONL_charge_2) <= 2", 
 		"true", 
 		{hint "Do NOT Let Go"}, 
 		{}, 
@@ -85,7 +87,7 @@ if !(isNull ONL_charge_3) then {
 		"<t color='#b5041e'>Disarm Explosive 3</t>", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
 		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"cursorObject isEqualTo ONL_charge_3", 
+		"(player distance2D ONL_charge_3) <= 2", 
 		"true", 
 		{hint "Do NOT Let Go"}, 
 		{}, 
