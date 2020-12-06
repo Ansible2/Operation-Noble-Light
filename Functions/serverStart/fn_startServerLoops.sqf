@@ -125,10 +125,10 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 				3,
 				{
 					if (ONL_CCMLoaded) then {
-						["CCM_sb_extrapolation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+						null = ["CCM_sb_extrapolation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 					} else {
 						if (ONL_KISKAMusicLoaded) then {
-							["Kiska_Escape",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+							null = ["Kiska_Escape",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 						};
 					};
 
@@ -150,7 +150,7 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 					if !([DestroyArty_taskID] call BIS_fnc_taskExists) then {
 						[true,DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 						
-						["Frontlines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
+						null = ["Frontlines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
 					};
 
 				},
@@ -168,10 +168,10 @@ if !([SearchLodging_TaskID] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			if (ONL_CCMLoaded) then {
-				["CCM_GL_cry",0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+				null = ["CCM_GL_cry",0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			} else {
 				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_Investigation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+					null = ["Kiska_Investigation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 				};
 			};
 
@@ -187,10 +187,10 @@ if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			if (ONL_CCMLoaded) then {
-				["CCM_GL_fate",0,true,0.6] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+				null = ["CCM_GL_fate",0,true,0.6] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			} else {
 				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_TheSite",0,true,0.7] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+					null = ["Kiska_TheSite",0,true,0.7] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 				};
 			};
 		},
@@ -204,10 +204,10 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			if (ONL_CCMLoaded) then {
-				["CCM_GL_earthFromAMillionMilesAway",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+				null = ["CCM_GL_earthFromAMillionMilesAway",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			} else {
 				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_Suspicion",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+					null = ["Kiska_Suspicion",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 				};
 			};
 
