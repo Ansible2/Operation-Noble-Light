@@ -245,7 +245,7 @@ call {
 				};
 			}
 		] call CBA_fnc_addEventHandler;
-		ONL_Cave_generatorShutOff_Event_ID = ["ONL_Cave_CollectedIntel_Event",_id1];
+		ONL_Cave_CollectedIntel_Event_ID = ["ONL_Cave_CollectedIntel_Event",_id1];
 	};
 
 
