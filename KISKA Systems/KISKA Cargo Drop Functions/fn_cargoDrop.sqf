@@ -134,7 +134,7 @@ KISKA_fnc_CD_deployChutes = {
 	// speed up the drop
 	null = [_mainChute] spawn {
 		params ["_mainChute"];
-		private _randomWindDriftx = random [-50,0,50];
+		private _randomWindDriftx = random [-20,0,20];
 		private _randomWindDriftY = random [-50,-65,-80];
 
 		private _chuteHeight = (getPosATLVisual _mainChute) select 2;
