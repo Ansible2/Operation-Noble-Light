@@ -28,8 +28,6 @@ if (!canSuspend) exitWith {
 
 waitUntil {player isEqualTo player};
 
-hint "added defuse actions";
-
 if !(isNull ONL_charge_1) then {
 	ONL_charge_1_ID = [	
 		player,
