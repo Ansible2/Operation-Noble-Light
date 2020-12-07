@@ -34,14 +34,17 @@ if (ONL_CUPVehiclesLoaded) then {
 	] call BIS_fnc_initVehicle;
 };
 
-ONL_extractHeli_group = createVehicleCrew ONL_extractHeli;
+ONL_extractHeliPilots_group = createVehicleCrew ONL_extractHeli;
 
 // so turrets can fire without pilot freaking out
 ONL_extractHeliTurrets_group = createGroup WEST;
 [ONL_extractHeli turretUnit [1], ONL_extractHeli turretUnit [2]] joinSilent ONL_extractHeliTurrets_group;
 
-private _extractHeli_turretUnits = units ONL_extractHeliTurrets_group;
 
+ONL_extractHeliPilots_group setBehaviour "SAFE";
+ONL_extractHeliPilots_group setCombatMode "BLUE";
+
+private _extractHeli_turretUnits = units ONL_extractHeliTurrets_group;
 {
 	if (_forEachIndex isEqualTo 0) then {
 		_x assignAsTurret [ONL_extractHeli,[1]];
@@ -53,7 +56,7 @@ private _extractHeli_turretUnits = units ONL_extractHeliTurrets_group;
 ONL_extractHeliTurrets_group setBehaviour "AWARE";
 ONL_extractHeliTurrets_group setCombatMode "RED";
 
-(units ONL_extractHeli_group + _extractHeli_turretUnits) apply {
+(units ONL_extractHeliPilots_group + _extractHeli_turretUnits) apply {
 	_x setUnitLoadout [[],[],["hgun_P07_F","","","",["16Rnd_9x21_Mag",16],[],""],["U_B_CombatUniform_mcam_wdl_f",[]],["V_CarrierRigKBT_01_light_Olive_F",[]],["B_LegStrapBag_black_F",[]],"H_CrewHelmetHeli_B","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch","NVGoggles"]];
 	_x allowDamage false;
 	_x enableSimulationGlobal false;
@@ -73,4 +76,4 @@ missionNamespace setVariable ["ONL_extractHeli",ONL_extractHeli,true];
 // exclude from saves
 ONL_extractHeli setVariable ["ONL_saveExcluded",true];
 ONL_extractHeliTurrets_group setVariable ["ONL_saveExcluded",true];
-ONL_extractHeli_group setVariable ["ONL_saveExcluded",true];
+ONL_extractHeliPilots_group setVariable ["ONL_saveExcluded",true];

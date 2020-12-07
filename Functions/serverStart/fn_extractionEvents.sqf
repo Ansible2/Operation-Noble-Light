@@ -57,13 +57,13 @@ private _id = [
 						ONL_extractHeli lockDriver true;
 
 						// create waypoint
-						[ONL_extractHeli_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
+						null = [ONL_extractHeliPilots_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
 						
 						// create waypoint when everyone is in
 						[
 							1,
 							{
-								[ONL_extractHeli_group,ONL_extractHeliMove_Logic,-1,"MOVE","SAFE","YELLOW","FULL"] call CBA_fnc_addWaypoint;
+								[ONL_extractHeliPilots_group,ONL_extractHeliMove_Logic,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
 							},
 							{
 								private _alivePlayers = count (call KISKA_fnc_alivePlayers);
