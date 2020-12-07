@@ -117,6 +117,8 @@ class KISKA
 		{};
 		class isPatchLoaded
 		{};
+		class log
+		{};
 		class pasteContainerCargo
 		{};
 		class rallyPointActionLoop
