@@ -40,10 +40,6 @@ ONL_extractHeliPilots_group = createVehicleCrew ONL_extractHeli;
 ONL_extractHeliTurrets_group = createGroup WEST;
 [ONL_extractHeli turretUnit [1], ONL_extractHeli turretUnit [2]] joinSilent ONL_extractHeliTurrets_group;
 
-
-ONL_extractHeliPilots_group setBehaviour "SAFE";
-ONL_extractHeliPilots_group setCombatMode "BLUE";
-
 private _extractHeli_turretUnits = units ONL_extractHeliTurrets_group;
 {
 	if (_forEachIndex isEqualTo 0) then {
@@ -53,8 +49,10 @@ private _extractHeli_turretUnits = units ONL_extractHeliTurrets_group;
 	};
 } forEach _extractHeli_turretUnits;
 
+/*
 ONL_extractHeliTurrets_group setBehaviour "AWARE";
 ONL_extractHeliTurrets_group setCombatMode "RED";
+*/
 
 (units ONL_extractHeliPilots_group + _extractHeli_turretUnits) apply {
 	_x setUnitLoadout [[],[],["hgun_P07_F","","","",["16Rnd_9x21_Mag",16],[],""],["U_B_CombatUniform_mcam_wdl_f",[]],["V_CarrierRigKBT_01_light_Olive_F",[]],["B_LegStrapBag_black_F",[]],"H_CrewHelmetHeli_B","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch","NVGoggles"]];
