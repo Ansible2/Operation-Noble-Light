@@ -7,6 +7,8 @@ class KISKA
 		{};
 		class driveTo
 		{};
+		class heliLand
+		{};
 		class heliPatrol
 		{};
 		class patrolSpecific
@@ -100,6 +102,8 @@ class KISKA
 		class alivePlayers
 		{};
 		class balanceHeadless
+		{};
+		class CAS
 		{};
 		class copyContainerCargo
 		{};
