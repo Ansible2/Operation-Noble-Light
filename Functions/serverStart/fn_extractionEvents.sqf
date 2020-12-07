@@ -57,54 +57,7 @@ private _id = [
 						ONL_extractHeli lockDriver true;
 
 						// create waypoint
-						null = [] spawn {
-							[ONL_extractHeliPilots_group,getPosASL ONL_extractionHelipad,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
-							sleep 1;
-							null = [ONL_extractHeliPilots_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
-					
-							ONL_extractHeliPilots_group setBehaviour "SAFE";
-							ONL_extractHeliPilots_group setCombatMode "BLUE";
-							
-							ONL_extractHeliTurrets_group setBehaviour "AWARE";
-							ONL_extractHeliTurrets_group setCombatMode "RED";
-
-							private _doorGunners = units ONL_extractHeliTurrets_group;
-							_doorGunners apply {
-								_x setSkill 1;
-								//_x setCaptive false;
-							};
-
-							private _targetsNearExtract = ONL_extractionHelipad nearEntities ["Man",500];
-							_targetsNearExtract = _targetsNearExtract select {(side _x) isEqualTo OPFOR};
-							_targetsNearExtract apply {ONL_extractHeliTurrets_group reveal _x};
-							
-							waitUntil {
-								sleep 1;
-								ONL_extractHeli distance2D ONL_extractionHelipad <= 500
-							};
-							private ["_gunner","_target","_targetIndex"];
-							while {sleep 3; true} do {
-								_doorGunners apply {
-									_gunner = _x;
-									
-									_targetIndex = _targetsNearExtract findIf {
-										lineIntersects [eyePos _gunner, getPosASL _x, _gunner, _x]
-									};
-
-									systemChat str [_gunner,_targetIndex];
-
-									if (_targetIndex != -1) then {
-										_target = _targetsNearExtract select _targetIndex;
-										_gunner doTarget _target;
-										//_gunner doFire _target;
-										_gunner fireAtTarget [_target];
-										systemChat str ["DO FIRE",_target];
-									};
-
-									
-								}; 
-							};
-						};
+						null = [] spawn ONL_fnc_handleExtractionHeliAI;
 						
 						// create waypoint when everyone is in
 						[
