@@ -35,6 +35,8 @@ class ONL
 		{};
 		class extractionMusic
 		{};
+		class handleExtractionHeliAI
+		{};
 		class newsRadio
 		{};
 		class shutOffLights
