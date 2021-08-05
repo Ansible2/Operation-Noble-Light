@@ -247,6 +247,11 @@ ONL_taskIdsAndInfo = [
 ];
 
 
+// arrays of eden entities
+#include "..\..\headers\entityGroups.hpp";
+
+//ONL_newsSounds = getMissionConfigValue "newsSounds";
+//ONL_usedNewsSounds = [];
 
 /* ----------------------------------------------------------------------------
 	Music

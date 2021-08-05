@@ -1,3 +1,5 @@
+#include "..\..\Headers\Common Defines.hpp"
+
 if (!isServer) exitWith {};
 
 // cargo plane takeoff loop
@@ -72,7 +74,7 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
 
             [] spawn ONL_fnc_blackSiteArty;
         },
-        {!(((call CBA_fnc_players) findIf {(_x distance2D ONL_glowingRock) < 10}) isEqualTo -1)}
+        {CONDITION_PLAYER_WITHIN_RADIUS_2D(ONL_glowingRock,10)}
     ] call KISKA_fnc_waitUntil;
 };
 
@@ -105,7 +107,7 @@ if !([SecureApollo_TaskID] call BIS_fnc_taskCompleted) then { // get found files
 			ONL_apollo setDamage 1;
 
 		},
-		{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_village) < 400}) isEqualTo -1)}
+		{CONDITION_PLAYER_WITHIN_RADIUS_2D(ONL_logic_village,400)}
 	] call KISKA_fnc_waitUntil;
 };
 
@@ -150,14 +152,14 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 					if !([DestroyArty_taskID] call BIS_fnc_taskExists) then {
 						[true,DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 
-						["Frontlines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
+						["our lines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
 					};
 
 				},
-				{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_base_2) < 800}) isEqualTo -1)}
+				{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_base_2,800)}
 			] call KISKA_fnc_waitUntil;
 		},
-		{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_base_2) < 1000}) isEqualTo -1)}
+		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_base_2,1000)}
 	] call KISKA_fnc_waitUntil;
 };
 
@@ -175,9 +177,9 @@ if !([SearchLodging_TaskID] call BIS_fnc_taskCompleted) then {
 				};
 			};
 
-			[ONL_newsRadio_lodging,600] spawn ONL_fnc_newsRadio;
+			[ONL_newsRadio_lodging,600] spawn KISKA_fnc_ambientRadio;
 		},
-		{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_lodging) < 500}) isEqualTo -1)}
+		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_lodging,500)}
 	] call KISKA_fnc_waitUntil;
 };
 
@@ -194,7 +196,7 @@ if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
 				};
 			};
 		},
-		{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_facility) < 600}) isEqualTo -1)}
+		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_facility,600)}
 	] call KISKA_fnc_waitUntil;
 };
 
@@ -214,12 +216,12 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 			[
 				4,
 				{
-					[ONL_newsRadio_blackSite,600] spawn ONL_fnc_newsRadio;
+					[ONL_newsRadio_blackSite,600] spawn KISKA_fnc_ambientRadio;
 				},
-				{!(((call CBA_fnc_players) findIf {(_x distance ONL_newsRadio_blackSite) < 50}) isEqualTo -1)}
+				{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_newsRadio_blackSite,50)}
 			] call KISKA_fnc_waitUntil;
 		},
-		{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_blackSite_base) < 800}) isEqualTo -1)}
+		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_blackSite_base,800)}
 	] call KISKA_fnc_waitUntil;
 };
 
