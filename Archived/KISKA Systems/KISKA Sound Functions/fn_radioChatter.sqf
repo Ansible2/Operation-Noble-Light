@@ -21,7 +21,7 @@ Examples:
     (end)
 
 Author(s):
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!canSuspend) exitWith {
 	"Must be run in a scheduled environement" call BIS_fnc_error;

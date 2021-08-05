@@ -25,7 +25,7 @@ Examples:
 
 Author(s):
 	Bohemia Interactive,
-	Modified By: Ansible2 // Cipher
+	Modified By: Ansible2
 ---------------------------------------------------------------------------- */
 #define GUN_RUN_ID 0
 #define ROCKETS_ID 1

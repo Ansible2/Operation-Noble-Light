@@ -18,7 +18,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (hasInterface AND {call KISKA_fnc_isMusicPlaying}) then {
 	10 fadeMusic 0;

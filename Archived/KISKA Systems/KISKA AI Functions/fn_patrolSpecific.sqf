@@ -28,7 +28,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher,
+	Ansible2,
 	Spectre
 ---------------------------------------------------------------------------- */
 params [

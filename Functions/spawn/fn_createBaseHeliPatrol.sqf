@@ -20,7 +20,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 ONL_basePatrolHelicopter = createVehicle [ONL_CSATHelicopterAttack,position ONL_baseHelipad,[],0,"NONE"];
 ONL_basePatrolHelicopter setVariable ["ONL_saveExcluded",true];

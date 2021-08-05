@@ -3,9 +3,9 @@ Function: ONL_fnc_prepareGlobals
 
 Description:
 	Does exactly what it says. Most globals in the scenario are initialized here.
-	
+
 	It is executed from the "initServer.sqf".
-	
+
 Parameters:
 	NONE
 
@@ -14,13 +14,11 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_prepareGlobals
-
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 

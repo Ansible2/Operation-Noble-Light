@@ -126,3 +126,4 @@ class CfgNotifications
 
 
 #include "Headers\descriptionEXT\KISKA Tasks.hpp"
+#include "Headers\descriptionEXT\Spawn Positions.hpp"

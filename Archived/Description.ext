@@ -1,4 +1,4 @@
-author			= "Ansible2 // Cipher";
+author			= "Ansible2";
 onLoadName		= "Operation Noble Light";
 onLoadMission	= "Investigate northern CSAT facilities.";
 loadScreen		= "images\loadScreen.jpg";

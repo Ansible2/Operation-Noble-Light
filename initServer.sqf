@@ -1,4 +1,3 @@
-#include "headers\taskGlobals.hpp";
 #include "headers\spawnPositions.hpp";
 #include "headers\musicTracks.hpp";
 #include "headers\unitTypes.hpp";
@@ -20,8 +19,8 @@ call ONL_fnc_spawnUnitsMaster;
 call ONL_fnc_startServerLoops;
 
 // create initial Task
-if !([SecureApollo_TaskID] call BIS_fnc_taskExists) then {
-	[true,SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"ASSIGNED",5,true,"MEET",false] call BIS_fnc_taskCreate;
+if !(["ONL_secureApollo_task"] call BIS_fnc_taskExists) then {
+	["ONL_secureApollo_task"] call KISKA_fnc_createTaskFromConfig;
 };
 
 // create a respawn at the airfield
