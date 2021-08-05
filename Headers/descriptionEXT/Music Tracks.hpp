@@ -71,4 +71,49 @@ class Music_Tracks
         "CCM_sb_theOldOnes",
         "CCM_sb_yourNumbersUp"
     };
+
+    class tracksForScenes
+    {
+        class searchingLodging
+        {
+            ccm = "CCM_GL_cry";
+            kiska = "Kiska_Investigation";
+        };
+
+        class investigatingFacility
+        {
+            ccm = "CCM_GL_fate";
+            kiska = "Kiska_TheSite";
+        };
+
+        class nearBlacksite
+        {
+            ccm = "CCM_GL_earthFromAMillionMilesAway";
+            kiska = "Kiska_Suspicion";
+        };
+
+        class nearBase
+        {
+            ccm = "CCM_sb_extrapolation";
+            kiska = "Kiska_Escape";
+        };
+
+        class nearVillage
+        {
+            ccm = "CCM_SB_cobalt";
+            kiska = "Kiska_Omen";
+        };
+
+        class haloJump
+        {
+            ccm = "CCM_BS_SilenceEverAfter";
+            kiska = "Kiska_GlassTravel";
+        };
+
+        class extractionFinal
+        {
+            ccm = "CCM_sb_theoryOfMachines";
+            kiska = "Kiska_MainTheme2";
+        };
+    };
 };

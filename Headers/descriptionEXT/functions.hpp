@@ -39,6 +39,8 @@ class ONL
 		{};
 		class newsRadio
 		{};
+		class playMusicForScene
+		{};
 		class shutOffLights
 		{};
 		class supplyDrop

@@ -256,6 +256,8 @@ ONL_taskIdsAndInfo = [
 /* ----------------------------------------------------------------------------
 	Music
 ---------------------------------------------------------------------------- */
+ONL_musicSceneConfig = missionConfigFile >> "Music_Tracks" >> "tracksForScenes";
+
 private _musicType = ["CCM","NONE"/*,"KISKA"*/] select (["MusicType",0] call BIS_fnc_getParamValue);
 if (_musicType != "None") then {
 	if (_musicType == "CCM") then {

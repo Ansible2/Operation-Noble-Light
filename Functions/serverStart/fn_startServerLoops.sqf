@@ -87,13 +87,7 @@ if !([SecureApollo_TaskID] call BIS_fnc_taskCompleted) then { // get found files
 	[
 		3,
 		{
-			if (ONL_CCMLoaded) then {
-				["CCM_SB_cobalt",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-			} else {
-				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_Omen",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-				};
-			};
+			["nearVillage"] call ONL_fnc_playMusicForScene;
 
 			// Heli patrol
 			[
@@ -126,14 +120,7 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 			[
 				3,
 				{
-					if (ONL_CCMLoaded) then {
-						["CCM_sb_extrapolation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-					} else {
-						if (ONL_KISKAMusicLoaded) then {
-							["Kiska_Escape",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-						};
-					};
-
+					["nearBase"] call ONL_fnc_playMusicForScene;
 					call ONL_fnc_baseBunkerRadio;
 
 					// fire some ambient arty shots to alert players to their location
@@ -169,14 +156,7 @@ if !([SearchLodging_TaskID] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{
-			if (ONL_CCMLoaded) then {
-				["CCM_GL_cry",0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-			} else {
-				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_Investigation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-				};
-			};
-
+			["searchingLodging",0.5] call ONL_fnc_playMusicForScene;
 			[ONL_newsRadio_lodging,600] spawn KISKA_fnc_ambientRadio;
 		},
 		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_lodging,500)}
@@ -188,13 +168,7 @@ if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{
-			if (ONL_CCMLoaded) then {
-				["CCM_GL_fate",0,true,0.6] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-			} else {
-				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_TheSite",0,true,0.7] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-				};
-			};
+			["investigatingFacility",0.65] call ONL_fnc_playMusicForScene;
 		},
 		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_facility,600)}
 	] call KISKA_fnc_waitUntil;
@@ -205,13 +179,7 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{
-			if (ONL_CCMLoaded) then {
-				["CCM_GL_earthFromAMillionMilesAway",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-			} else {
-				if (ONL_KISKAMusicLoaded) then {
-					["Kiska_Suspicion",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
-				};
-			};
+			["nearBlacksite"] call ONL_fnc_playMusicForScene;
 
 			[
 				4,
