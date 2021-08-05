@@ -10,30 +10,30 @@ if (!isServer) exitWith {};
 		};
 
 		ONL_cargoPlaneGroup move (getPosATL ONL_logic_dummy_1);
-		
+
 		[
 			1,
 			{
 				remoteExecCall ["ONL_fnc_transitionToJump",ONL_allClientsTargetID];
-				
+
 				[
 					{
 						ONL_cargoPlane attachTo [ONL_logic_jumpPosition,[0,0,0]];
-						
+
 						if !([Extract_TaskID] call BIS_fnc_taskExists) then {
 							[true,Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"AUTOASSIGNED",5,false,"takeoff",false] call BIS_fnc_taskCreate;
 						};
 
 						ONL_airfieldRespawn call BIS_fnc_removeRespawnPosition;
-						
+
 						ONL_cargoPlaneRespawn = [missionNamespace,(getPosATLVisual ONL_cargoPlane) vectorAdd [0,-2,0.5],"Cargo Plane Respawn"] call BIS_fnc_addRespawnPosition;
-						
+
 						call ONL_fnc_waitToDeletePlane;
 					},
 					[],
 					4
-				] call CBA_fnc_waitAndExecute;				
-								
+				] call CBA_fnc_waitAndExecute;
+
 			},
 			{(ONL_cargoPlane distance ONL_logic_dummy_1) < 300},
 			[],
@@ -66,8 +66,8 @@ if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskCompleted) then {
 if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
     [
         3,
-        {		
-            [true,CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;            
+        {
+            [true,CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;
             [true,DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 
             [] spawn ONL_fnc_blackSiteArty;
@@ -149,13 +149,13 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 
 					if !([DestroyArty_taskID] call BIS_fnc_taskExists) then {
 						[true,DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
-						
+
 						["Frontlines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
 					};
 
 				},
 				{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_base_2) < 800}) isEqualTo -1)}
-			] call KISKA_fnc_waitUntil;		
+			] call KISKA_fnc_waitUntil;
 		},
 		{!(((call CBA_fnc_players) findIf {(_x distance ONL_logic_base_2) < 1000}) isEqualTo -1)}
 	] call KISKA_fnc_waitUntil;
@@ -226,13 +226,7 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 // start random music system
 waitUntil {
 	if (time > 0) exitWith {
-		if (ONL_CCMLoaded) then {
-			[false,"",ONL_randomMusicTracksCCM,[120,180,240]] spawn KISKA_fnc_randomMusic;
-		} else {
-			if (ONL_KISKAMusicLoaded) then {
-				[false,"",ONL_randomMusicTracksKISKA,[120,180,240]] spawn KISKA_fnc_randomMusic;
-			};
-		};
+		[false,"",ONL_randomMusicTracks,[120,180,240]] spawn KISKA_fnc_randomMusic;
 		true
 	};
 	false

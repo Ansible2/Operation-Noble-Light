@@ -1,6 +1,4 @@
-#include "headers\spawnPositions.hpp";
-#include "headers\musicTracks.hpp";
-#include "headers\unitTypes.hpp";
+
 #include "headers\unitLoadouts.hpp";
 #include "headers\entityGroups.hpp";
 #include "headers\newsSounds.hpp";

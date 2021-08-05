@@ -21,7 +21,7 @@ ONL_FSTCSAT_unitTypes = [
 	"IP_O_Soldier_lite_FST",
 	"IP_O_Sharpshooter_FST",
 	"IP_O_Soldier_SL_FST",
-	"IP_O_Soldier_TL_FST"	
+	"IP_O_Soldier_TL_FST"
 ];
 ONL_VanillaCSAT_unitTypes = [
 	"O_T_Soldier_AR_F",
@@ -33,7 +33,7 @@ ONL_VanillaCSAT_unitTypes = [
 	"O_T_Soldier_F",
 	"O_T_Soldier_LAT_F",
 	"O_T_Soldier_SL_F",
-	"O_T_Soldier_TL_F"		
+	"O_T_Soldier_TL_F"
 ];
 
 
@@ -115,7 +115,7 @@ ONL_ion_unitTypes = [
 	"CUP_I_PMC_Winter_Crew",
 	"CUP_I_PMC_Winter_Sniper_KSVK",
 	"CUP_I_PMC_Winter_Soldier_AA",
-	"CUP_I_PMC_Winter_Soldier_TL"	
+	"CUP_I_PMC_Winter_Soldier_TL"
 ];
 ONL_PMCVanilla_unitTypes = [
 	"I_E_Soldier_TL_F",
@@ -163,7 +163,7 @@ ONL_tempestVariants_FST = [
 	"IP_O_Truck_03_transport_FST",
 	"IP_O_Truck_03_repair_FST",
 	"IP_O_Truck_03_fuel_FST",
-	"IP_O_Truck_03_ammo_FST"	
+	"IP_O_Truck_03_ammo_FST"
 ];
 
 
