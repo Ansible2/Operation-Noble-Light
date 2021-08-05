@@ -13,9 +13,7 @@ call ONL_fnc_startServerLoops;
 
 
 // create initial Task
-if !(["ONL_secureApollo_task"] call BIS_fnc_taskExists) then {
-	["ONL_secureApollo_task"] call KISKA_fnc_createTaskFromConfig;
-};
+["ONL_secureApollo_task"] call KISKA_fnc_createTaskFromConfig;
 
 
 // create a respawn at the airfield

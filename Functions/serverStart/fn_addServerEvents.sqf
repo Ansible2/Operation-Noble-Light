@@ -447,9 +447,7 @@ call {
 				[true,CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo",objNull,"AUTOASSIGNED",10,true,"SEARCH",false] call BIS_fnc_taskCreate;
 			};
 
-			if !(["ONL_findHeadScientist_task"] call BIS_fnc_taskExists) then {
-				["ONL_findHeadScientist_task"] call KISKA_fnc_createTaskFromConfig;
-			};
+			["ONL_findHeadScientist_task"] call KISKA_fnc_createTaskFromConfig;
 
 			// check if coms were already destroyed to create task or not
 			if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {

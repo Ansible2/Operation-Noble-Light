@@ -66,10 +66,7 @@ if (_typeOfObject == GLOWING_ROCK_TYPE) exitWith {
 if (_studiedObject isEqualTo ONL_lodgingLaptop) exitWith {
     ["OMIntelGrabLaptop_01",ONL_lodgingLaptop,50,2] call KISKA_fnc_playSound3D;
     ["ONL_SearchLodging_task"] call KISKA_fnc_endTask;
-
-    if !(["ONL_InvestigateFacility_task"] call BIS_fnc_taskExists) then {
-        ["ONL_InvestigateFacility_task"] call KISKA_fnc_createTaskFromConfig;
-    };
+    ["ONL_InvestigateFacility_task"] call KISKA_fnc_createTaskFromConfig;
 
     nil
 };
