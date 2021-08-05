@@ -3,7 +3,7 @@
 //[ONL_extractHeliPilots_group,getPosASL ONL_extractionHelipad,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
 sleep 1;
 [ONL_extractHeli,ONL_extractionHelipad] call KISKA_fnc_heliLand;
-//null = [ONL_extractHeliPilots_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
+//[ONL_extractHeliPilots_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
 
 ONL_extractHeliPilots_group setBehaviour "SAFE";
 ONL_extractHeliPilots_group setCombatMode "BLUE";
@@ -37,7 +37,7 @@ if !(_vehicleTargets isEqualTo []) then {
 	if (_index != -1) then {
 		private _target = _vehicleTargets select _index;
 		_target sendSimpleCommand "STOP";
-		null = [_target,2,random [0,10,20]] spawn KISKA_fnc_CAS;
+		[_target,2,random [0,10,20]] spawn KISKA_fnc_CAS;
 	};
 };
 */
@@ -51,7 +51,7 @@ if !(_manTargets isEqualTo []) then {
 	private "_target";
 	if (_index != -1) then {
 		_target = _manTargets deleteAt _index;
-		null = [_target,0,random [0,10,20]] spawn KISKA_fnc_CAS;
+		[_target,0,random [0,10,20]] spawn KISKA_fnc_CAS;
 	};
 
 	sleep (round random [3,5,7]);
@@ -59,6 +59,6 @@ if !(_manTargets isEqualTo []) then {
 	_index = _manTargets findIf {_x distance2D ONL_extractionHelipad > 100 AND {!(group _target isEqualTo group _x)}};
 	if (_index != -1) then {
 		_target = _manTargets deleteAt _index;
-		null = [_target,2,random [0,10,20]] spawn KISKA_fnc_CAS;
+		[_target,2,random [0,10,20]] spawn KISKA_fnc_CAS;
 	};
 };

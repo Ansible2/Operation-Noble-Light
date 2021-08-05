@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_addDefusalActions;
+		[] spawn ONL_fnc_addDefusalActions;
 
     (end)
 

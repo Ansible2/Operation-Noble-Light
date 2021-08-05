@@ -41,7 +41,7 @@ private _id = [
 
 				[
 					{
-						null = ["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];
+						["1 minute out"] remoteExec ["KISKA_fnc_DatalinkMsg",ONL_allClientsTargetID];
 
 						// unhide stuff
 						[ONL_extractHeli] + (crew ONL_extractHeli) apply {
@@ -57,7 +57,7 @@ private _id = [
 						ONL_extractHeli lockDriver true;
 
 						// create waypoint
-						null = [] spawn ONL_fnc_handleExtractionHeliAI;
+						[] spawn ONL_fnc_handleExtractionHeliAI;
 						
 						// create waypoint when everyone is in
 						[
@@ -92,7 +92,7 @@ private _id = [
 
 										sleep 1;
 																				
-										null = remoteExec ["ONL_fnc_endMission",0,true];
+										remoteExec ["ONL_fnc_endMission",0,true];
 									},
 									{!(((call CBA_fnc_players) findIf {(_x distance2D ONL_logic_extractionComplete) < 350}) isEqualTo -1)}
 								] call KISKA_fnc_waitUntil;
@@ -129,7 +129,7 @@ private _id = [
 
 				[
 					{
-						null = [] spawn {
+						[] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
@@ -145,7 +145,7 @@ private _id = [
 
 				[
 					{
-						null = [] spawn {
+						[] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
@@ -169,7 +169,7 @@ private _id = [
 
 				[
 					{
-						null = [] spawn {
+						[] spawn {
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;
 							sleep 1;
 							["ONL_spawnVehicle_Event"] call CBA_fnc_serverEvent;

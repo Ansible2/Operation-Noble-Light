@@ -1,0 +1,40 @@
+author			= "Ansible2 // Cipher";
+onLoadName		= "Operation Noble Light";
+onLoadMission	= "Investigate northern CSAT facilities.";
+loadScreen		= "images\loadScreen.jpg";
+overviewPicture = "images\cover.jpg";
+overviewText 	= "Investigate northern CSAT facilities.";
+
+class Header
+{
+	gameType =  Coop;	
+	minPlayers =  1;	
+	maxPlayers = 14;	
+};
+
+respawnOnStart = -1;
+
+class CfgTaskDescriptions
+{
+	#include "headers\descriptionEXT\taskDescriptions.hpp"
+};
+
+class CfgFunctions
+{
+	#include "headers\descriptionEXT\ONL_functions.hpp"
+	#include "KISKA Systems\KISKA Functions.hpp"
+};
+class Params
+{
+	#include "headers\descriptionEXT\missionParameters.hpp"
+};
+
+
+class cfgCommunicationMenu
+{
+	#include "headers\descriptionEXT\supports.hpp"
+};
+class cfgSounds
+{
+	#include "KISKA Systems\KISKA Sounds.hpp"
+};

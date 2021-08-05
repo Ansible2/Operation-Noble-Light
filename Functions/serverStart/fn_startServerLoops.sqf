@@ -70,7 +70,7 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
             [true,CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;            
             [true,DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 
-            null = [] spawn ONL_fnc_blackSiteArty;
+            [] spawn ONL_fnc_blackSiteArty;
         },
         {!(((call CBA_fnc_players) findIf {(_x distance2D ONL_glowingRock) < 10}) isEqualTo -1)}
     ] call KISKA_fnc_waitUntil;
@@ -125,10 +125,10 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 				3,
 				{
 					if (ONL_CCMLoaded) then {
-						null = ["CCM_sb_extrapolation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+						["CCM_sb_extrapolation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 					} else {
 						if (ONL_KISKAMusicLoaded) then {
-							null = ["Kiska_Escape",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+							["Kiska_Escape",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 						};
 					};
 
@@ -136,13 +136,13 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 
 					// fire some ambient arty shots to alert players to their location
 					if (alive ONL_arty_1) then {
-						null = [ONL_arty_1,ONL_extractHeliMove_Logic,5,200,300,[10,11,12]] spawn KISKA_fnc_arty;
+						[ONL_arty_1,ONL_extractHeliMove_Logic,5,200,300,[10,11,12]] spawn KISKA_fnc_arty;
 					};
 
 					sleep 3;
 
 					if (alive ONL_arty_2) then {
-						null = [ONL_arty_2,ONL_extractHeliMove_Logic,5,200,300,[11,12,13]] spawn KISKA_fnc_arty;
+						[ONL_arty_2,ONL_extractHeliMove_Logic,5,200,300,[11,12,13]] spawn KISKA_fnc_arty;
 					};
 
 					sleep 45;
@@ -150,7 +150,7 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 					if !([DestroyArty_taskID] call BIS_fnc_taskExists) then {
 						[true,DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 						
-						null = ["Frontlines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
+						["Frontlines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
 					};
 
 				},
@@ -168,10 +168,10 @@ if !([SearchLodging_TaskID] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			if (ONL_CCMLoaded) then {
-				null = ["CCM_GL_cry",0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+				["CCM_GL_cry",0,true,0.5] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			} else {
 				if (ONL_KISKAMusicLoaded) then {
-					null = ["Kiska_Investigation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+					["Kiska_Investigation",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 				};
 			};
 
@@ -187,10 +187,10 @@ if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			if (ONL_CCMLoaded) then {
-				null = ["CCM_GL_fate",0,true,0.6] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+				["CCM_GL_fate",0,true,0.6] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			} else {
 				if (ONL_KISKAMusicLoaded) then {
-					null = ["Kiska_TheSite",0,true,0.7] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+					["Kiska_TheSite",0,true,0.7] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 				};
 			};
 		},
@@ -204,10 +204,10 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 		3,
 		{
 			if (ONL_CCMLoaded) then {
-				null = ["CCM_GL_earthFromAMillionMilesAway",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+				["CCM_GL_earthFromAMillionMilesAway",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 			} else {
 				if (ONL_KISKAMusicLoaded) then {
-					null = ["Kiska_Suspicion",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
+					["Kiska_Suspicion",0,true] remoteExec ["KISKA_fnc_playMusic",ONL_allClientsTargetID];
 				};
 			};
 
@@ -227,10 +227,10 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
 waitUntil {
 	if (time > 0) exitWith {
 		if (ONL_CCMLoaded) then {
-			null = [false,"",ONL_randomMusicTracksCCM,[120,180,240]] spawn KISKA_fnc_randomMusic;
+			[false,"",ONL_randomMusicTracksCCM,[120,180,240]] spawn KISKA_fnc_randomMusic;
 		} else {
 			if (ONL_KISKAMusicLoaded) then {
-				null = [false,"",ONL_randomMusicTracksKISKA,[120,180,240]] spawn KISKA_fnc_randomMusic;
+				[false,"",ONL_randomMusicTracksKISKA,[120,180,240]] spawn KISKA_fnc_randomMusic;
 			};
 		};
 		true

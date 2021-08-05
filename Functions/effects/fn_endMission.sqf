@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_endMission;
+		[] spawn ONL_fnc_endMission;
 
     (end)
 

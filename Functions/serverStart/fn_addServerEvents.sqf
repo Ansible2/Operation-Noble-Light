@@ -7,9 +7,9 @@ Description:
 
 	You'll see several if statements wrapping events with globals ending in '_skip'.
 	These are used to track if an event has fired in order to have it be null when loading a save.
-	
+
 	It is executed from the "initServer.sqf".
-	
+
 Parameters:
 	NONE
 
@@ -29,7 +29,7 @@ Author:
 if (!isServer) exitWith {false};
 
 /* ----------------------------------------------------------------------------
-	
+
 	BASE
 
 ---------------------------------------------------------------------------- */
@@ -77,9 +77,9 @@ call {
 
 
 /* ----------------------------------------------------------------------------
-	
+
 	BLACK SITE
-	
+
 ---------------------------------------------------------------------------- */
 call {
 	// Black Site Server Destruction
@@ -94,7 +94,7 @@ call {
 
 					if (_destroyedServersCount_plusOne isEqualTo ONL_blackSite_destroyableServers_count) then {
 						[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo"] call Kiska_fnc_setTaskComplete;
-						
+
 						ONL_skipLoopsAndEvents pushBack "ONL_blackSiteServersDestroyed_skip";
 						////////////SaveGame/////////////
 						call ONL_fnc_saveQuery;
@@ -102,7 +102,7 @@ call {
 					} else {
 						ONL_blackSite_destroyedServers_count = _destroyedServersCount_plusOne;
 					};
-				};	
+				};
 			}];
 		};
 	};
@@ -117,14 +117,14 @@ call {
 				params [
 					["_intelObject",objNull,[objNull]]
 				];
-				
+
 				deleteVehicle _intelObject;
 
 				private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_collectedIntel_count",0]) + 1;
 
 				if (_collectedIntelCount_plusOne isEqualTo ONL_blackSite_collectableIntel_count) then {
 					[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
-					
+
 					ONL_skipLoopsAndEvents pushBack "ONL_blackSite_CollectedIntelEvent_skip";
 					////////////SaveGame/////////////
 					call ONL_fnc_saveQuery;
@@ -138,26 +138,26 @@ call {
 		] call CBA_fnc_addEventHandler;
 		ONL_blackSite_CollectedIntel_Event_ID = ["ONL_blackSite_CollectedIntel_Event",_id];
 	};
-};	
+};
 
 
 
 /* ----------------------------------------------------------------------------
-	
+
 	CAVE
-	
+
 ---------------------------------------------------------------------------- */
 call {
 	// Destroy cave generators EHs and sound
-	private _caveGenerators = 
+	private _caveGenerators =
 	((getMissionLayerEntities "Cave Generators") select 0) apply {
 		_x addMPEventHandler ["MPKilled", {
-			if (isServer) then { 
+			if (isServer) then {
 				if (missionNamespace getVariable ["ONL_cave_GeneratorDeadCount",0] isEqualTo 0) then {
 					ONL_cave_GeneratorDeadCount = 1;
 				} else {
-					null = [] spawn ONL_fnc_shutOffLights;
-					
+					[] spawn ONL_fnc_shutOffLights;
+
 					ONL_Cave_generatorShutOff_Event_ID call CBA_fnc_removeEventHandler;
 				};
 			};
@@ -172,7 +172,7 @@ call {
 			params [
 				["_generator",objNull,[objNull]]
 			];
-			
+
 			["OMLightSwitch",_generator,50,2] call KISKA_fnc_playSound3D;
 
 			_generator setVariable ["ONL_genOff",true,true];
@@ -180,7 +180,7 @@ call {
 			if (missionNamespace getVariable ["ONL_cave_GeneratorDeadCount",0] isEqualTo 0) then {
 				ONL_cave_GeneratorDeadCount = 1;
 			} else {
-				null = [] spawn ONL_fnc_shutOffLights;
+				[] spawn ONL_fnc_shutOffLights;
 
 				ONL_Cave_generatorShutOff_Event_ID call CBA_fnc_removeEventHandler;
 			};
@@ -209,7 +209,7 @@ call {
 					} else {
 						ONL_cave_destroyedServers_count = _destroyedServersCount_plusOne;
 					};
-				};	
+				};
 			}];
 		};
 	};
@@ -226,7 +226,7 @@ call {
 				params [
 					["_intelObject",objNull,[objNull]]
 				];
-				
+
 				deleteVehicle _intelObject;
 
 				private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_cave_collectedIntel_count",0]) + 1;
@@ -251,10 +251,10 @@ call {
 
 
 	// Destroy cave devices
-	if !(missionNamespace getVariable ["ONL_caveDevicesDestroyed_skip",false]) then { 
+	if !(missionNamespace getVariable ["ONL_caveDevicesDestroyed_skip",false]) then {
 		ONL_caveDevices apply {
 			_x addMPEventHandler ["MPKilled", {
-				if (isServer) then { 
+				if (isServer) then {
 					if (missionNamespace getVariable ["ONL_cave_devicesDead",0] isEqualTo 0) then {
 						ONL_cave_devicesDead = 1;
 					} else {
@@ -321,9 +321,9 @@ call {
 
 
 	// Dead scientist EH
-	if !(missionNamespace getVariable ["ONL_scientistDead_skip",false]) then { 
+	if !(missionNamespace getVariable ["ONL_scientistDead_skip",false]) then {
 		ONL_headScientist addMPEventHandler ["MPKilled", {
-			if (isServer) then { 
+			if (isServer) then {
 				[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo"] call KISKA_fnc_setTaskComplete;
 
 				ONL_skipLoopsAndEvents pushBack "ONL_scientistDead_skip";
@@ -343,7 +343,7 @@ call {
 		private _id3 = [
 			"ONL_caveIn_event",
 			{
-				null = [] spawn {
+				[] spawn {
 					if (alive ONL_charge_1 OR {alive ONL_charge_2} OR {alive ONL_charge_3}) then {
 						[ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
 							if (alive _x) then {
@@ -357,14 +357,14 @@ call {
 						["ONL_charge_1_ID","ONL_charge_2_ID","ONL_charge_3_ID"] apply {
 							["ONL_removeDefusalAction_Event",[_x],(call CBA_fnc_players)] call CBA_fnc_targetEvent;
 						};
-				
+
 						sleep 1;
-						
+
 						// show rock cave in
 						((getMissionLayerEntities "Cave In") select 0) apply {
 							_x hideObjectGlobal false;
 						};
-						
+
 						ONL_skipLoopsAndEvents pushBack "ONL_caveInHappened_skip";
 					};
 
@@ -374,7 +374,7 @@ call {
 			}
 		] call CBA_fnc_addEventHandler;
 		ONL_caveIn_EventID = ["ONL_caveIn_event",_id3];
-	
+
 
 
 		// device defused
@@ -387,7 +387,7 @@ call {
 				];
 
 				deleteVehicle _charge;
-				
+
 				private _defusedCharges_plusOne = (missionNamespace getVariable ["ONL_defusedCharges_count",0]) + 1;
 
 				if (_defusedCharges_plusOne isEqualTo 3) then {
@@ -408,9 +408,9 @@ call {
 
 
 /* ----------------------------------------------------------------------------
-	
+
 	EXTRACTION
-	
+
 ---------------------------------------------------------------------------- */
 // this one would be a little much to have here
 call ONL_fnc_extractionEvents;
@@ -418,12 +418,12 @@ call ONL_fnc_extractionEvents;
 
 
 /* ----------------------------------------------------------------------------
-	
+
 	VILLAGE
-	
+
 ---------------------------------------------------------------------------- */
 call {
-	
+
 	private _id = [
 		"ONL_village_CollectedIntel_Event",
 		{
@@ -436,9 +436,9 @@ call {
 			};
 
 			["ONL_village_spawnReinforcements_Event"] call CBA_fnc_ServerEvent;
-			
+
 			[SecureApollo_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
-			
+
 			if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskExists) then {
 				[true,InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo",objNull,"ASSIGNED",10,true,"SEARCH",false] call BIS_fnc_taskCreate;
 			};
@@ -447,36 +447,36 @@ call {
 				[true,CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo",objNull,"AUTOASSIGNED",10,true,"SEARCH",false] call BIS_fnc_taskCreate;
 			};
 
-			if !([FindHeadScientist_TaskID] call BIS_fnc_taskExists) then {
-				[true,FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
+			if !(["ONL_findHeadScientist_task"] call BIS_fnc_taskExists) then {
+				["ONL_findHeadScientist_task"] call KISKA_fnc_createTaskFromConfig;
 			};
-			
+
 			// check if coms were already destroyed to create task or not
 			if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {
 				[
 					{
 						if !([CollectBaseIntel_TaskID] call BIS_fnc_taskExists) then {
 							["Recommend you knock out CSAT long range coms before kicking the hornets nest. BREAK"] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
-							["The relay is located at GRID 142-035",4,false] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID]; 
-							
+							["The relay is located at GRID 142-035",4,false] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
+
 							[true,CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo",ONL_BaseFile,"AUTOASSIGNED",5,true,"LISTEN",false] call BIS_fnc_taskCreate;
 						};
 
 						if !([DestroyComs_TaskID] call BIS_fnc_taskExists) then {
 							[true,DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
 						};
-						
+
 
 						////////////SaveGame/////////////
 						call ONL_fnc_saveQuery;
-						////////////SaveGame/////////////				
-						
+						////////////SaveGame/////////////
+
 					},
 					[],
 					30
 				] call CBA_fnc_waitAndExecute;
 			};
-			
+
 			ONL_village_CollectedIntel_Event_ID call CBA_fnc_removeEventHandler;
 		}
 	] call CBA_fnc_addEventHandler;
@@ -487,25 +487,25 @@ call {
 	// spawns
 
 	// reinforcements
-	private _id2 = [	
+	private _id2 = [
 		"ONL_village_spawnReinforcements_Event",
 		{
 			// create apc
 			private _group1 = createGroup resistance;
 			for "_i" from 1 to 3 do {
 				_group1 createUnit [ONL_spetsnaz_crewman,[0,0,0],[],0,"NONE"];
-			}; 
-			
+			};
+
 			private _apc = createVehicle [ONL_spetsnaz_apc,[7028.84,12029,0]];
-			_apc setDir 102;			
+			_apc setDir 102;
 			if !(ONL_FSGLoaded) then {
 				[
 					_apc,
-					["Guerilla_03",1], 
+					["Guerilla_03",1],
 					["showCamonetHull",1,"showBags",1,"showBags2",1,"showTools",0,"showSLATHull",0]
 				] call BIS_fnc_initVehicle;
 			};
-			
+
 			{
 				[_x moveInTurret [_apc,[[0,0],[1]] select ONL_FSGLoaded],_x moveInDriver _apc,_x moveInGunner _apc] select _forEachIndex;
 			} forEach (units _group1);
@@ -516,12 +516,12 @@ call {
 			private _group2 = createGroup resistance;
 			for "_i" from 1 to 2 do {
 				_group2 createUnit [ONL_spetsnaz_crewman,[0,0,0],[],0,"NONE"];
-			}; 
-			
+			};
+
 			private _car = createVehicle [ONL_spetsnaz_carArmed,ONL_logic_village_reinforcements];
 			[
 				_car,
-				["Green",1], 
+				["Green",1],
 				["Hide_Shield",1,"Hide_Rail",0,"HideDoor1",0,"HideDoor2",0,"HideDoor3",0,"HideBackpacks",0,"HideBumper1",1,"HideBumper2",0,"HideConstruction",0]
 			] call BIS_fnc_initVehicle;
 
@@ -531,13 +531,13 @@ call {
 			(units _group2) joinSilent _group2;
 
 
-			[_group1,_group2] apply {			
+			[_group1,_group2] apply {
 				_x deleteGroupWhenEmpty true;
 				_x setCombatMode "red";
 				private _waypoint = _x addWaypoint [ONL_logic_village,200];
 				_waypoint setWaypointType "MOVE";
 			};
-			
+
 			ONL_village_spawnReinforcements_EventID call CBA_fnc_removeEventHandler;
 		}
 	] call CBA_fnc_addEventHandler;
@@ -545,7 +545,7 @@ call {
 
 
 	// Helicopter patrol
-	private _id3 = [	
+	private _id3 = [
 		"ONL_village_spawnHeliPatrol_Event",
 		{
 			private _helicopter = createVehicle [ONL_spetsnaz_helicopter,getPosATL ONL_spetsnazHeliSpawn_logic,[],0,"FLY"];
@@ -555,7 +555,7 @@ call {
 			for "_i" from 1 to 2 do {
 				private _unit = _pilotsGroup createUnit [ONL_spetsnaz_crewman,[0,0,0],[],0,"NONE"];
 				[_unit] joinSilent _pilotsGroup;
-				
+
 				if (_i isEqualTo 1) then {
 					_unit moveInDriver _helicopter;
 				} else {
@@ -573,7 +573,7 @@ call {
 			((waypoints _group) select 0) setWaypointPosition [ONL_gazLogic_2,0];
 			[_pilotsGroup,ONL_spetsnazHeliSpawn_logic,0,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addwaypoint;
 			[_pilotsGroup,ONL_spetsnazHeliLand_logic,0,"TR UNLOAD","SAFE","BLUE","NORMAL"] call CBA_fnc_addwaypoint;
-			
+
 			[
 				_pilotsGroup,
 				ONL_spetsnazHeliSpawn_logic,
@@ -603,9 +603,9 @@ call {
 
 
 /* ----------------------------------------------------------------------------
-	
+
 	MISC
-	
+
 ---------------------------------------------------------------------------- */
 call {
 	// Was studied Event
@@ -615,7 +615,7 @@ call {
 			params [
 				["_studiedObject",objNull,[objNull]]
 			];
-			
+
 			// ensure no one else has the action
 			_studiedObject setVariable ["ONL_wasStudied",true,ONL_allClientsTargetID];
 			private _typeOfObject = typeOf _studiedObject;
@@ -646,7 +646,7 @@ call {
 
 			if (_studiedObject isEqualTo ONL_caveTankComputer) exitWith {
 				["OMIntelGrabLaptop_02",ONL_caveTankComputer,50,2] call KISKA_fnc_playSound3D;
-			};		
+			};
 		}
 	] call CBA_fnc_addEventHandler;
 
@@ -673,7 +673,7 @@ call {
 	ONL_prePlacedVehicles apply {
 		_x addMPEventHandler ["MPKILLED",{
 			params ["_unit"];
-			
+
 			if (isServer) then {
 				private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
 				ONL_deadVehicleIndexes pushBack _index;

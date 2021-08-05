@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_testingAreaDoors;
+		[] spawn ONL_fnc_testingAreaDoors;
 
     (end)
 

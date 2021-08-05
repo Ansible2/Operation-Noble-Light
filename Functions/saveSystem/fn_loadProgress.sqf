@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_loadProgress;
+		[] spawn ONL_fnc_loadProgress;
 
     (end)
 

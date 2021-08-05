@@ -21,7 +21,7 @@ Examples:
 Author(s):
 	Ansible2 // Cipher
 ---------------------------------------------------------------------------- */
-scriptName "KISKA_fnc_supplyDrop";
+scriptName "ONL_fnc_supplyDrop";
 
 params ["_dropNumber","_dropPosition",["_caller",player]];
 
@@ -45,7 +45,7 @@ private _message = "Supply drop inbound to " + str (mapGridPosition _dropPositio
 ["supply drop requested"] call KISKA_fnc_supportRadioGlobal;
 
 // do drop on server
-null = [
+[
 	["B_Slingload_01_Repair_F","B_Slingload_01_Fuel_F","B_Slingload_01_Ammo_F"],
 	2000,
 	_dropPosition

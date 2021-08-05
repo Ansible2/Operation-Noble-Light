@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_newsRadio;
+		[] spawn ONL_fnc_newsRadio;
 
     (end)
 
@@ -46,7 +46,7 @@ waitUntil {
 	
 	ONL_usedNewsSounds pushBack _randomNews;
 
-	null = [_randomNews,_radio,20,2,true] spawn KISKA_fnc_playSound3d;
+	[_randomNews,_radio,20,2,true] spawn KISKA_fnc_playSound3d;
 	
 	sleep (random [30,35,40]);
 

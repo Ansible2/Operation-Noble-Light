@@ -13,7 +13,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [player] spawn ONL_fnc_addPlayerActions;
+		[player] spawn ONL_fnc_addPlayerActions;
 
     (end)
 

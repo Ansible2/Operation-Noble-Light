@@ -14,7 +14,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_spawnUnitsNewGame;
+		[] spawn ONL_fnc_spawnUnitsNewGame;
 
     (end)
 

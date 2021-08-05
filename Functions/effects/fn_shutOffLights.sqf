@@ -16,7 +16,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_shutOffLights;
+		[] spawn ONL_fnc_shutOffLights;
 
     (end)
 

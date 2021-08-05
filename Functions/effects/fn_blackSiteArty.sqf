@@ -15,7 +15,7 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_blackSiteArty;
+		[] spawn ONL_fnc_blackSiteArty;
 
     (end)
 
@@ -34,7 +34,7 @@ if (alive ONL_arty_1) then {
 		ONL_arty_1 enableSimulationGlobal true;
 	};
 
-	null = [ONL_arty_1,ONL_glowingRock,4,200,300,[9,10,11]] spawn KISKA_fnc_arty;
+	[ONL_arty_1,ONL_glowingRock,4,200,300,[9,10,11]] spawn KISKA_fnc_arty;
 };
 
 if (alive ONL_arty_2) then {
@@ -45,7 +45,7 @@ if (alive ONL_arty_2) then {
 		ONL_arty_2 enableSimulationGlobal true;
 	};
 
-	null = [ONL_arty_2,ONL_glowingRock,4,200,300,[9,10,11]] spawn KISKA_fnc_arty;
+	[ONL_arty_2,ONL_glowingRock,4,200,300,[9,10,11]] spawn KISKA_fnc_arty;
 };
 
 sleep 100;
