@@ -1,5 +1,4 @@
 
-#include "headers\unitLoadouts.hpp";
 #include "headers\entityGroups.hpp";
 #include "headers\newsSounds.hpp";
 
@@ -47,7 +46,7 @@ uiSleep 30;
 // reassign loadouts for vanilla if needed
 if (!ONL_CUPUnitsLoaded AND {!(ONL_loadSave)}) then {
 	uiSleep 100;
-	["ONL_",ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
+	[ONL_loadoutConfig,ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
 };
 // assign loadouts if save was loaded
 if (ONL_loadSave) then {

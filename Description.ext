@@ -129,3 +129,4 @@ class CfgNotifications
 #include "Headers\descriptionEXT\Spawn Positions.hpp"
 #include "Headers\descriptionEXT\Music Tracks.hpp"
 #include "Headers\descriptionEXT\Unit Types.hpp"
+#include "Headers\descriptionEXT\Unit Loadouts.hpp"

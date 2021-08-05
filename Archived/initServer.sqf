@@ -33,7 +33,7 @@ ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Air
 };
 
 // for plane at start
-ONL_cargoPlane flyInHeight 500; 
+ONL_cargoPlane flyInHeight 500;
 
 // distribute AI amongst headless client(s) save for these groups
 KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup];
@@ -50,7 +50,7 @@ uiSleep 30;
 // reassign loadouts for vanilla if needed
 if (!ONL_CUPUnitsLoaded AND {!(ONL_loadSave)}) then {
 	uiSleep 100;
-	["ONL_",ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
+	[ONL_loadoutConfig,ONL_PMCUnits] spawn KISKA_fnc_assignUnitLoadout;
 };
 // assign loadouts if save was loaded
 if (ONL_loadSave) then {

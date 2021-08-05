@@ -24,10 +24,22 @@ if (!isServer) exitWith {};
 
 #define GET_UNIT_ARRAY(class,property) _arrayConfigs >> class >> property
 #define GET_SIMPLE_CLASS(class,property) _simpleClassesConfig >> class >> property
+#define GET_CIV_ARRAY(property) getArray(missionConfigFile >> "KISKA_loadouts" >> "civGear" >> property)
 
 
 ONL_allClientsTargetID = [0,-2] select isDedicated;
 publicVariable "ONL_allClientsTargetID";
+
+
+/* ----------------------------------------------------------------------------
+	civilian gear
+---------------------------------------------------------------------------- */
+ONL_loadoutConfig = missionConfigFile >> "KISKA_loadouts" >> "ONL";
+ONL_civUniforms = GET_CIV_ARRAY("uniforms");
+ONL_civFacewear = GET_CIV_ARRAY("facewear");
+ONL_civVests = GET_CIV_ARRAY("vests");
+ONL_civHeadgear = GET_CIV_ARRAY("headgear");
+
 
 /* ----------------------------------------------------------------------------
 
