@@ -4,7 +4,7 @@ Function: ONL_fnc_loadProgress
 Description:
 	Opposite of "ONL_fnc_spawnUnitsNewGame".
 	This will spawn most of the enemy units in the mission from a save in the server's profileNamespace.
-	
+
 	Executed from "ONL_fnc_spawnUnitsMaster"
 
 Parameters:
@@ -51,28 +51,14 @@ if !(_activeDependencies isEqualTo _dependencies) exitWith {
 
 
 ////////////////TASKS////////////////////////////////////////////////////////////////////
-copyToClipboard str _taskInfoArray;
+//copyToClipboard str _taskInfoArray;
 _taskInfoArray apply {
-	_x params ["_task","_taskInfo","_taskLocation","_taskType","_taskStatusArray"];
-	
-	_taskStatusArray params ["_taskExists","_taskState"];
-	
-	// some task IDs are configured in an array with their parent taskId, this seperates them for other functions
-	private "_taskId";
-	if (_task isEqualType []) then {
-		_taskId = _task select 0;
-	} else {
-		_taskId = _task;
-	};
-
-	if (_taskLocation isEqualTo "") then {
-		_taskLocation = objNull;
-	};
+	_x params ["_task","_taskExists","_taskState"];
 
 	if (_taskExists) then {
-		[true,_task,_taskInfo,_taskLocation,_taskState,5,true,_taskType,false] call BIS_fnc_taskCreate;	
+		[_task,true,_taskState] call KISKA_fnc_createTaskFromConfig;
 	};
-}; 
+};
 
 
 ////////////////VEHICLES (and turrets)////////////////////////////////////////////////////////////////////
@@ -108,23 +94,23 @@ private _fn_assignVehiclePosition = {
 	params ["_unit","_vehicle","_vehicleRoleInfo"];
 
 	private _vehicleRoleType = toLower (_vehicleRoleInfo select 1);
-	
+
 	if (_vehicleRoleType == "cargo") exitWith {
 		_unit moveInCargo [_vehicle,_vehicleRoleInfo select 2];
 	};
-	
+
 	if (_vehicleRoleType == "commander") exitWith {
 		_unit moveInCommander _vehicle;
 	};
-	
+
 	if (_vehicleRoleType == "gunner") exitWith {
 		_unit moveInGunner _vehicle;
 	};
-	
+
 	if (_vehicleRoleType == "driver") exitWith {
 		_unit moveInDriver _vehicle;
 	};
-	
+
 	if (_vehicleRoleType == "turret") exitWith {
 		_unit moveInTurret [_vehicle,_vehicleRoleInfo select 3];
 	};
@@ -174,7 +160,7 @@ _savedGroupsInfoArray apply {
 
 	// create group
 	private _group = createGroup _groupSide;
-	
+
 	// create units
 	_unitsInfo apply {
 		_x params [
@@ -194,7 +180,7 @@ _savedGroupsInfoArray apply {
 			// for use AFTER headless rebalance
 			_unit setVariable ["ONL_savedLoadout",_unitLoadout];
 		};
-		
+
 		// check if in vehicle and if pre placed turret
 		if !(_vehicleInfo isEqualTo []) then {
 			_vehicleInfo params ["_vehicleIndex","_vehicleRoleInfo","_prePlacedVehicle"];
@@ -211,15 +197,15 @@ _savedGroupsInfoArray apply {
 			_unit setPosWorld _unitPositionWorld;
 			//doStop _unit;
 		};
-		
+
 		if (!_canUnitMove) then {
-			_unit disableAI "PATH"; 
+			_unit disableAI "PATH";
 		};
 
 		private _randomDir = floor (random 360);
 		_unit setDir _randomDir;
 		_unit doWatch (_unit getRelPos [50,_randomDir]);
-		
+
 		_unit triggerDynamicSimulation false;
 		_unit enableSimulationGlobal _isManSimulated;
 	};
@@ -231,13 +217,13 @@ _savedGroupsInfoArray apply {
 	_group deleteGroupWhenEmpty _deleteWhenEmpty;
 
 	// setup waypoints
-	
+
 	if !(_savedWaypoints isEqualTo []) then {
 		_savedWaypoints apply {
 			(_x + [_group]) call _fn_createWaypoint;
 		};
 	};
-	
+
 
 	if !(_onCreateCode isEqualTo "") then {
 		_code = compileFinal _onCreateCode;
@@ -268,7 +254,7 @@ if (_artyAlive_1) then {
 	ONL_arty_1 addMPEventHandler ["MPKILLED", {
 		if (isServer) then {
 			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
-			
+
 			if (_deadCount isEqualTo 1) then {
 				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
 			} else {
@@ -291,7 +277,7 @@ if (_artyAlive_2) then {
 	ONL_arty_2 addMPEventHandler ["MPKILLED", {
 		if (isServer) then {
 			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
-			
+
 			if (_deadCount isEqualTo 1) then {
 				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
 			} else {
@@ -306,7 +292,7 @@ if (_artyAlive_2) then {
 	deleteVehicle ONL_arty_2;
 };
 
-// black site heli 
+// black site heli
 if (_blackSiteHeliAlive) then {
 	call ONL_fnc_createBlackSiteHeliPatrol;
 };

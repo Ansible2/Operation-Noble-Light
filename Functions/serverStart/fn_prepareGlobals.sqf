@@ -226,27 +226,6 @@ ONL_prePlacedVehicles = vehicles select {
 };
 
 
-// Task stuff for saves
-ONL_taskIdsAndInfo = [
-	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo","","SEARCH"],
-	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo","","SEARCH"],
-	[DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"DESTROY"],
-	[DestroyArty_taskID,"DestroyArty_taskInfo","","DESTROY"],
-	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo","","SEARCH"],
-	[CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"INTERACT"],
-	[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"DESTROY"],
-	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo","","SEARCH"],
-	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo","","INTERACT"],
-	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo","","INTERACT"],
-	[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo",ONL_caveServer_1,"DESTROY"],
-	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo","","DESTROY"],
-	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo","","SEARCH"],
-	[SearchLodging_TaskID,"SearchLodging_TaskInfo","","SEARCH"],
-	[SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"MEET"],
-	[Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"TAKEOFF"]
-];
-
-
 // arrays of eden entities
 #include "..\..\headers\entityGroups.hpp";
 
