@@ -608,48 +608,6 @@ call {
 
 ---------------------------------------------------------------------------- */
 call {
-	// Was studied Event
-	[
-		"ONL_wasStudied_Event",
-		{
-			params [
-				["_studiedObject",objNull,[objNull]]
-			];
-
-			// ensure no one else has the action
-			_studiedObject setVariable ["ONL_wasStudied",true,ONL_allClientsTargetID];
-			private _typeOfObject = typeOf _studiedObject;
-
-			// checking if it was a device
-			if (_typeOfObject isEqualTo "Land_Device_disassembled_F" OR {_typeOfObject isEqualTo "Land_Device_assembled_F"}) exitWith {
-				if (missionNamespace getVariable ["ONL_deviceLogsCollected",0] isEqualTo 0) then {
-					ONL_deviceLogsCollected = 1;
-				} else {
-					[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo"] call KISKA_fnc_setTaskComplete;
-				};
-			};
-
-			// check if the object was the rock at the black site
-			if (_typeOfObject isEqualTo "Land_W_sharpStone_02") exitWith {
-				[CollectRockSample_TaskID,"CollectRockSample_TaskInfo"] call KISKA_fnc_setTaskComplete;
-			};
-
-			if (_studiedObject isEqualTo ONL_lodgingLaptop) exitWith {
-				["OMIntelGrabLaptop_01",ONL_lodgingLaptop,50,2] call KISKA_fnc_playSound3D;
-
-				[SearchLodging_TaskID,"SearchLodging_TaskInfo"] call KISKA_fnc_setTaskComplete;
-
-				if !([InvestigateFacility_TaskID] call BIS_fnc_taskExists) then {
-					[true,InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo",objNull,"AUTOASSIGNED",5,true,"SEARCH",false] call BIS_fnc_taskCreate;
-				};
-			};
-
-			if (_studiedObject isEqualTo ONL_caveTankComputer) exitWith {
-				["OMIntelGrabLaptop_02",ONL_caveTankComputer,50,2] call KISKA_fnc_playSound3D;
-			};
-		}
-	] call CBA_fnc_addEventHandler;
-
 
 
 	// reset plane

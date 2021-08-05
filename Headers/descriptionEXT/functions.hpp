@@ -15,6 +15,8 @@ class ONL
 		{};
 		class removeSupplyDropSupport
 		{};
+		class studyObject
+		{};
 	};
 	class effects
 	{
