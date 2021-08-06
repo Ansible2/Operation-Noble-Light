@@ -39,7 +39,6 @@ deleteVehicle _intelObject;
 private _collectedIntelCount_plusOne = (missionNamespace getVariable ["ONL_blackSite_collectedIntel_count",0]) + 1;
 if (_collectedIntelCount_plusOne isEqualTo ONL_blackSite_collectableIntel_count) then {
     ["ONL_collectBlackSiteIntel_task"] call KISKA_fnc_endTask;
-    [CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo"] call Kiska_fnc_setTaskComplete;
 
     ONL_skipLoopsAndEvents pushBack SAVE_VAR_STR;
     ////////////SaveGame/////////////

@@ -22,9 +22,7 @@ if (!isServer) exitWith {};
 					{
 						ONL_cargoPlane attachTo [ONL_logic_jumpPosition,[0,0,0]];
 
-						if !([Extract_TaskID] call BIS_fnc_taskExists) then {
-							[true,Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"AUTOASSIGNED",5,false,"takeoff",false] call BIS_fnc_taskCreate;
-						};
+						["ONL_extract_task"] call KISKA_fnc_createTaskFromConfig;
 
 						ONL_airfieldRespawn call BIS_fnc_removeRespawnPosition;
 
@@ -50,27 +48,31 @@ if (!isServer) exitWith {};
 
 
 // wait to set investigate black site task complete
-if !([InvestigateBlackSite_TaskID] call BIS_fnc_taskCompleted) then {
+if !(["ONL_investigateBlacksite_task"] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{
-			[InvestigateBlackSite_TaskID,"SUCCEEDED",true] call BIS_fnc_taskSetState;
+			["ONL_investigateBlacksite_task"] call KISKA_fnc_endTask;
 			////////////SaveGame/////////////
 			call ONL_fnc_saveQuery;
 			////////////SaveGame/////////////
 		},
-		{[CollectBlackSiteIntel_TaskID select 0] call BIS_fnc_taskCompleted AND {[CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted} AND {[DestroyBlackSiteServers_TaskID select 0] call BIS_fnc_taskCompleted}}
+		{
+			["ONL_CollectBaseIntel_task"] call BIS_fnc_taskCompleted AND
+			{["ONL_CollectRockSample_task"] call BIS_fnc_taskCompleted} AND
+			{["ONL_DestroyBlackSiteServers_task"] call BIS_fnc_taskCompleted}
+		}
 	] call KISKA_fnc_waitUntil;
 };
 
 
 // waiting to add some blacksite tasks
-if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
+if !(["ONL_CollectRockSample_task"] call BIS_fnc_taskExists) then {
     [
         3,
         {
-            [true,CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"AUTOASSIGNED",5,true,"INTERACT",false] call BIS_fnc_taskCreate;
-            [true,DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
+			["ONL_CollectRockSample_task"] call KISKA_fnc_createTaskFromConfig;
+			["ONL_DestroyBlackSiteServers_task"] call KISKA_fnc_createTaskFromConfig;
 
             [] spawn ONL_fnc_blackSiteArty;
         },
@@ -107,7 +109,7 @@ if !(["ONL_secureApollo_task"] call BIS_fnc_taskCompleted) then { // get found f
 
 
 // base
-if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found base files task
+if !(["ONL_CollectBaseIntel_task"] call BIS_fnc_taskCompleted) then { //get found base files task
 	[
 		3,
 		{
@@ -136,10 +138,10 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 
 					sleep 45;
 
-					if !([DestroyArty_taskID] call BIS_fnc_taskExists) then {
-						[true,DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
-
+					if !(["ONL_DestroyBaseArty_task"] call BIS_fnc_taskExists) then {
+						["ONL_DestroyBaseArty_task"] call KISKA_fnc_createTaskFromConfig;
 						["our lines are taking fire from enemy artillery",4] remoteExec ["KISKA_fnc_DataLinkMsg",ONL_allClientsTargetID];
+
 					};
 
 				},
@@ -152,7 +154,7 @@ if !([CollectBaseIntel_TaskID] call BIS_fnc_taskCompleted) then { //get found ba
 
 
 // lodging
-if !([SearchLodging_TaskID] call BIS_fnc_taskCompleted) then {
+if !(["ONL_SearchLodging_task"] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{
@@ -164,7 +166,7 @@ if !([SearchLodging_TaskID] call BIS_fnc_taskCompleted) then {
 };
 
 // facility
-if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
+if !(["ONL_InvestigateFacility_task"] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{
@@ -175,7 +177,7 @@ if !([InvestigateFacility_TaskID] call BIS_fnc_taskCompleted) then {
 };
 
 // blacksite
-if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskCompleted) then {
+if !(["ONL_CollectRockSample_task"] call BIS_fnc_taskCompleted) then {
 	[
 		3,
 		{

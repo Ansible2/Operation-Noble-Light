@@ -50,9 +50,7 @@ if (alive ONL_arty_2) then {
 
 sleep 100;
 
-if !([DestroyArty_taskID] call BIS_fnc_taskExists) then {
-	[true,DestroyArty_taskID,"DestroyArty_taskInfo",objNull,"AUTOASSIGNED",5,true,"DESTROY",false] call BIS_fnc_taskCreate;
-};
+["ONL_DestroyBaseArty_task"] call KISKA_fnc_createTaskFromConfig;
 
 if (alive ONL_arty_1) then {
 	group (driver ONL_arty_1) enableDynamicSimulation false;

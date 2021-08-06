@@ -256,17 +256,21 @@ if (_artyAlive_1) then {
 			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
 
 			if (_deadCount isEqualTo 1) then {
-				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
+				["ONL_DestroyBaseArty_task"] call KISKA_fnc_endTask;
+
 			} else {
 				ONL_deadArty = 1;
+
 			};
 		};
 	}];
 
 	_group setVariable ["ONL_saveExcluded",true];
 	ONL_arty_1 setVariable ["ONL_saveExcluded",true];
+
 } else {
 	deleteVehicle ONL_arty_1;
+
 };
 
 // arty 2
@@ -279,17 +283,21 @@ if (_artyAlive_2) then {
 			private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
 
 			if (_deadCount isEqualTo 1) then {
-				[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
+				["ONL_DestroyBaseArty_task"] call KISKA_fnc_endTask;
+
 			} else {
 				ONL_deadArty = 1;
+
 			};
 		};
 	}];
 
 	_group setVariable ["ONL_saveExcluded",true];
 	ONL_arty_2 setVariable ["ONL_saveExcluded",true];
+
 } else {
 	deleteVehicle ONL_arty_2;
+	
 };
 
 // black site heli

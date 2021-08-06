@@ -48,7 +48,7 @@ call {
 		private _randomPosition = [ONL_logic_base_2,300] call CBA_fnc_randPos;
 
 		private _group = [3,ONL_CSATVariants,OPFOR,_randomPosition] call KISKA_fnc_spawnGroup;
-		
+
 		uiSleep 1;
 
 		[_group,_randomPosition,300,4,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
@@ -104,13 +104,13 @@ call {
 
 	// patrol 2
 	private _patrol2 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_2] call KISKA_fnc_spawnGroup;
-	
+
 	_patrol2 setVariable ["ONL_loadCreationCode","
 		params ['_group'];
 		[_group] call CBA_fnc_clearWaypoints;
 		[_group,ONL_baseBunker_patrolLogic_2,300,4,'MOVE','AWARE','YELLOW','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
 	"];
-	
+
 	[_patrol2,ONL_baseBunker_patrolLogic_2,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 	uiSleep 1;
@@ -126,11 +126,13 @@ call {
 		_x addMPEventHandler ["MPKILLED", {
 			if (isServer) then {
 				private _deadCount = missionNamespace getVariable ["ONL_deadArty",0];
-				
+
 				if (_deadCount isEqualTo 1) then {
-					[DestroyArty_taskID,DestroyArty_taskInfo] call KISKA_fnc_setTaskComplete;
+					["ONL_DestroyBaseArty_task"] call KISKA_fnc_endTask;
+
 				} else {
 					ONL_deadArty = 1;
+					
 				};
 			};
 		}];
@@ -211,7 +213,7 @@ call {
 		if (!ONL_CUPVehiclesLoaded) then {
 			[
 				_gunTruck,
-				["Green",1], 
+				["Green",1],
 				["Hide_Shield",1,"Hide_Rail",1,"HideDoor1",0,"HideDoor2",0,"HideDoor3",0,"HideBackpacks",0,"HideBumper1",1,"HideBumper2",0,"HideConstruction",0]
 			] call BIS_fnc_initVehicle;
 		};
@@ -277,49 +279,49 @@ call {
 
 	// garage
 	[3,3,ONL_CSATViper_unitTypes,ONL_cave_garagePositions,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	// left Path 1
 	[3,1,ONL_CSATViper_unitTypes,ONL_cave_leftPath_positions_1,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	// left Path 2
 	[3,1,ONL_CSATViper_unitTypes,ONL_cave_leftPath_positions_2,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	// living area
 	[4,2,ONL_CSATViper_unitTypes,ONL_cave_livingArea_positions,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	// office area
 	[4,2,ONL_CSATViper_unitTypes,ONL_cave_officeArea_positions,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	// right Path 1
 	[3,1,ONL_CSATViper_unitTypes,ONL_cave_rightPath_positions_1,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	// right Path 2
 	[3,1,ONL_CSATViper_unitTypes,ONL_cave_rightPath_positions_2,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	[4,4,ONL_CSATViper_unitTypes,ONL_cave_center_positions_1,false] call KISKA_fnc_spawn;
 	private _units = [5,4,ONL_CSATViper_unitTypes,ONL_cave_center_positions_2,false] call KISKA_fnc_spawn;
 	(_units select 4) moveInTurret [ONL_caveMarid,[0]];
-	
+
 	uiSleep 1;
-	
+
 	[4,4,ONL_CSATViper_unitTypes,ONL_cave_center_positions_3,false] call KISKA_fnc_spawn;
-	
+
 	uiSleep 1;
-	
+
 	[4,4,ONL_CSATViper_unitTypes,ONL_cave_center_positions_4,false] call KISKA_fnc_spawn;
 };
 
@@ -334,7 +336,7 @@ call {
 
 	// Exterior
 	[4,1,ONL_CSATVariants,ONL_facility_exteriorPositions,true] call KISKA_fnc_spawn;
-		
+
 	// patrol 1
 	private _randomPosition = [ONL_logic_facility,300] call CBA_fnc_randPos;
 	private _patrol1 = [3,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
@@ -417,7 +419,7 @@ call {
 
 
 	// turrets
-	private _PMCUnits2 = [3,1,ONL_pmc_Variants,[[0,0,0],[0,0,0],[0,0,0]],false] call KISKA_fnc_spawn; 
+	private _PMCUnits2 = [3,1,ONL_pmc_Variants,[[0,0,0],[0,0,0],[0,0,0]],false] call KISKA_fnc_spawn;
 	[ONL_rg31Logic_1,_PMCUnits2 select 0] call _fn_create;
 	[ONL_rg31Logic_2,_PMCUnits2 select 1] call _fn_create;
 	(_PMCUnits2 select 2) moveInGunner ONL_turret_lodging;
@@ -437,7 +439,7 @@ call {
 //////////////////////////////
 call {
 	[count ONL_village_positions_group1,1,ONL_spetsnazSFVariants,ONL_village_positions_group1,true,true,resistance] call KISKA_fnc_spawn;
-		
+
 	uiSleep 1;
 
 	[count ONL_village_positions_group2,3,ONL_spetsnazSFVariants,ONL_village_positions_group2,false,true,resistance] call KISKA_fnc_spawn;
@@ -456,9 +458,9 @@ call {
 	for "_i" from 1 to 2 do {
 		private _randomPosition = [ONL_logic_village,500] call CBA_fnc_randPos;
 		private _group = [6,ONL_spetsnazRegular_unitTypes,resistance,_randomPosition] call KISKA_fnc_spawnGroup;
-		
+
 		uiSleep 1;
-		
+
 		missionNamespace setVariable ["ONL_villagePatrol_" + (str _i),_group];
 		[_group,_randomPosition,500,5,"MOVE","AWARE","YELLOW","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
