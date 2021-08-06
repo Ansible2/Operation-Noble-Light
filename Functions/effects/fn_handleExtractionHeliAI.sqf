@@ -1,8 +1,14 @@
-#define KISKA_LOG(MESSAGE) ["ONL_fnc_handleExtractionHeliAI",MESSAGE] call KISKA_fnc_log;
-
 //[ONL_extractHeliPilots_group,getPosASL ONL_extractionHelipad,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
 sleep 1;
+
+[ONL_extractHeli,ONL_extractionHelipad,"GET IN",false] call KISKA_fnc_heliLand;
+[ONL_extractHeli,5,4,650] spawn KISKA_fnc_engageHeliTurretsLoop;
+
+
+
+/*
 [ONL_extractHeli,ONL_extractionHelipad] call KISKA_fnc_heliLand;
+
 //[ONL_extractHeliPilots_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
 
 ONL_extractHeliPilots_group setBehaviour "SAFE";
@@ -20,6 +26,11 @@ private _doorGunners = units ONL_extractHeliTurrets_group;
 _doorGunners apply {
 	_x setSkill 1;
 };
+*/
+
+
+
+
 
 waitUntil {
 	sleep 1;
@@ -42,10 +53,11 @@ if !(_vehicleTargets isEqualTo []) then {
 };
 */
 
+
 private _manTargets = ONL_extractionHelipad nearEntities ["Man",500];
 _manTargets = _manTargets select {(side _x) isEqualTo OPFOR};
-["ONL_fnc_handleExtractionHeliAI",["Men Found:",_manTargets]] call KISKA_fnc_log;
-if !(_manTargets isEqualTo []) then {
+
+if (_manTargets isNotEqualTo []) then {
 	// don't want to shoot too close to extract
 	private _index = _manTargets findIf {_x distance2D ONL_extractionHelipad > 100};
 	private "_target";

@@ -14,9 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_saveProgress;
-
     (end)
 
 Author:
@@ -104,11 +102,13 @@ _groupsToSave apply {
 			private "_prePlacedVehicle";
 			// check if vehicle is pre placed turret
 			if !(_unitVehicle in ONL_prePlacedVehicles) then {
-				_vehicleIndex = _vehiclesWithCrew findIf {_x isEqualTo _unitVehicle};
+				_vehicleIndex = _vehiclesWithCrew find _x;
 				_prePlacedVehicle = false;
+
 			} else {
-				_vehicleIndex = ONL_prePlacedVehicles findIf {_x isEqualTo _unitVehicle};
+				_vehicleIndex = ONL_prePlacedVehicles find _x;
 				_prePlacedVehicle = true;
+
 			};
 			private _vehicleCrew = fullCrew _unitVehicle;
 			private _vehicleRole = _vehicleCrew select (_vehicleCrew findIf {(_x select 0) isEqualTo _unit});

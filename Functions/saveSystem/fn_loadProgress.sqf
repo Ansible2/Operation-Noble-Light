@@ -15,9 +15,7 @@ Returns:
 
 Examples:
     (begin example)
-
-		[] spawn ONL_fnc_loadProgress;
-
+		call ONL_fnc_loadProgress;
     (end)
 
 Author:
@@ -297,7 +295,7 @@ if (_artyAlive_2) then {
 
 } else {
 	deleteVehicle ONL_arty_2;
-	
+
 };
 
 // black site heli

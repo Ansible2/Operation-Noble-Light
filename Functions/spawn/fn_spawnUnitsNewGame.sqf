@@ -13,9 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-
-		[] spawn ONL_fnc_spawnUnitsNewGame;
-
+		call ONL_fnc_spawnUnitsNewGame;
     (end)
 
 Author:
@@ -23,12 +21,13 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
-//////////////////////////////
-/////////////BASE/////////////
-//////////////////////////////
+
+/* ----------------------------------------------------------------------------
+	BASE
+---------------------------------------------------------------------------- */
 call {
 	// turrets
-	private _turretUnits = [4,1,ONL_CSATVariants,[[0,0,0],[0,0,0],[0,0,0],[0,0,0]],true] call KISKA_fnc_spawn;
+	private _turretUnits = [4,1,ONL_CSATVariants,[],true] call KISKA_fnc_spawn;
 	private _turrets = [ONL_turretBase_1,ONL_turretBase_2,ONL_turretBase_3,ONL_turretBase_4];
 	{
 		_x moveInGunner (_turrets select _forEachIndex);
@@ -46,7 +45,6 @@ call {
 	// patrols
 	for "_i" from 1 to 2 do {
 		private _randomPosition = [ONL_logic_base_2,300] call CBA_fnc_randPos;
-
 		private _group = [3,ONL_CSATVariants,OPFOR,_randomPosition] call KISKA_fnc_spawnGroup;
 
 		uiSleep 1;
@@ -132,7 +130,7 @@ call {
 
 				} else {
 					ONL_deadArty = 1;
-					
+
 				};
 			};
 		}];
@@ -144,9 +142,9 @@ call {
 
 
 
-//////////////////////////////
-/////////////Black site///////
-//////////////////////////////
+/* ----------------------------------------------------------------------------
+	Blacksite
+---------------------------------------------------------------------------- */
 call {
 	private _fn_create = {
 		params [
@@ -269,9 +267,9 @@ call {
 
 
 
-//////////////////////////////
-/////////////CAVE/////////////
-//////////////////////////////
+/* ----------------------------------------------------------------------------
+	Cave
+---------------------------------------------------------------------------- */
 call {
 	// entry
 	[4,2,ONL_CSATViper_unitTypes,ONL_cave_entryWayPositions,false] call KISKA_fnc_spawn;
@@ -327,9 +325,9 @@ call {
 
 
 
-//////////////////////////////
-/////////////FACILITY/////////
-//////////////////////////////
+/* ----------------------------------------------------------------------------
+	Facility
+---------------------------------------------------------------------------- */
 call {
 	// Interior
 	[4,1,ONL_CSATVariants,ONL_facility_interiorPositions] call KISKA_fnc_spawn;
@@ -368,9 +366,9 @@ call {
 
 
 
-//////////////////////////////
-/////////////LODGING//////////
-//////////////////////////////
+/* ----------------------------------------------------------------------------
+	Lodging
+---------------------------------------------------------------------------- */
 call {
 	// Interior
 	private _PMCUnits1 = [4,1,ONL_pmc_Variants,ONL_lodging_interiorPositions,true] call KISKA_fnc_spawn;
@@ -419,7 +417,7 @@ call {
 
 
 	// turrets
-	private _PMCUnits2 = [3,1,ONL_pmc_Variants,[[0,0,0],[0,0,0],[0,0,0]],false] call KISKA_fnc_spawn;
+	private _PMCUnits2 = [3,1,ONL_pmc_Variants,[],false] call KISKA_fnc_spawn;
 	[ONL_rg31Logic_1,_PMCUnits2 select 0] call _fn_create;
 	[ONL_rg31Logic_2,_PMCUnits2 select 1] call _fn_create;
 	(_PMCUnits2 select 2) moveInGunner ONL_turret_lodging;
@@ -434,9 +432,9 @@ call {
 
 
 
-//////////////////////////////
-/////////////VILLAGE//////////
-//////////////////////////////
+/* ----------------------------------------------------------------------------
+	Lodging
+---------------------------------------------------------------------------- */
 call {
 	[count ONL_village_positions_group1,1,ONL_spetsnazSFVariants,ONL_village_positions_group1,true,true,resistance] call KISKA_fnc_spawn;
 

@@ -36,7 +36,7 @@ ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Air
 ONL_cargoPlane flyInHeight 500;
 
 // distribute AI amongst headless client(s) save for these groups
-KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,ONL_extractHeliTurrets_group,ONL_redGroup,ONL_blueGroup];
+KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extractHeliTurrets_group,*/ONL_redGroup,ONL_blueGroup];
 // exclude from saves
 [ONL_caveGroup_1,ONL_caveGroup_2,ONL_caveGroup_3,ONL_caveGroup_4,ONL_caveGroup_5,ONL_redGroup,ONL_blueGroup,ONL_cargoPlane,ONL_cargoPlaneGroup] apply {
 	_x setVariable ["ONL_saveExcluded",true];

@@ -68,7 +68,7 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     },
                     {
                         private _alivePlayers = count (call KISKA_fnc_alivePlayers);
-                        ((count (crew ONL_extractHeli) isEqualTo (4 + _alivePlayers)) AND {_alivePlayers > 0})
+                        ((_alivePlayers > 0) AND {count (crew ONL_extractHeli) isEqualTo (4 + _alivePlayers)})
                     }
                 ] call KISKA_fnc_waitUntil;
 
@@ -122,11 +122,11 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
             {
                 [] spawn {
                     call ONL_fnc_extraction_spawnVehicle;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnVehicle;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
                 };
             },
@@ -138,16 +138,16 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
             {
                 [] spawn {
                     call ONL_fnc_extraction_spawnVehicle;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnVehicle;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
 
                     if (isDedicated) then {
                         call ONL_fnc_extraction_spawnGroup;
-                        sleep 1;
+                        sleep 3;
                         call ONL_fnc_extraction_spawnGroup;
                     };
                 };
@@ -162,11 +162,11 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
             {
                 [] spawn {
                     call ONL_fnc_extraction_spawnVehicle;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnVehicle;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
-                    sleep 1;
+                    sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
 
                     // add more infantry if on dedicated server

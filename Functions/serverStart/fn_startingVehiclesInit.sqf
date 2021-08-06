@@ -4,9 +4,9 @@ Function: ONL_fnc_startingVehiclesInit
 Description:
 	Clears cargo of all starter vehicles (all the ones player's can choose from at the start).
 	Also discerns whether add-ons are installed and which vehicles to also spawn in accordance with the player preference.
-	
+
 	It is executed from the "initServer.sqf".
-	
+
 Parameters:
 	NONE
 
@@ -15,9 +15,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_startingVehiclesInit
-
     (end)
 
 Author:
@@ -45,9 +43,7 @@ private _fn_create = {
 	];
 
 	private _object = createVehicle [_type,getPosATL _logic,[],0,"CAN_COLLIDE"];
-
 	_object setVectorDirAndUp [vectorDir _logic,vectorUp _logic];
-
 	_object enableDynamicSimulation true;
 
 	ONL_startingVehicles pushBack _object;

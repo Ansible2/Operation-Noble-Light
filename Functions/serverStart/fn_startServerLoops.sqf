@@ -97,7 +97,7 @@ if !(["ONL_secureApollo_task"] call BIS_fnc_taskCompleted) then { // get found f
 					[] spawn ONL_fnc_village_spawnHeliPatrol;
 				},
 				[],
-				random [240,300,360]
+				0//random [240,300,360]
 			] call CBA_fnc_waitAndExecute;
 
 			ONL_apollo setDamage 1;

@@ -3,9 +3,9 @@ Function: ONL_fnc_createBlackSiteHeliPatrol
 
 Description:
 	Creates a patroling helicopter around the black site.
-	
+
 	It is executed from "ONL_fnc_waitToDeletePlane".
-	
+
 Parameters:
 	NONE
 
@@ -14,14 +14,14 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_createBlackSiteHeliPatrol;
-
     (end)
 
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
+scriptName "ONL_fnc_createBlackSiteHeliPatrol";
+
 ONL_blackSitePatrolHelicopter = createVehicle [ONL_orca,position ONL_blackSite_heliPad,[],0,"NONE"];
 ONL_blackSitePatrolHelicopter setVariable ["ONL_saveExcluded",true];
 
@@ -29,7 +29,7 @@ ONL_blackSitePatrolHelicopter setVariable ["ONL_saveExcluded",true];
 if !(ONL_snowTigersLoaded) then {
 	[
 		ONL_blackSitePatrolHelicopter,
-		["Black",1], 
+		["Black",1],
 		true
 	] call BIS_fnc_initVehicle;
 };
@@ -48,7 +48,7 @@ for "_i" from 1 to 2 do {
 	if (isNull _unit) then {
 		_unit = _pilotsGroup createUnit [ONL_CSAT_crewman,[0,0,0],[],0,"NONE"];
 	};
-	
+
 	if (_i isEqualTo 1) then {
 		_unit moveInDriver ONL_blackSitePatrolHelicopter;
 	} else {
@@ -77,7 +77,7 @@ _group2 enableDynamicSimulation false;
 _pilotsGroup setVariable ["ONL_loadCreationCode","
 	params ['_group'];
 	ONL_blackSitePatrolHelicopter = objectParent (leader _group);
-	ONL_blackSitePatrolHelicopter engineOn true; 
+	ONL_blackSitePatrolHelicopter engineOn true;
 	[ONL_blackSitePatrolHelicopter,[ONL_heliPatroLogic_blackSite_1,ONL_heliPatroLogic_blackSite_2,ONL_heliPatroLogic_blackSite_3,ONL_heliPatroLogic_blackSite_4],500,100,'LIMITED'] call KISKA_fnc_heliPatrol;
 "];
 

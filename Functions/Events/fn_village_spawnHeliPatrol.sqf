@@ -53,7 +53,6 @@ private _group = [8,ONL_spetsnazRegular_unitTypes,RESISTANCE] call KISKA_fnc_spa
 [_pilotsGroup,ONL_spetsnazHeliSpawn_logic,0,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addwaypoint;
 
 // use kISKA_fnc_land
-/*
 [_pilotsGroup,ONL_spetsnazHeliLand_logic,0,"TR UNLOAD","SAFE","BLUE","NORMAL"] call CBA_fnc_addwaypoint;
 
 [
@@ -75,6 +74,6 @@ private _group = [8,ONL_spetsnazRegular_unitTypes,RESISTANCE] call KISKA_fnc_spa
     [0,0,0],
     50
 ] call CBA_fnc_addwaypoint;
-*/
+
 
 nil
