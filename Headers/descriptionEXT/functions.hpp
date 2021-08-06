@@ -13,6 +13,8 @@ class ONL
 		{};
 		class addSupplyDropSupports
 		{};
+		class removeDefusalAction
+		{};
 		class removeSupplyDropSupport
 		{};
 		class studyObject
@@ -65,15 +67,18 @@ class ONL
 
 		class cave_collectedIntel
 		{};
+		class cave_entered
+		{};
 		class cave_genShutOff
 		{};
 
 		class village_collectedIntel
 		{};
-		class village_spawnReinforcements
-		{};
 		class village_spawnHeliPatrol
 		{};
+		class village_spawnReinforcements
+		{};
+
 	};
 	class loops
 	{

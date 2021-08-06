@@ -2,7 +2,7 @@
 Function: ONL_fnc_village_spawnHeliPatrol
 
 Description:
-    Acts as a server event when a heli patrol spawns at the village.
+    Acts as a server event when a heli patrol spawns and lands at the village.
 
 Parameters:
 	NONE

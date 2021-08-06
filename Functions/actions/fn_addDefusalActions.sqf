@@ -12,118 +12,95 @@ Returns:
 
 Examples:
     (begin example)
-
 		[] spawn ONL_fnc_addDefusalActions;
-
     (end)
 
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
+scriptName "ONL_fnc_addDefusalActions"
+
 if (!hasInterface) exitWith {};
 
-if (!canSuspend) exitWith {
-	"ONL_fnc_addDefusalActions must be run in scheduled envrionment" call BIS_fnc_error;
-};
+	if (!canSuspend) exitWith {
+		["Was not run in scheduled, exiting to scheduled...",true] call KISKA_fnc_log;
+		_this spawn ONL_fnc_addDefusalActions;
+	};
 
 waitUntil {player isEqualTo player};
 
 if !(isNull ONL_charge_1) then {
-	ONL_charge_1_ID = [	
+	ONL_charge_1_ID = [
 		player,
-		"<t color='#b5041e'>Disarm Explosive 1</t>", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"(player distance2D ONL_charge_1) <= 2", 
-		"true", 
-		{hint "Do NOT Let Go"}, 
-		{}, 
+		"<t color='#b5041e'>Disarm Explosive 1</t>",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"(player distance2D ONL_charge_1) <= 2",
+		"true",
+		{hint "Do NOT Let Go"},
+		{},
 		{
 			hint "Device Defused";
-
-			["ONL_deviceDefused_event",[ONL_charge_1,"ONL_charge_1_ID"]] call CBA_fnc_serverEvent;
-		}, 
-		{["ONL_caveIn_event"] call CBA_fnc_serverEvent}, 
-		[], 
-		10, 
-		10, 
-		false, 
-		false, 
+			[ONL_charge_1,"ONL_charge_1_ID"] remoteExec ["ONL_fnc_cave_defusedCharge",2];
+		},
+		{remoteExec ["ONL_fnc_cave_caveIn",2];},
+		[],
+		10,
+		10,
+		false,
+		false,
 		true
 	] call BIS_fnc_holdActionAdd;
 };
 
 if !(isNull ONL_charge_2) then {
-	ONL_charge_2_ID = [	
+	ONL_charge_2_ID = [
 		player,
-		"<t color='#b5041e'>Disarm Explosive 2</t>", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"(player distance2D ONL_charge_2) <= 2", 
-		"true", 
-		{hint "Do NOT Let Go"}, 
-		{}, 
+		"<t color='#b5041e'>Disarm Explosive 2</t>",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"(player distance2D ONL_charge_2) <= 2",
+		"true",
+		{hint "Do NOT Let Go"},
+		{},
 		{
 			hint "Device Defused";
-
-			["ONL_deviceDefused_event",[ONL_charge_2,"ONL_charge_2_ID"]] call CBA_fnc_serverEvent;
-		}, 
-		{["ONL_caveIn_event"] call CBA_fnc_serverEvent}, 
-		[], 
-		10, 
-		10, 
-		false, 
-		false, 
+			[ONL_charge_2,"ONL_charge_2_ID"] remoteExec ["ONL_fnc_cave_defusedCharge",2];
+		},
+		{remoteExec ["ONL_fnc_cave_caveIn",2];},
+		[],
+		10,
+		10,
+		false,
+		false,
 		true
 	] call BIS_fnc_holdActionAdd;
 };
 
 
-if !(isNull ONL_charge_3) then {	
-	ONL_charge_3_ID = [	
+if !(isNull ONL_charge_3) then {
+	ONL_charge_3_ID = [
 		player,
-		"<t color='#b5041e'>Disarm Explosive 3</t>", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa", 
-		"(player distance2D ONL_charge_3) <= 2", 
-		"true", 
-		{hint "Do NOT Let Go"}, 
-		{}, 
+		"<t color='#b5041e'>Disarm Explosive 3</t>",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"(player distance2D ONL_charge_3) <= 2",
+		"true",
+		{hint "Do NOT Let Go"},
+		{},
 		{
 			hint "Device Defused";
-
-			["ONL_deviceDefused_event",[ONL_charge_3,"ONL_charge_3_ID"]] call CBA_fnc_serverEvent;
-		}, 
-		{["ONL_caveIn_event"] call CBA_fnc_serverEvent}, 
-		[], 
-		10, 
-		10, 
-		false, 
-		false, 
+			[ONL_charge_3,"ONL_charge_3_ID"] remoteExec ["ONL_fnc_cave_defusedCharge",2];
+		},
+		{remoteExec ["ONL_fnc_cave_caveIn",2];},
+		[],
+		10,
+		10,
+		false,
+		false,
 		true
 	] call BIS_fnc_holdActionAdd;
 };
-
-
-
-// remove action event, keeps actions from persisting even when the charge is detonated
-if (!(missionNamespace getVariable ["ONL_removeDefusalAction_EventCreated",false])) then {
-	[
-		"ONL_removeDefusalAction_Event",
-		{
-			params [
-				["_chargeGlobalName","",[""]]
-			];
-			
-			if (!isNil _chargeGlobalName) then {
-				player removeAction (missionNamespace getVariable _chargeGlobalName);
-			};
-		}
-	] call CBA_fnc_addEventHandler;
-
-	ONL_removeDefusalAction_EventCreated = true;
-};
-
 
 
 // remove actions when dead

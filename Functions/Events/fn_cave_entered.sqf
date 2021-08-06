@@ -35,7 +35,7 @@ call ONL_fnc_waitToAddCaveTasks;
 // cave in charges timer begins
 [
     {
-        ["ONL_caveIn_event"] call CBA_fnc_serverEvent;
+        remoteExec ["ONL_fnc_cave_caveIn",2];;
     },
     [],
     60*15
