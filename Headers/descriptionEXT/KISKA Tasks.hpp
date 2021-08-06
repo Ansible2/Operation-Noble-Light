@@ -277,7 +277,7 @@ class KISKA_cfgTasks
 
         type = TASK_TYPE_INTERACT;
     };
-    class ONL_CollectDeviceLogs_Task : ONL_CollectDeviceLogs_Task
+    class ONL_CollectCaveIntel_Task : ONL_CollectDeviceLogs_Task
     {
         title		= "(OPTIONAL) Collect Drives and Computers";
     	description	= "Any laptops, tablets, and drives need to be secured to bring back. Search the disassembled device for a data drive.";

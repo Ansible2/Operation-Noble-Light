@@ -83,7 +83,7 @@ if !([CollectRockSample_TaskID select 0] call BIS_fnc_taskExists) then {
 
 //// Near location loops
 // village
-if !([SecureApollo_TaskID] call BIS_fnc_taskCompleted) then { // get found files task complete
+if !(["ONL_secureApollo_task"] call BIS_fnc_taskCompleted) then { // get found files task complete
 	[
 		3,
 		{
@@ -92,7 +92,7 @@ if !([SecureApollo_TaskID] call BIS_fnc_taskCompleted) then { // get found files
 			// Heli patrol
 			[
 				{
-					["ONL_village_spawnHeliPatrol_Event"] call CBA_fnc_serverEvent;
+					[] spawn ONL_fnc_village_spawnHeliPatrol;
 				},
 				[],
 				random [240,300,360]

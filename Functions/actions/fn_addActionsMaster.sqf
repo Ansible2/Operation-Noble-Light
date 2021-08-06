@@ -12,9 +12,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_addActionsMaster;
-
     (end)
 
 Author:
@@ -26,11 +24,11 @@ if !(hasInterface) exitWith {};
 	Base
 ---------------------------------------------------------------------------- */
 ONL_BaseFile addAction [
-	"--Collect File",
+	"-- Collect File --",
 	{
 		params ["_file"];
 
-		["ONL_base_readFile_Event",[_file]] call CBA_fnc_serverEvent;
+		[_file] remoteExec ["ONL_fnc_readBaseFile",2];
 		playSound "FD_Timer_F";
 		["You flip through the pages and find transport routes to a living area with mentions of engineers. Could be a lodging location. Seems to be the northern area Snikesnoken Hyttetun"] call KISKA_fnc_hintDiary;
 
@@ -52,7 +50,7 @@ ONL_BaseFile addAction [
 ---------------------------------------------------------------------------- */
 // Collect Rock sample
 ONL_glowingRock addAction [
-	"--Collect Rock Sample",
+	"-- Collect Rock Sample --",
 	{
 		params ["_rock"];
 
@@ -72,7 +70,7 @@ ONL_glowingRock addAction [
 
 // Study computer near rock
 ONL_blackSiteComputer addAction [
-	"--Study Device",
+	"-- Study Device --",
 	{
 		params ["_computer"];
 
@@ -93,13 +91,13 @@ ONL_blackSiteComputer addAction [
 // Collect Computers near rock
 ONL_blackSiteCollects apply {
 	_x addAction [
-		"--Collect Device",
+		"-- Collect Device --",
 		{
 			params ["_intelObject"];
 
 			playSound "FD_Timer_F";
 			hint "Collected Device";
-			["ONL_blackSite_CollectedIntel_Event",[_intelObject]] call CBA_fnc_serverEvent;
+			[_intelObject] remoteExec ["ONL_fnc_blacksite_collectedIntel",2];
 		},
 		nil,
 		10,
@@ -123,13 +121,13 @@ ONL_blackSiteCollects apply {
 // Computers to collect
 ONL_caveCollectDevices apply {
 	_x addAction [
-		"--Collect Device",
+		"-- Collect Device --",
 		{
 			params ["_device"];
 
 			playSound "FD_Timer_F";
 			hint "Collected Device";
-			["ONL_cave_collectedIntel_Event",[_device]] call CBA_fnc_serverEvent;
+			[_device] remoteExec ["ONL_fnc_cave_collectedIntel",2];
 		},
 		nil,
 		10,
@@ -146,12 +144,12 @@ ONL_caveCollectDevices apply {
 // Cave Generators
 ONL_caveGenerators apply {
 	_x addAction [
-		"--ShutDown Generator",
+		"-- ShutDown Generator --",
 		{
 			params ["_generator"];
 
 			hintSilent "Generator Shutdown";
-			["ONL_Cave_generatorShutOff_Event",[_generator]] call CBA_fnc_serverEvent;
+			[_generator] remoteExec ["ONL_fnc_cave_genShutoff",2];
 		},
 		nil,
 		10,
@@ -166,7 +164,7 @@ ONL_caveGenerators apply {
 
 // Tank Computer
 ONL_caveTankComputer addAction [
-	"--Study Data",
+	"-- Study Data --",
 	{
 		params ["_computer"];
 
@@ -261,7 +259,7 @@ ONL_caveDevices apply {
 	Lodging
 ---------------------------------------------------------------------------- */
 ONL_lodgingLaptop addAction [
-	"--Check Laptop",
+	"-- Check Laptop --",
 	{
 		params ["_laptop"];
 
@@ -286,7 +284,7 @@ ONL_lodgingLaptop addAction [
 ---------------------------------------------------------------------------- */
 // Apollo's Truck
 ONL_ApolloTruck addAction [
-	"--Check Truck",
+	"-- Check Truck --",
 	{
 		params ["_truck"];
 
@@ -305,15 +303,13 @@ ONL_ApolloTruck addAction [
 ];
 
 ONL_ApolloFiles addAction [
-	"--Pickup Files",
+	"-- Pickup Files --",
 	{
 		params ["_files"];
 
 		playSound "FD_Timer_F";
-
 		["You open the file and find statements from an unnamed informant. Talk of weapons being developed in a mountain facility from some new material found. There's a dig site apparently up the road to the EAST where it was found."] call KISKA_fnc_hintDiary;
-
-		["ONL_village_CollectedIntel_Event", [_files]] call CBA_fnc_serverEvent;
+		[_files] remoteExec ["ONL_fnc_village_collectedIntel",2];
 	},
 	nil,
 	10,

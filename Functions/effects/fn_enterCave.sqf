@@ -12,9 +12,7 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_enterCave;
-
     (end)
 
 Author:
@@ -22,8 +20,8 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
-["ONL_Cave_entered_Event"] call CBA_fnc_serverEvent;
-		
+remoteExec ["ONL_fnc_cave_entered",2];
+
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Entering...</t>", "BLACK OUT", 3, true, true];
 
 [] spawn ONL_fnc_addDefusalActions;
@@ -49,7 +47,7 @@ playSound "garage_doors";
 	},
 	[],
 	3
-] call CBA_fnc_waitAndExecute; 
+] call CBA_fnc_waitAndExecute;
 
 [
 	{
@@ -58,4 +56,4 @@ playSound "garage_doors";
 	},
 	[],
 	6
-] call CBA_fnc_waitAndExecute; 
+] call CBA_fnc_waitAndExecute;

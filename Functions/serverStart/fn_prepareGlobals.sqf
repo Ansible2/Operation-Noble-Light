@@ -217,9 +217,16 @@ ONL_CSATHazmat_unitType = "O_T_Soldier_F";
 
 
 
+/* ----------------------------------------------------------------------------
+	Misc
+---------------------------------------------------------------------------- */
+ONL_blackSite_collectableIntel_count = count ((getMissionLayerEntities "Black Site Collects") select 0);
+ONL_cave_collectableIntel_count = count ONL_caveCollectDevices;
+ONL_cave_destroyableServers_count = count ONL_caveServers;
+ONL_blackSiteServers = (getMissionLayerEntities "Black Site Servers") select 0;
+ONL_blackSite_destroyableServers_count = count ONL_blackSiteServers;
 
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
-
 ONL_prePlacedVehicles = vehicles select {
 	!(_x isKindOf "THING") AND
 	{!(_x in ONL_startingVehicles)}

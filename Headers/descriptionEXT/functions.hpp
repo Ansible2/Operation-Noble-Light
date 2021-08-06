@@ -54,6 +54,27 @@ class ONL
 		class transitionToJump
 		{};
 	};
+	class events
+	{
+		file = "Functions\events";
+		class base_readFile
+		{};
+
+		class blacksite_collectedIntel
+		{};
+
+		class cave_collectedIntel
+		{};
+		class cave_genShutOff
+		{};
+
+		class village_collectedIntel
+		{};
+		class village_spawnReinforcements
+		{};
+		class village_spawnHeliPatrol
+		{};
+	};
 	class loops
 	{
 		file = "Functions\loops";
