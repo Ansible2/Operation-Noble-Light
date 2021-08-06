@@ -17,6 +17,8 @@ class ONL
 		{};
 		class removeSupplyDropSupport
 		{};
+		class resetPlane
+		{};
 		class studyObject
 		{};
 	};
@@ -106,8 +108,6 @@ class ONL
 	{
 		file = "Functions\serverStart";
 		class addServerEvents
-		{};
-		class extractionEvents
 		{};
 		class placeVehicles
 		{};

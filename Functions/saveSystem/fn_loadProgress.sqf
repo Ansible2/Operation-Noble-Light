@@ -338,14 +338,7 @@ if (missionNamespace getVariable ["ONL_caveChargesDead_skip",false]) then {
 };
 // call extraction event immediately
 if (missionNamespace getVariable ["ONL_extractionReady_skip",true]) then {
-	[
-		5,
-		{
-			["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
-		},
-		{missionNamespace getVariable ["ONL_extractionEventsAdded",false]}
-	] call KISKA_fnc_waitUntil;
-	//["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
+	call ONL_fnc_extraction_init;
 };
 
 

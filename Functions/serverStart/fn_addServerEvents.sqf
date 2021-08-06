@@ -154,11 +154,10 @@ if !(missionNamespace getVariable ["ONL_scientistDead_skip",false]) then {
 			["ONL_findHeadScientist_task"] call KISKA_fnc_endTask;
 
 			ONL_skipLoopsAndEvents pushBack "ONL_scientistDead_skip";
+			call ONL_fnc_extraction_init;
 			////////////SaveGame/////////////
 			call ONL_fnc_saveQuery;
 			////////////SaveGame/////////////
-
-			["ONL_getToExtraction_Event"] call CBA_fnc_serverEvent;
 		};
 	}];
 };
@@ -180,37 +179,16 @@ call ONL_fnc_extractionEvents;
 	MISC
 
 ---------------------------------------------------------------------------- */
-call {
+// saving dead pre placed vics
+ONL_prePlacedVehicles apply {
+	_x addMPEventHandler ["MPKILLED",{
+		params ["_unit"];
 
-
-	// reset plane
-	[
-		"ONL_resetPlane_Event",
-		{
-			private _position = getPosATL ONL_cargoPlane_resetLogic;
-			private _vectorDir = vectorDir ONL_cargoPlane_resetLogic;
-			private _vectorUp = vectorUp ONL_cargoPlane_resetLogic;
-
-			ONL_cargoPlane setPosATL _position;
-
-			[ONL_cargoPlane,[_vectorDir,_vectorUp]] remoteExec ["setVectorDirAndUp",ONL_cargoPlane];
-
-			["Alarm",ONL_logic_startingBaseSpeaker_1,200,3] call KISKA_fnc_playSound3D;
-		}
-	] call CBA_fnc_addEventHandler;
-
-
-	// saving dead pre placed vics
-	ONL_prePlacedVehicles apply {
-		_x addMPEventHandler ["MPKILLED",{
-			params ["_unit"];
-
-			if (isServer) then {
-				private _index = ONL_prePlacedVehicles findIf {_x isEqualTo _unit};
-				ONL_deadVehicleIndexes pushBack _index;
-			};
-		}];
-	};
+		if (isServer) then {
+			private _index = ONL_prePlacedVehicles find _x;
+			ONL_deadVehicleIndexes pushBack _index;
+		};
+	}];
 };
 
 
