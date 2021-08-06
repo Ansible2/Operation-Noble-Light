@@ -22,8 +22,11 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
-#define GET_UNIT_ARRAY(class,property) _arrayConfigs >> class >> property
-#define GET_SIMPLE_CLASS(class,property) _simpleClassesConfig >> class >> property
+// arrays of eden entities
+#include "..\..\headers\entityGroups.hpp";
+
+#define GET_UNIT_ARRAY(class,property) getArray(_arrayConfigs >> class >> property)
+#define GET_SIMPLE_CLASS(class,property) getText(_simpleClassesConfig >> class >> property)
 #define GET_CIV_ARRAY(property) getArray(missionConfigFile >> "KISKA_loadouts" >> "civGear" >> property)
 
 
@@ -39,6 +42,15 @@ ONL_civUniforms = GET_CIV_ARRAY("uniforms");
 ONL_civFacewear = GET_CIV_ARRAY("facewear");
 ONL_civVests = GET_CIV_ARRAY("vests");
 ONL_civHeadgear = GET_CIV_ARRAY("headgear");
+
+
+/* ----------------------------------------------------------------------------
+	spawn positions
+---------------------------------------------------------------------------- */
+private _configArrays = configProperties [missionConfigFile >> "Mission_SpawnPositions","true",false];
+_configArrays apply {
+	missionNamespace setVariable [configName _x,getArray(_x)];
+};
 
 
 /* ----------------------------------------------------------------------------
@@ -173,6 +185,8 @@ ONL_spetsnaz_car = [
 	GET_SIMPLE_CLASS("spetsnaz_car","foxhound")
 ] select ONL_FSGLoaded;
 
+ONL_CSATViper_unitTypes = getArray(_arrayConfigs >> "ONL_CSATViper_unitTypes");
+ONL_CSATMask_unitTypes = getArray(_arrayConfigs >> "ONL_CSATMask_unitTypes");
 ONL_spetsnaz_helicopter = GET_SIMPLE_CLASS("spetsnaz_helicopter","vanilla");
 
 
@@ -232,9 +246,6 @@ ONL_prePlacedVehicles = vehicles select {
 	{!(_x in ONL_startingVehicles)}
 };
 
-
-// arrays of eden entities
-#include "..\..\headers\entityGroups.hpp";
 
 //ONL_newsSounds = getMissionConfigValue "newsSounds";
 //ONL_usedNewsSounds = [];

@@ -198,7 +198,7 @@ if !(["ONL_CollectRockSample_task"] call BIS_fnc_taskCompleted) then {
 // start random music system
 waitUntil {
 	if (time > 0) exitWith {
-		[false,"",ONL_randomMusicTracks,[120,180,240]] spawn KISKA_fnc_randomMusic;
+		[-1,ONL_randomMusicTracks,[120,180,240]] spawn KISKA_fnc_randomMusic;
 		true
 	};
 	false

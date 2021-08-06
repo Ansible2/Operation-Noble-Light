@@ -8,7 +8,7 @@ _newUnit setUnitLoadout ONL_playerLoadout;
 
 _newunit setCustomAimCoef 0.15;
 
-[false,ONL_zeusLogic] call KISKA_fnc_reassignCurator;
+[ONL_zeusLogic,false] call KISKA_fnc_reassignCurator;
 
 // set envrionmental and view distance if player respawns in or out of cave accordingly
 [
@@ -35,7 +35,7 @@ _newunit setCustomAimCoef 0.15;
 			setViewDistance 200;
 
 			[] spawn ONL_fnc_addDefusalActions;
-			
+
 		} else {
 			if !(environmentEnabled isEqualTo [true,true]) then {
 				enableEnvironment [true,true];

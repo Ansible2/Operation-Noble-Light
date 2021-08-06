@@ -1,3 +1,4 @@
+call KISKA_fnc_addCargoEvents
 call ONL_fnc_prepareGlobals;
 
 [[ONL_arsenal_1,ONL_arsenal_2,ONL_arsenal_3]] call KISKA_fnc_addArsenal;
@@ -39,7 +40,8 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extrac
 };
 
 
-
+[ONL_redGroup] call KISKA_fnc_allowGroupRally;
+[ONL_blueGroup] call KISKA_fnc_allowGroupRally;
 
 
 // to keep gear from being lost when transfering AI to headless, they need to sleep for a bit

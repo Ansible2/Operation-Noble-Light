@@ -54,7 +54,7 @@ if (!isServer) exitWith {};
 		};
 
 		private _randomSound = selectRandom _sounds;
-		_sounds deleteAt (_sounds find _x);
+		_sounds deleteAt (_sounds find _randomSound);
 		_usedSounds pushBack _randomSound;
 
 		[_randomSound,ONL_logic_startingBaseSpeaker_1,200,4] call KISKA_fnc_playSound3D;

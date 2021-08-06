@@ -18,7 +18,7 @@ Examples:
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
-scriptName "ONL_fnc_addDefusalActions"
+scriptName "ONL_fnc_addDefusalActions";
 
 if (!hasInterface) exitWith {};
 

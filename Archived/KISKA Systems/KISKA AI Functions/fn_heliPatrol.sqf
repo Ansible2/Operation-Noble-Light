@@ -16,7 +16,7 @@ Parameters:
     3. _patrolHeight <NUMBER> - What's the flying height of the helicopter
 	4. _patrolSpeed <STRING> - setWaypointSpeed, takes "UNCHANGED", "LIMITED", "NORMAL", and "FULL"
     5: _randomPatrol <BOOL> - Should patrol points be randomized or followed in array order
-	
+
 
 Returns:
 	BOOL
@@ -51,7 +51,7 @@ if (_patrolHeight > _spotDistance3D) exitWith {
 };
 
 if !(_patrolPoints isEqualTypeAny [objNull,[]]) exitWith {
-    "_patrolPoints need to be either objects or groups" call BIS_fnc_error;
+    ["_patrolPoints need to be either objects or groups",true] call KISKA_fnc_log;
     false
 };
 
@@ -66,7 +66,7 @@ private _helicopterGroup = group _pilot;
 
 _helicopter flyInHeight _patrolHeight;
 
-[_helicopterGroup,count _patrolPoints,_patrolPoints,_randomPatrol,"SAFE",_patrolSpeed,"WHITE"] call KISKA_fnc_patrolSpecific;
+[_helicopterGroup,_patrolPoints,count _patrolPoints,_randomPatrol,"SAFE",_patrolSpeed,"WHITE"] call KISKA_fnc_patrolSpecific;
 
 [
     4,
@@ -81,7 +81,7 @@ _helicopter flyInHeight _patrolHeight;
         private _index = _players findIf {(_x distance _helicopter) <= _spotDistance3D};
         private _nearestPlayer = _players select _index;
         private _playerPosition = getPosATL _nearestPlayer;
-    
+
         private _landingZone = [_nearestPlayer,300,500,5,0,0,0,[],[_playerPosition,_playerPosition]] call BIS_fnc_findSafePos;
         _landingZone pushBack 0;
 
@@ -125,21 +125,21 @@ _helicopter flyInHeight _patrolHeight;
                     [_x,_playerGroup] spawn BIS_fnc_stalk;
                     _x setCombatMode "YELLOW";
                 };
-                
+
             },
             // waitUntil helicopter is about to land
             {(getPosATLVisual (_this select 0) select 2) < 2},
             [_helicopter,_helicopterGroup,_nearestPlayer,_groups]
         ] call KISKA_fnc_waitUntil;
 
-        
+
     },
     {
         // waitUntil heli finds an enemy player within the specified distance. Civilians seem to sometimes count as enemy
         !(
             ((call CBA_fnc_players) findIf {
-                ([side _x,side (_this select 2)] call BIS_fnc_sideIsEnemy) AND 
-                {(_x distance (_this select 0)) <= (_this select 1)} AND 
+                ([side _x,side (_this select 2)] call BIS_fnc_sideIsEnemy) AND
+                {(_x distance (_this select 0)) <= (_this select 1)} AND
                 {side _x != Civilian}
             }) isEqualTo -1
         )

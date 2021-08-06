@@ -22,7 +22,7 @@ Author:
 ---------------------------------------------------------------------------- */
 scriptName "ONL_fnc_createBlackSiteHeliPatrol";
 
-ONL_blackSitePatrolHelicopter = createVehicle [ONL_orca,position ONL_blackSite_heliPad,[],0,"NONE"];
+ONL_blackSitePatrolHelicopter = createVehicle [ONL_orca,getPosATL ONL_blackSite_heliPad,[],0,"FLY"];
 ONL_blackSitePatrolHelicopter setVariable ["ONL_saveExcluded",true];
 
 

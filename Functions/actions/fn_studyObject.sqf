@@ -22,7 +22,7 @@ Author:
 scriptName "ONL_fnc_studyObject";
 
 #define DEVICE_TYPES ["land_device_disassembled_f","land_device_assembled_f"]
-#define GLOWING_ROCK_TYPE "land_w_sharpstone_02";
+#define GLOWING_ROCK_TYPE "land_w_sharpstone_02"
 
 if (!isServer) exitWith {
     ["Needs to be executed on the server, remoting on server now...",true] call KISKA_fnc_log;

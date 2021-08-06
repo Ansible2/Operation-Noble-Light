@@ -102,11 +102,11 @@ _groupsToSave apply {
 			private "_prePlacedVehicle";
 			// check if vehicle is pre placed turret
 			if !(_unitVehicle in ONL_prePlacedVehicles) then {
-				_vehicleIndex = _vehiclesWithCrew find _x;
+				_vehicleIndex = _vehiclesWithCrew find _unit;
 				_prePlacedVehicle = false;
 
 			} else {
-				_vehicleIndex = ONL_prePlacedVehicles find _x;
+				_vehicleIndex = ONL_prePlacedVehicles find _unit;
 				_prePlacedVehicle = true;
 
 			};
@@ -191,7 +191,7 @@ private _fn_taskStatus = {
 };
 
 private _taskInfoArray = [];
-private _taskConfigs = "true" configClasses (missionConfigFile "KISKA_cfgTasks");
+private _taskConfigs = "true" configClasses (missionConfigFile >> "KISKA_cfgTasks");
 _taskConfigs apply {
 	private _taskId = configName _x;
 	private _taskInfo = [_taskId];
