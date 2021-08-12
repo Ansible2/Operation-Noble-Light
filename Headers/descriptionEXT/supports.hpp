@@ -4,6 +4,7 @@
 //import KISKA_attackHelicopterCAS_baseClass from CfgCommunicationMenu;
 //import KISKA_helicopterCAS_baseClass from CfgCommunicationMenu;
 //import KISKA_arsenalSupplyDrop_baseClass from CfgCommunicationMenu;
+import KISKA_supplyDrop_aircraft_baseClass from CfgCommunicationMenu;
 
 //#include "\KISKA_Functions\Supports\Support Framework\Headers\Support Type IDs.hpp";
 //#include "\KISKA_Functions\Supports\Support Framework\Headers\Support Icons.hpp";
@@ -48,3 +49,25 @@ class KISKA_basicSupport_baseClass
     managerCondition = "";
 };
 */
+
+class ONL_supplyDrop : KISKA_supplyDrop_aircraft_baseClass
+{
+    text = "Crate Supply Drop";
+    tooltip = "Drop off of a fuel, repair, and vehicle ammo crates. These all come with arsenals.";
+    EXPRESSION_CALL_MASTER(ONL_supplyDrop)
+
+    addArsenals = 1;
+    deleteCargo = 1;
+    crateList[] = {
+        "B_Slingload_01_Fuel_F",
+        "B_Slingload_01_Repair_F",
+        "B_Slingload_01_Ammo_F"
+    };
+
+    flyinHeights[] = {
+        500
+    };
+    vehicleTypes[] = {
+        "B_T_VTOL_01_infantry_F"
+    };
+};

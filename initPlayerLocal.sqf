@@ -27,8 +27,8 @@ _player setCustomAimCoef 0.15;
 
 
 // adjust player view distance for the airfield as it is very intensive
-setViewDistance 750;
-setObjectViewDistance 500;
+setViewDistance 500;
+setObjectViewDistance 300;
 
 // adjust to longer ranges once out of sight of the airfield
 [
@@ -187,5 +187,3 @@ waitUntil {
 	];
 
 };
-
-[_player] call ONL_fnc_addSupplyDropSupports;

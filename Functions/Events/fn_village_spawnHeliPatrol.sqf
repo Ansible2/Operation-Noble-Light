@@ -26,6 +26,10 @@ if (!isServer) exitWith {
     nil
 };
 
+if (!canSuspend) then {
+    [] spawn ONL_fnc_village_spawnHeliPatrol;
+};
+
 
 private _helicopter = createVehicle [ONL_spetsnaz_helicopter,getPosATL ONL_spetsnazHeliSpawn_logic,[],0,"FLY"];
 _helicopter setDir 307;
@@ -37,8 +41,10 @@ for "_i" from 1 to 2 do {
 
     if (_i isEqualTo 1) then {
         _unit moveInDriver _helicopter;
+
     } else {
-        _unit moveInTurret [_helicopter,[0]];
+        _unit moveInTurret [_helicopter,[0]]; // copilot
+
     };
 };
 
@@ -50,10 +56,15 @@ private _group = [8,ONL_spetsnazRegular_unitTypes,RESISTANCE] call KISKA_fnc_spa
 
 [_group,ONL_gazLogic_2,100,4] call CBA_fnc_taskPatrol;
 ((waypoints _group) select 0) setWaypointPosition [ONL_gazLogic_2,0];
-[_pilotsGroup,ONL_spetsnazHeliSpawn_logic,0,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addwaypoint;
+//[_pilotsGroup,ONL_spetsnazHeliSpawn_logic,0,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addwaypoint;
 
-// use kISKA_fnc_land
-[_pilotsGroup,ONL_spetsnazHeliLand_logic,0,"TR UNLOAD","SAFE","BLUE","NORMAL"] call CBA_fnc_addwaypoint;
+[_helicopter,ONL_spetsnazHeliLand_logic] call KISKA_fnc_heliLand;
+//[_pilotsGroup,ONL_spetsnazHeliLand_logic,0,"TR UNLOAD","SAFE","BLUE","NORMAL"] call CBA_fnc_addwaypoint;
+
+waitUntil {
+    sleep 1;
+    count (crew _helicopter) isEqualTo 2 // wait for pilots to be the only one left
+};
 
 [
     _pilotsGroup,

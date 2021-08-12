@@ -239,7 +239,7 @@ _specialSaveData params [
 	"_baseHeliAlive",
 	"_chargesAlive",
 	"_deadVehicleIndexes",
-	"_supplyDropsUsed",
+	//"_supplyDropsUsed",
 	"_skippedLoopsAndEvents"
 ];
 
@@ -323,13 +323,14 @@ if !(_deadVehicleIndexes isEqualTo []) then {
 };
 
 // used supply drops
+/*
 {
 	if (_x) then {
 		private _globalString = ["ONL_supplyDrop",str (_forEachIndex + 1),"Used"] joinString "";
 		missionNamespace setVariable [_globalString,true,true];
 	};
 } forEach _supplyDropsUsed;
-
+*/
 
 // skip loop and event creation
 _skippedLoopsAndEvents apply {

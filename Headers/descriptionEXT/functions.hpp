@@ -11,11 +11,7 @@ class ONL
 		{};
 		class addPlayerActions
 		{};
-		class addSupplyDropSupports
-		{};
 		class removeDefusalAction
-		{};
-		class removeSupplyDropSupport
 		{};
 		class resetPlane
 		{};
@@ -49,8 +45,6 @@ class ONL
 		{};
 		class shutOffLights
 		{};
-		class supplyDrop
-		{};
 		class startingBaseAudio
 		{};
 		class testingAreaDoors
@@ -67,11 +61,22 @@ class ONL
 		class blacksite_collectedIntel
 		{};
 
+		class cave_caveIn
+		{};
 		class cave_collectedIntel
+		{};
+		class cave_defusedCharge
 		{};
 		class cave_entered
 		{};
 		class cave_genShutOff
+		{};
+
+		class extraction_init
+		{};
+		class extraction_spawnGroup
+		{};
+		class extraction_spawnVehicle
 		{};
 
 		class village_collectedIntel

@@ -1,5 +1,5 @@
 //[ONL_extractHeliPilots_group,getPosASL ONL_extractionHelipad,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
-sleep 1;
+//sleep 1;
 
 [ONL_extractHeli,ONL_extractionHelipad,"GET IN",false] call KISKA_fnc_heliLand;
 [ONL_extractHeli,5,4,650] spawn KISKA_fnc_engageHeliTurretsLoop;

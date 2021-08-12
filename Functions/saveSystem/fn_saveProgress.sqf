@@ -230,12 +230,13 @@ if (isNull ONL_charge_1 AND {isNull ONL_charge_2} AND {isNull ONL_charge_3}) the
 	_chargesAlive = true;
 };
 
+/*
 // supply Drop Checks
 private _supplyDropsUsed = [
 	missionNamespace getVariable ["ONL_supplyDrop1Used",false],
 	missionNamespace getVariable ["ONL_supplyDrop2Used",false]
 ];
-
+*/
 
 // add to master
 private _specialSaveData = [
@@ -245,7 +246,7 @@ private _specialSaveData = [
 	_baseHeliAlive,
 	_chargesAlive,
 	ONL_deadVehicleIndexes,
-	_supplyDropsUsed,
+	//_supplyDropsUsed,
 	ONL_skipLoopsAndEvents
 ];
 _ONLSaveData pushBack _specialSaveData;

@@ -1,3 +1,4 @@
+#include "..\..\Headers\Common Defines.hpp"
 /* ----------------------------------------------------------------------------
 Function: ONL_fnc_waitToDeletePlane
 
@@ -27,7 +28,7 @@ if !(isServer) exitWith {};
 [
     5,
     {
-   
+
         [
             {
                 (crew ONL_cargoPlane) apply {
@@ -42,9 +43,9 @@ if !(isServer) exitWith {};
             },
             [],
             10
-        ] call CBA_fnc_waitAndExecute;				
+        ] call CBA_fnc_waitAndExecute;
 
-        [missionNamespace,ONL_cargoPlaneRespawn select 1] call BIS_fnc_removeRespawnPosition;             
+        [missionNamespace,ONL_cargoPlaneRespawn select 1] call BIS_fnc_removeRespawnPosition;
     },
-    {((call CBA_fnc_players) findIf {(_x distance ONL_cargoPlane) < 500}) isEqualTo -1}
+    {CONDITION_NO_PLAYER_WITHIN_RADIUS_3D(ONL_cargoPlane,500)}
 ] call KISKA_fnc_waitUntil;
