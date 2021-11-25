@@ -26,10 +26,9 @@ Author:
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {false};
 
+
 /* ----------------------------------------------------------------------------
-
 	BASE
-
 ---------------------------------------------------------------------------- */
 // destroy coms
 if !(missionNamespace getVariable ["ONL_comsAlive_skip",false]) then {
@@ -46,9 +45,7 @@ if !(missionNamespace getVariable ["ONL_comsAlive_skip",false]) then {
 
 
 /* ----------------------------------------------------------------------------
-
 	BLACK SITE
-
 ---------------------------------------------------------------------------- */
 // Black Site Server Destruction
 if !(missionNamespace getVariable ["ONL_blackSiteServersDestroyed_skip",false]) then {
@@ -78,9 +75,7 @@ if !(missionNamespace getVariable ["ONL_blackSiteServersDestroyed_skip",false]) 
 
 
 /* ----------------------------------------------------------------------------
-
 	CAVE
-
 ---------------------------------------------------------------------------- */
 // Destroy cave generators EHs and sound
 ONL_caveGenerators apply {
@@ -165,9 +160,7 @@ if !(missionNamespace getVariable ["ONL_scientistDead_skip",false]) then {
 
 
 /* ----------------------------------------------------------------------------
-
 	MISC
-
 ---------------------------------------------------------------------------- */
 // saving dead pre placed vics
 ONL_prePlacedVehicles apply {

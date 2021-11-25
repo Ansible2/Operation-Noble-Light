@@ -22,10 +22,13 @@ ONL_CCMLoaded = ["CCM_SB"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
 [_player] call ONL_fnc_addPlayerKilledEHs;
-// filthy casuals reducing weapon sway
 _player setCustomAimCoef 0.15;
 
 
+
+/* ----------------------------------------------------------------------------
+	Handle View Distance
+---------------------------------------------------------------------------- */
 // adjust player view distance for the airfield as it is very intensive
 setViewDistance 500;
 setObjectViewDistance 300;
@@ -41,9 +44,15 @@ setObjectViewDistance 300;
 ] spawn KISKA_fnc_waitUntil;
 
 
+/* ----------------------------------------------------------------------------
+	Add mission actions to objects
+---------------------------------------------------------------------------- */
 call ONL_fnc_addActionsMaster;
 
-//// diary records
+
+/* ----------------------------------------------------------------------------
+	Diary Records
+---------------------------------------------------------------------------- */
 // Situation
 _player createDiaryRecord ["Diary",["Situation","In a bid to garner more influence among Europe and its talks with the Russian Federation, CSAT's soft expansion has brought it to Scandinavia.
 <br></br>
@@ -129,7 +138,11 @@ _player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
 	"<execute expression= '[true,ONL_zeusLogic] call KISKA_fnc_reassignCurator;'>If You've Lost Zeus, Click Here</execute>"
 ]];
 
-// wait to add save game button (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
+
+
+/* ----------------------------------------------------------------------------
+	wait to add save game button (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
+---------------------------------------------------------------------------- */
 [
 	5,
 	{
@@ -148,7 +161,9 @@ _player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
 ] call KISKA_fnc_waitUntil;
 
 
-
+/* ----------------------------------------------------------------------------
+	Add actions for loading vehicles
+---------------------------------------------------------------------------- */
 waitUntil {
 	if !(isNil "ONL_startingVehicles") exitWith {
 		[_player] call ONL_fnc_addCargoActions;
@@ -160,6 +175,10 @@ waitUntil {
 };
 
 
+
+/* ----------------------------------------------------------------------------
+	Show Readme
+---------------------------------------------------------------------------- */
 [] spawn {
 
 	sleep 10;
