@@ -44,6 +44,15 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extrac
 [ONL_blueGroup] call KISKA_fnc_allowGroupRally;
 ["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
 ["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_bombs"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_bombs"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
 
 
 // to keep gear from being lost when transfering AI to headless, they need to sleep for a bit

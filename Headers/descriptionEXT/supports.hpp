@@ -5,6 +5,9 @@
 //import KISKA_helicopterCAS_baseClass from CfgCommunicationMenu;
 //import KISKA_arsenalSupplyDrop_baseClass from CfgCommunicationMenu;
 import KISKA_supplyDrop_aircraft_baseClass from CfgCommunicationMenu;
+import KISKA_CAS_gunsRockets_templateClass from CfgCommunicationMenu;
+import KISKA_ARTY_155_templateClass from CfgCommunicationMenu;
+import KISKA_CAS_bombs_templateClass from CfgCommunicationMenu;
 
 //#include "\KISKA_Functions\Supports\Support Framework\Headers\Support Type IDs.hpp";
 //#include "\KISKA_Functions\Supports\Support Framework\Headers\Support Icons.hpp";
@@ -70,4 +73,34 @@ class ONL_supplyDrop : KISKA_supplyDrop_aircraft_baseClass
     vehicleTypes[] = {
         "B_T_VTOL_01_infantry_F"
     };
+};
+
+class ONL_CAS_gunsRockets : KISKA_CAS_gunsRockets_templateClass
+{
+    text = "CAS - Gun & Rockets";
+
+    vehicleTypes[] = {
+        "B_Plane_CAS_01_dynamicLoadout_F"
+    };
+    EXPRESSION_CALL_MASTER(ONL_CAS_gunsRockets)
+
+};
+
+class ONL_CAS_bombs : KISKA_CAS_bombs_templateClass
+{
+    text = "CAS - Bombs";
+
+    vehicleTypes[] = {
+        "B_Plane_CAS_01_dynamicLoadout_F"
+    };
+    EXPRESSION_CALL_MASTER(ONL_CAS_bombs)
+
+};
+
+class ONL_155_arty : KISKA_ARTY_155_templateClass
+{
+    text = "155mm Artillery - 6 Rounds";
+    roundCount = 6;
+
+    EXPRESSION_CALL_MASTER(ONL_155_arty)
 };
