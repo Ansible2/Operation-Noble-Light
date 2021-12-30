@@ -29,6 +29,9 @@ if (!isServer) exitWith {};
 						ONL_cargoPlaneRespawn = [missionNamespace,(getPosATLVisual ONL_cargoPlane) vectorAdd [0,-2,0.5],"Cargo Plane Respawn"] call BIS_fnc_addRespawnPosition;
 
 						call ONL_fnc_waitToDeletePlane;
+
+						["ONL_mrapHMGSupplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
+						["ONL_mrapGMGSupplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
 					},
 					[],
 					4

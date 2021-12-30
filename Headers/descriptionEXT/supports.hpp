@@ -71,8 +71,40 @@ class ONL_supplyDrop : KISKA_supplyDrop_aircraft_baseClass
         500
     };
     vehicleTypes[] = {
-        "B_T_VTOL_01_infantry_F"
+        ""
     };
+};
+
+class ONL_mrapHMGSupplyDrop : KISKA_supplyDrop_aircraft_baseClass
+{
+    text = "Drop HMG MRAP";
+
+    vehicleTypes[] = {
+        "USAF_C17"
+    };
+
+    addArsenals = 0;
+    crateList[] = {
+        "B_MRAP_01_hmg_F"
+    };
+
+    EXPRESSION_CALL_MASTER(ONL_mrapHMGSupplyDrop)
+};
+
+class ONL_mrapGMGSupplyDrop : KISKA_supplyDrop_aircraft_baseClass
+{
+    text = "Drop GMG MRAP";
+
+    vehicleTypes[] = {
+        "USAF_C17"
+    };
+
+    addArsenals = 0;
+    crateList[] = {
+        "B_MRAP_01_gmg_F"
+    };
+
+    EXPRESSION_CALL_MASTER(ONL_mrapGMGSupplyDrop)
 };
 
 class ONL_CAS_gunsRockets : KISKA_CAS_gunsRockets_templateClass
