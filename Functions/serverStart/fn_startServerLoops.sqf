@@ -197,12 +197,3 @@ if !(["ONL_CollectRockSample_task"] call BIS_fnc_taskCompleted) then {
 		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_blackSite_base,800)}
 	] call KISKA_fnc_waitUntil;
 };
-
-// start random music system
-waitUntil {
-	if (time > 0) exitWith {
-		[-1,ONL_randomMusicTracks,[120,180,240]] spawn KISKA_fnc_randomMusic;
-		true
-	};
-	false
-};

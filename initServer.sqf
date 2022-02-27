@@ -12,6 +12,7 @@ call ONL_fnc_startingBaseAudio;
 call ONL_fnc_spawnUnitsMaster;
 call ONL_fnc_startServerLoops;
 
+[-1,ONL_randomMusicTracks,[120,180,240]] spawn KISKA_fnc_randomMusic;
 
 // create initial Task
 ["ONL_secureApollo_task"] call KISKA_fnc_createTaskFromConfig;
@@ -42,6 +43,10 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extrac
 
 [ONL_redGroup] call KISKA_fnc_allowGroupRally;
 [ONL_blueGroup] call KISKA_fnc_allowGroupRally;
+["medic"] call KISKA_fnc_traitManager_addToPool_global;
+["medic"] call KISKA_fnc_traitManager_addToPool_global;
+["engineer"] call KISKA_fnc_traitManager_addToPool_global;
+["engineer"] call KISKA_fnc_traitManager_addToPool_global;
 ["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
 ["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
 ["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
