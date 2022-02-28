@@ -1,3 +1,21 @@
+[ONL_redGroup] call KISKA_fnc_allowGroupRally;
+[ONL_blueGroup] call KISKA_fnc_allowGroupRally;
+["medic"] call KISKA_fnc_traitManager_addToPool_global;
+["medic"] call KISKA_fnc_traitManager_addToPool_global;
+["engineer"] call KISKA_fnc_traitManager_addToPool_global;
+["engineer"] call KISKA_fnc_traitManager_addToPool_global;
+["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_bombs"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_CAS_bombs"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
+["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
+
 call KISKA_fnc_addCargoEvents
 call ONL_fnc_prepareGlobals;
 
@@ -39,25 +57,6 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extrac
 [ONL_caveGroup_1,ONL_caveGroup_2,ONL_caveGroup_3,ONL_caveGroup_4,ONL_caveGroup_5,ONL_redGroup,ONL_blueGroup,ONL_cargoPlane,ONL_cargoPlaneGroup] apply {
 	_x setVariable ["ONL_saveExcluded",true];
 };
-
-
-[ONL_redGroup] call KISKA_fnc_allowGroupRally;
-[ONL_blueGroup] call KISKA_fnc_allowGroupRally;
-["medic"] call KISKA_fnc_traitManager_addToPool_global;
-["medic"] call KISKA_fnc_traitManager_addToPool_global;
-["engineer"] call KISKA_fnc_traitManager_addToPool_global;
-["engineer"] call KISKA_fnc_traitManager_addToPool_global;
-["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_supplyDrop"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_CAS_gunsRockets"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_CAS_bombs"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_CAS_bombs"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
-["ONL_155_arty"] call KISKA_fnc_supportManager_addToPool_global;
 
 
 // to keep gear from being lost when transfering AI to headless, they need to sleep for a bit
