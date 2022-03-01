@@ -59,7 +59,6 @@ KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extrac
 };
 
 
-
 // to keep gear from being lost when transfering AI to headless, they need to sleep for a bit
 uiSleep 30;
 [] spawn KISKA_fnc_balanceHeadless;

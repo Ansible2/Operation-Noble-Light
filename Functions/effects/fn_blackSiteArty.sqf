@@ -22,6 +22,8 @@ Examples:
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
+#define FIRE_AT_ROCK(unitToFire) [unitToFire,ONL_glowingRock,8,150,360,12] spawn KISKA_fnc_arty
+
 if (!canSuspend) exitWith {};
 
 if (!isServer) exitWith {};
@@ -34,7 +36,7 @@ if (alive ONL_arty_1) then {
 		ONL_arty_1 enableSimulationGlobal true;
 	};
 
-	[ONL_arty_1,ONL_glowingRock,4,200,300,[9,10,11]] spawn KISKA_fnc_arty;
+	FIRE_AT_ROCK(ONL_arty_1);
 };
 
 if (alive ONL_arty_2) then {
@@ -45,7 +47,7 @@ if (alive ONL_arty_2) then {
 		ONL_arty_2 enableSimulationGlobal true;
 	};
 
-	[ONL_arty_2,ONL_glowingRock,4,200,300,[9,10,11]] spawn KISKA_fnc_arty;
+	FIRE_AT_ROCK(ONL_arty_2);
 };
 
 sleep 100;

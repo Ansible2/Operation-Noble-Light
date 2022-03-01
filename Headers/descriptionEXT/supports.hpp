@@ -71,7 +71,7 @@ class ONL_supplyDrop : KISKA_supplyDrop_aircraft_baseClass
         500
     };
     vehicleTypes[] = {
-        ""
+        "USAF_C17"
     };
 };
 
