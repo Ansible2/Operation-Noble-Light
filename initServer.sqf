@@ -1,3 +1,6 @@
+private _useCivilians = [false,true] select (["UseCivilians"] call BIS_fnc_getParamValue);
+missionNamespace setVariable ["ONL_useCivilians",_useCivilians];
+
 [ONL_redGroup] call KISKA_fnc_allowGroupRally;
 [ONL_blueGroup] call KISKA_fnc_allowGroupRally;
 ["medic"] call KISKA_fnc_traitManager_addToPool_global;

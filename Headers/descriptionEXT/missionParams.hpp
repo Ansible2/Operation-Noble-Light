@@ -19,3 +19,10 @@ class LoadSave
 	values[] = {0,1};
 	default = 0;
 };
+class UseCivilians
+{
+	title = "";
+	texts[] = {"OFF","ON"};
+	values[] = {0,1};
+	default = 0;
+};
