@@ -71,7 +71,7 @@ class ONL_supplyDrop : KISKA_supplyDrop_aircraft_baseClass
         500
     };
     vehicleTypes[] = {
-        "USAF_C17"
+        "USAF_C130J_Cargo"
     };
 };
 
@@ -80,7 +80,7 @@ class ONL_mrapHMGSupplyDrop : KISKA_supplyDrop_aircraft_baseClass
     text = "Drop HMG MRAP";
 
     vehicleTypes[] = {
-        "USAF_C17"
+        "USAF_C130J_Cargo"
     };
 
     addArsenals = 0;
@@ -96,7 +96,7 @@ class ONL_mrapGMGSupplyDrop : KISKA_supplyDrop_aircraft_baseClass
     text = "Drop GMG MRAP";
 
     vehicleTypes[] = {
-        "USAF_C17"
+        "USAF_C130J_Cargo"
     };
 
     addArsenals = 0;
