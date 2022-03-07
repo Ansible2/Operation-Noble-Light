@@ -19,3 +19,10 @@ class LoadSave
 	values[] = {0,1};
 	default = 0;
 };
+class UseCivilians
+{
+	title = "Civilian Presence (For Decent PCs)";
+	texts[] = {"OFF","ON"};
+	values[] = {0,1};
+	default = 0;
+};

@@ -23,7 +23,7 @@ Examples:
 Author:
 	Ansible2
 ---------------------------------------------------------------------------- */
-if (!hasInterface) exitWIth {};
+if (!hasInterface) exitWith {};
 
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Some Time Later...</t>", "BLACK OUT", 3, true, true];
 
