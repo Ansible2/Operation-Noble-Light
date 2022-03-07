@@ -28,7 +28,7 @@ ONL_BaseFile addAction [
 	{
 		params ["_file"];
 
-		[_file] remoteExec ["ONL_fnc_readBaseFile",2];
+		[_file] remoteExec ["ONL_fnc_base_readFile",2];
 		playSound "FD_Timer_F";
 		["You flip through the pages and find transport routes to a living area with mentions of engineers. Could be a lodging location. Seems to be the northern area Snikesnoken Hyttetun"] call KISKA_fnc_hintDiary;
 
