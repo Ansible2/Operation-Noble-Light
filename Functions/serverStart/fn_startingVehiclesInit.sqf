@@ -71,13 +71,13 @@ if (ONL_CUPVehiclesLoaded) then {
 	};
 };
 
-ONL_startingVehicles apply {
-	_x allowDamage false;
+{
+	[_x,false] remoteExec ["allowDamage",0,"ONL_startingVehicleDamage_" + (str _forEachIndex)];
 
 	clearWeaponCargoGlobal _x;
 	clearItemCargoGlobal _x;
 	clearBackpackCargoGlobal _x;
 	clearMagazineCargoGlobal _x;
-};
+} forEach ONL_startingVehicles;
 
 missionNamespace setVariable ["ONL_startingVehicles",ONL_startingVehicles,true];
