@@ -56,8 +56,8 @@ private _prferredVehicles = ONL_preferredVehicleMod == "CUP";
 [ONL_startingVehicle_logic_3,["rhsusf_m998_w_s_2dr_halftop","CUP_B_M1167_WDL_USA"] select _prferredVehicles] call _fn_create;
 [ONL_startingVehicle_logic_4,["rhsusf_stryker_m1126_mk19_wd","CUP_B_M1126_ICV_MK19_Woodland"] select _prferredVehicles] call _fn_create;
 [ONL_startingVehicle_logic_5,["rhsusf_stryker_m1126_m2_wd","CUP_B_M1126_ICV_M2_Woodland"] select _prferredVehicles] call _fn_create;
-[ONL_startingVehicle_logic_8,["RHS_M2A3_BUSKIII_wd","CUP_B_M2A3Bradley_USA_W"] select _prferredVehicles] call _fn_create;
-[ONL_startingVehicle_logic_9,["rhsusf_m1a2sep1tuskiwd_usarmy","CUP_B_M1A2_TUSK_MG_US_Army"] select _prferredVehicles] call _fn_create;
+[ONL_startingVehicle_logic_8,["B_APC_Wheeled_01_cannon_F","CUP_B_M2A3Bradley_USA_W"] select _prferredVehicles] call _fn_create;
+[ONL_startingVehicle_logic_9,["B_MBT_01_cannon_F","CUP_B_M1A2_TUSK_MG_US_Army"] select _prferredVehicles] call _fn_create;
 
 
 [ONL_startingVehicle_logic_6,["B_AFV_Wheeled_01_cannon_F","CUP_B_M1128_MGS_Woodland"] select ONL_CUPVehiclesLoaded] call _fn_create; // RHS support will be added if they have like vehicles in the future
@@ -71,13 +71,13 @@ if (ONL_CUPVehiclesLoaded) then {
 	};
 };
 
-ONL_startingVehicles apply {
-	_x allowDamage false;
+{
+	[_x,false] remoteExec ["allowDamage",0,"ONL_startingVehicleDamage_" + (str _forEachIndex)];
 
 	clearWeaponCargoGlobal _x;
 	clearItemCargoGlobal _x;
 	clearBackpackCargoGlobal _x;
 	clearMagazineCargoGlobal _x;
-};
+} forEach ONL_startingVehicles;
 
 missionNamespace setVariable ["ONL_startingVehicles",ONL_startingVehicles,true];

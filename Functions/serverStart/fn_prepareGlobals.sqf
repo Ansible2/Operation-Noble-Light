@@ -47,9 +47,16 @@ ONL_civHeadgear = GET_CIV_ARRAY("headgear");
 /* ----------------------------------------------------------------------------
 	spawn positions
 ---------------------------------------------------------------------------- */
-private _configArrays = configProperties [missionConfigFile >> "Mission_SpawnPositions","true",false];
-_configArrays apply {
-	missionNamespace setVariable [configName _x,getArray(_x)];
+private _configProps = configProperties [missionConfigFile >> "Mission_SpawnPositions","true",false];
+_configProps apply {
+	private _data = [_x] call BIS_fnc_getCfgData;
+	private _configName = configName _x;
+	if (_data isEqualType "") then {
+		_data = [_data] call KISKA_fnc_getMissionLayerObjects;
+	};
+
+	missionNamespace setVariable [_configName,_data];
+
 };
 
 

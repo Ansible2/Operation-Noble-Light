@@ -16,6 +16,11 @@ if (!isServer) exitWith {};
 		[
 			1,
 			{
+				// after loading of vehicles allowdamage again
+				{
+					[_x,false] remoteExec ["allowDamage",0,"ONL_startingVehicleDamage_" + (str _forEachIndex)];
+				} forEach ONL_startingVehicles;
+
 				remoteExecCall ["ONL_fnc_transitionToJump",ONL_allClientsTargetID];
 
 				[

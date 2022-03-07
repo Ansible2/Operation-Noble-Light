@@ -1,3 +1,6 @@
+private _useCivilians = [false,true] select (["UseCivilians"] call BIS_fnc_getParamValue);
+missionNamespace setVariable ["ONL_useCivilians",_useCivilians];
+
 [ONL_redGroup] call KISKA_fnc_allowGroupRally;
 [ONL_blueGroup] call KISKA_fnc_allowGroupRally;
 ["medic"] call KISKA_fnc_traitManager_addToPool_global;
@@ -49,6 +52,7 @@ ONL_airfieldRespawn = [missionNamespace,getPosATL ONL_airfieldRespawn_Logic,"Air
 // for plane at start
 ONL_cargoPlane flyInHeight 500;
 
+removeFromRemainsCollector [ONL_apollo];
 
 // distribute AI amongst headless client(s) save for these groups
 KISKA_hcExcluded = [ONL_cargoPlaneGroup,ONL_extractHeliPilots_group,/*ONL_extractHeliTurrets_group,*/ONL_redGroup,ONL_blueGroup];

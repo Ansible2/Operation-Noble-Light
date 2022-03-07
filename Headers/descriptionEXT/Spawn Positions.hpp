@@ -1,3 +1,5 @@
+
+
 class Mission_SpawnPositions {
 
     ONL_blackSite_exteriorPositions[] = {
@@ -435,9 +437,37 @@ class Mission_SpawnPositions {
         {4131.49,10440.3,0.138367}
     };
 
+    /* ONL_spawnPositionLayers[] = {
+        "Cave Storage Spawns",
+        "Cave Center Spawns 1",
+        "Cave Center Spawns 2",
+        "Cave Center Spawns 3",
+        "Cave Center Spawns 4",
+        "Cave Right Path Spawns 2",
+        "Cave Right Path Spawns 1",
+        "Cave Left Path Spawns 2",
+        "Cave Left Path Spawns 1",
+        "Cave Office Spawns",
+        "Cave Living Spawns",
+        "Cave Entry Spawns",
+        "Cave Garage Spawns"
+    }; */
 
-
+    ONL_cave_entryWayPositions = "Cave Entry Spawns";
+    ONL_cave_garagePositions = "Cave Garage Spawns";
+    ONL_cave_leftPath_positions_1 = "Cave Left Path Spawns 1";
+    ONL_cave_leftPath_positions_2 = "Cave Left Path Spawns 2";
+    ONL_cave_livingArea_positions = "Cave Living Spawns";
+    ONL_cave_officeArea_positions = "Cave Office Spawns";
+    ONL_cave_rightPath_positions_1 = "Cave Right Path Spawns 1";
+    ONL_cave_rightPath_positions_2 = "Cave Right Path Spawns 2";
+    ONL_cave_storageArea_positions = "Cave Storage Spawns";
+    ONL_cave_center_positions_1 = "Cave Center Spawns 1";
+    ONL_cave_center_positions_2 = "Cave Center Spawns 2";
+    ONL_cave_center_positions_3 = "Cave Center Spawns 3";
+    ONL_cave_center_positions_4 = "Cave Center Spawns 4";
     // Cave
+    /*
     ONL_cave_entryWayPositions[] = {
         {1121.65,4174.25,1.52588e-005},
         {1109.97,4205.9,1.52588e-005},
@@ -623,5 +653,5 @@ class Mission_SpawnPositions {
         {798.987,4557.54,0.00228882},
         {794.879,4565.27,0.00228882},
         {804.849,4566.79,0.00228882}
-    };
+    }; */
 };

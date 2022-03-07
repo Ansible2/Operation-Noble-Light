@@ -275,18 +275,22 @@ call {
 	[4,2,ONL_CSATViper_unitTypes,ONL_cave_entryWayPositions,false] call KISKA_fnc_spawn;
 	uiSleep 1;
 
+	// storage
+	[4,2,ONL_CSATViper_unitTypes,ONL_cave_entryWayPositions,false] call KISKA_fnc_spawn;
+	uiSleep 1;
+
 	// garage
-	[3,3,ONL_CSATViper_unitTypes,ONL_cave_garagePositions,false] call KISKA_fnc_spawn;
+	[4,3,ONL_CSATViper_unitTypes,ONL_cave_garagePositions,false] call KISKA_fnc_spawn;
 
 	uiSleep 1;
 
 	// left Path 1
-	[3,1,ONL_CSATViper_unitTypes,ONL_cave_leftPath_positions_1,false] call KISKA_fnc_spawn;
+	[5,1,ONL_CSATViper_unitTypes,ONL_cave_leftPath_positions_1,false] call KISKA_fnc_spawn;
 
 	uiSleep 1;
 
 	// left Path 2
-	[3,1,ONL_CSATViper_unitTypes,ONL_cave_leftPath_positions_2,false] call KISKA_fnc_spawn;
+	[5,1,ONL_CSATViper_unitTypes,ONL_cave_leftPath_positions_2,false] call KISKA_fnc_spawn;
 
 	uiSleep 1;
 
@@ -301,12 +305,12 @@ call {
 	uiSleep 1;
 
 	// right Path 1
-	[3,1,ONL_CSATViper_unitTypes,ONL_cave_rightPath_positions_1,false] call KISKA_fnc_spawn;
+	[5,1,ONL_CSATViper_unitTypes,ONL_cave_rightPath_positions_1,false] call KISKA_fnc_spawn;
 
 	uiSleep 1;
 
 	// right Path 2
-	[3,1,ONL_CSATViper_unitTypes,ONL_cave_rightPath_positions_2,false] call KISKA_fnc_spawn;
+	[5,1,ONL_CSATViper_unitTypes,ONL_cave_rightPath_positions_2,false] call KISKA_fnc_spawn;
 
 	uiSleep 1;
 
