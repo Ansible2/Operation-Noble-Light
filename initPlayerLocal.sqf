@@ -181,28 +181,35 @@ waitUntil {
 ---------------------------------------------------------------------------- */
 [] spawn {
 
-	sleep 10;
+	waitUntil {
+		sleep 1;
+		if (isNull (missionNamespace getVariable ["ONL_cargoPlane",objNull])) exitWith {true};
+		player distance2D ONL_cargoPlane <= 50;
+	};
 
-	"READ ME" hintC [
-		"The following explains how to load vehicles:",
+	if (!isNull (missionNamespace getVariable ["ONL_cargoPlane",objNull])) then {
+		"VEHICLE LOADING" hintC [
+			"The following explains how to load vehicles:",
 
-		parseText "Simply drive the corresponding vehicle (carefully) into the aircraft.",
+			parseText "Simply drive the corresponding vehicle (carefully) into the aircraft.",
 
-		parseText "Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.",
+			parseText "Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.",
 
-		parseText "You can unmount the vehicle using its <t color='#039e00'>--Unstrap Vehicle--</t> action.",
+			parseText "You can unmount the vehicle using its <t color='#039e00'>--Unstrap Vehicle--</t> action.",
 
-		parseText "<t color='#de0000'>DO NOT use any other methods of loading the vehicles.</t>",
+			parseText "<t color='#de0000'>If you use another method of loading vehicles, make sure you can eject them while in the air.</t>",
 
-		"If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.",
+			"If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.",
 
-		"The aircraft will take off once all PLAYERS are in seats.",
+			"The aircraft will take off once all PLAYERS are in seats within the plane.",
 
-		parseText "Once over the DZ, use the <t color='#039e00'>--Get Out Interior--</t> action to leave your seat (you'll skydive for a bit but settle).",
+			parseText "Once over the DZ, use the <t color='#039e00'>--Get Out Interior--</t> action to leave your seat (you'll skydive for a bit but settle).",
 
-		parseText "Lower the ramp and then go to the vehicles. Use their <t color='#de0000'>--Release Vehicle--</t> action to eject them from the aircraft.",
+			parseText "Lower the ramp and then go to the vehicles. Use their <t color='#de0000'>--Release Vehicle--</t> action to eject them from the aircraft.",
 
-		"Then just follow them out the door."
-	];
+			"Then just follow them out the door."
+		];
+	};
+
 
 };
