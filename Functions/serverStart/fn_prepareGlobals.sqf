@@ -267,6 +267,7 @@ if (_musicType != "None") then {
 	if (_musicType == "CCM") then {
 		ONL_CCMLoaded = true;
 		ONL_randomMusicTracks = getArray(missionConfigFile >> "Music_Tracks" >> "ONL_randomMusicTracksCCM");
+		ONL_caveMusicTracks = getArray(missionConfigFile >> "Music_Tracks" >> "ONL_caveMusicTracks");
 		ONL_KISKAMusicLoaded = false;
 
 	} else {
