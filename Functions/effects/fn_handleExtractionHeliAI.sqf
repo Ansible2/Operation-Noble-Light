@@ -1,57 +1,33 @@
-//[ONL_extractHeliPilots_group,getPosASL ONL_extractionHelipad,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
-//sleep 1;
+[
+	ONL_extractHeli,
+	ONL_extractionHelipad,
+	"GET IN",
+	false,
+	{
+		waituntil {
+			sleep 1;
+			private _alivePlayers = count (call KISKA_fnc_alivePlayers);
+			((_alivePlayers > 0) AND {count (crew ONL_extractHeli) isEqualTo (4 + _alivePlayers)})
+		};
 
-[ONL_extractHeli,ONL_extractionHelipad,"GET IN",false] call KISKA_fnc_heliLand;
+		[
+			_this select 0,
+			ONL_extractHeliMove_Logic,
+			"LAND",
+			false
+		] call KISKA_fnc_heliLand;
+
+		[ONL_extractHeliPilots_group,ONL_extractHeliMove_Logic,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
+	}
+] call KISKA_fnc_heliLand;
+
 [ONL_extractHeli,5,4,650] spawn KISKA_fnc_engageHeliTurretsLoop;
-
-
-
-/*
-[ONL_extractHeli,ONL_extractionHelipad] call KISKA_fnc_heliLand;
-
-//[ONL_extractHeliPilots_group, position ONL_extractionHelipad, ONL_extractionHelipad] spawn BIS_fnc_wpLand;
-
-ONL_extractHeliPilots_group setBehaviour "SAFE";
-ONL_extractHeliPilots_group setCombatMode "BLUE";
-(units ONL_extractHeliPilots_group) apply {
-	_x disableAI "TARGET";
-	_x disableAI "AUTOTARGET";
-	_x disableAI "AUTOCOMBAT";
-};
-
-ONL_extractHeliTurrets_group setBehaviour "AWARE";
-ONL_extractHeliTurrets_group setCombatMode "RED";
-
-private _doorGunners = units ONL_extractHeliTurrets_group;
-_doorGunners apply {
-	_x setSkill 1;
-};
-*/
-
-
-
 
 
 waitUntil {
 	sleep 1;
 	ONL_extractHeli distance2D ONL_extractionHelipad <= 500
 };
-
-/*
-private _vehicleTargets = ONL_extractionHelipad nearEntities [["Car","Tank"],750];
-_vehicleTargets = _vehicleTargets select {(side _x) isEqualTo OPFOR};
-["ONL_fnc_handleExtractionHeliAI",["Vehicles Found:",_vehicleTargets]] call KISKA_fnc_log;
-
-if !(_vehicleTargets isEqualTo []) then {
-	// don't want to shoot too close to extract
-	private _index = _vehicleTargets findIf {_x distance2D ONL_extractionHelipad > 100};
-	if (_index != -1) then {
-		private _target = _vehicleTargets select _index;
-		_target sendSimpleCommand "STOP";
-		[_target,2,random [0,10,20]] spawn KISKA_fnc_CAS;
-	};
-};
-*/
 
 
 private _manTargets = ONL_extractionHelipad nearEntities ["Man",500];
