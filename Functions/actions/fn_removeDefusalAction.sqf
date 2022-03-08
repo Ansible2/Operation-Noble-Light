@@ -27,6 +27,6 @@ params [
     ["_chargeGlobalName","",[""]]
 ];
 
-if (!isNil _chargeGlobalName_chargeGlobalName) then {
+if (!isNil _chargeGlobalName) then {
     player removeAction (missionNamespace getVariable _chargeGlobalName);
 };
