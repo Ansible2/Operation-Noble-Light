@@ -128,6 +128,8 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
+                    sleep 3;
+                    call ONL_fnc_extraction_spawnGroup;
                 };
             },
             [],
@@ -140,6 +142,8 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     call ONL_fnc_extraction_spawnVehicle;
                     sleep 3;
                     call ONL_fnc_extraction_spawnVehicle;
+                    sleep 3;
+                    call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
@@ -164,6 +168,8 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     call ONL_fnc_extraction_spawnVehicle;
                     sleep 3;
                     call ONL_fnc_extraction_spawnVehicle;
+                    sleep 3;
+                    call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
