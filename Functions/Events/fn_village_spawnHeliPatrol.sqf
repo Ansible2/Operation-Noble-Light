@@ -48,18 +48,29 @@ for "_i" from 1 to 2 do {
     };
 };
 
-private _group = [8,ONL_spetsnazRegular_unitTypes,RESISTANCE] call KISKA_fnc_spawnGroup;
+ONL_spetsnaz_heliInfantry_group = [8,ONL_spetsnazRegular_unitTypes,RESISTANCE] call KISKA_fnc_spawnGroup;
 
-(units _group) apply {
+(units ONL_spetsnaz_heliInfantry_group) apply {
     _x moveInCargo _helicopter;
 };
 
-[_group,ONL_gazLogic_2,100,4] call CBA_fnc_taskPatrol;
-((waypoints _group) select 0) setWaypointPosition [ONL_gazLogic_2,0];
-//[_pilotsGroup,ONL_spetsnazHeliSpawn_logic,0,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addwaypoint;
+[ONL_spetsnaz_heliInfantry_group,ONL_gazLogic_2,100,4] call CBA_fnc_taskPatrol;
+((waypoints ONL_spetsnaz_heliInfantry_group) select 0) setWaypointPosition [ONL_gazLogic_2,0];
 
-[_helicopter,ONL_spetsnazHeliLand_logic] call KISKA_fnc_heliLand;
-//[_pilotsGroup,ONL_spetsnazHeliLand_logic,0,"TR UNLOAD","SAFE","BLUE","NORMAL"] call CBA_fnc_addwaypoint;
+[
+    _helicopter,
+    ONL_spetsnazHeliLand_logic,
+    "GET OUT",
+    true,
+    {
+        ONL_spetsnaz_heliInfantry_group enableDynamicSimulation true;
+        ONL_spetsnaz_heliInfantry_group leaveVehicle (_this select 0);
+        (units ONL_spetsnaz_heliInfantry_group) apply {
+            moveOut _x;
+            sleep 0.25;
+        };
+    }
+] call KISKA_fnc_heliLand;
 
 waitUntil {
     sleep 1;
