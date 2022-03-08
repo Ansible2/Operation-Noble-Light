@@ -58,20 +58,6 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                 // create waypoint
                 [] spawn ONL_fnc_handleExtractionHeliAI;
 
-
-
-                // create waypoint when everyone is in
-                [
-                    1,
-                    {
-                        [ONL_extractHeliPilots_group,ONL_extractHeliMove_Logic,-1,"MOVE","SAFE","BLUE","FULL"] call CBA_fnc_addWaypoint;
-                    },
-                    {
-                        private _alivePlayers = count (call KISKA_fnc_alivePlayers);
-                        ((_alivePlayers > 0) AND {count (crew ONL_extractHeli) isEqualTo (4 + _alivePlayers)})
-                    }
-                ] call KISKA_fnc_waitUntil;
-
                 // play music when near completion logic and end misssion when even closer
                 [
                     1,
@@ -128,8 +114,13 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
-                    sleep 3;
-                    call ONL_fnc_extraction_spawnGroup;
+                    
+                    if (count CBA_fnc_players >= 4) then {
+                        sleep 3;
+                        call ONL_fnc_extraction_spawnGroup;
+                        sleep 3;
+                        call ONL_fnc_extraction_spawnGroup;
+                    };
                 };
             },
             [],
@@ -146,10 +137,10 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
-                    sleep 3;
-                    call ONL_fnc_extraction_spawnGroup;
 
-                    if (isDedicated) then {
+
+                    if (count CBA_fnc_players >= 4) then {
+                        sleep 3;
                         call ONL_fnc_extraction_spawnGroup;
                         sleep 3;
                         call ONL_fnc_extraction_spawnGroup;
@@ -172,11 +163,11 @@ ONL_skipLoopsAndEvents pushBack "ONL_extractionReady_skip";
                     call ONL_fnc_extraction_spawnGroup;
                     sleep 3;
                     call ONL_fnc_extraction_spawnGroup;
-                    sleep 3;
-                    call ONL_fnc_extraction_spawnGroup;
 
-                    // add more infantry if on dedicated server
-                    if (isDedicated) then {
+                    if (count CBA_fnc_players >= 4) then {
+                        sleep 3;
+                        call ONL_fnc_extraction_spawnGroup;
+                        sleep 3;
                         call ONL_fnc_extraction_spawnGroup;
                     };
                 };
