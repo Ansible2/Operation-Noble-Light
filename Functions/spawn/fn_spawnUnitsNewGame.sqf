@@ -341,7 +341,7 @@ call {
 
 	// patrol 1
 	private _randomPosition = [ONL_logic_facility,300] call CBA_fnc_randPos;
-	private _patrol1 = [3,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
+	private _patrol1 = [4,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 	[_patrol1,ONL_logic_facility,300,5,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 	_patrol1 setVariable ["ONL_loadCreationCode","
@@ -352,7 +352,7 @@ call {
 
 	// patrol 2
 	private _randomPosition = [ONL_logic_facility,300] call CBA_fnc_randPos;
-	private _patrol2 = [3,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
+	private _patrol2 = [4,ONL_pmc_Variants,opfor,_randomPosition] call KISKA_fnc_spawnGroup;
 	[_patrol2,ONL_logic_facility,300,5,"MOVE","AWARE","RED","LMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 	_patrol2 setVariable ["ONL_loadCreationCode","
