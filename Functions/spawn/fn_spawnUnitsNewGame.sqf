@@ -334,10 +334,10 @@ call {
 ---------------------------------------------------------------------------- */
 call {
 	// Interior
-	[4,1,ONL_CSATVariants,ONL_facility_interiorPositions] call KISKA_fnc_spawn;
+	[8,1,ONL_CSATVariants,ONL_facility_interiorPositions] call KISKA_fnc_spawn;
 
 	// Exterior
-	[4,1,ONL_CSATVariants,ONL_facility_exteriorPositions,true] call KISKA_fnc_spawn;
+	[8,1,ONL_CSATVariants,ONL_facility_exteriorPositions,true] call KISKA_fnc_spawn;
 
 	// patrol 1
 	private _randomPosition = [ONL_logic_facility,300] call CBA_fnc_randPos;
