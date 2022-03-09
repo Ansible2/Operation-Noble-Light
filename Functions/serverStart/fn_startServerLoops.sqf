@@ -187,7 +187,7 @@ if !(["ONL_InvestigateFacility_task"] call BIS_fnc_taskCompleted) then {
 		{
 			["investigatingFacility",0.65] call ONL_fnc_playMusicForScene;
 		},
-		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_facility,600)}
+		{CONDITION_PLAYER_WITHIN_RADIUS_3D(ONL_logic_facility,450)}
 	] call KISKA_fnc_waitUntil;
 };
 
