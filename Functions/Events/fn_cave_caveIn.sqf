@@ -38,6 +38,8 @@ if (missionNamespace getVariable ["ONL_caveCollapsed",false] OR {missionNamespac
 if (alive ONL_charge_1 OR {alive ONL_charge_2} OR {alive ONL_charge_3}) then {
     missionNamespace setVariable ["ONL_caveCollapsed",true];
 
+    ["Explosion2",[704.096,4618.04,0],1000,5] call KISKA_fnc_playsound3d;
+
     [ONL_charge_1,ONL_charge_2,ONL_charge_3] apply {
         if (alive _x) then {
             _x enableSimulationGlobal true;
