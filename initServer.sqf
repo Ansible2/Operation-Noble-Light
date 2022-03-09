@@ -1,3 +1,7 @@
+ONL_cargoPlane animateSource ["back_ramp",1];
+ONL_cargoPlane animateSource ["back_ramp_switch",1];
+[ONL_cargoPlane,ONL_logc_cargoPlaneGround] call BIS_fnc_attachToRelative;
+
 private _useCivilians = [false,true] select (["UseCivilians"] call BIS_fnc_getParamValue);
 missionNamespace setVariable ["ONL_useCivilians",_useCivilians];
 

@@ -6,6 +6,13 @@ if (!isServer) exitWith {};
 [
 	2,
 	{
+		private _invisibleWalls = ["Plane Loading Blocks"] call KISKA_fnc_getMissionLayerObjects;
+		_invisibleWalls apply {
+			deleteVehicle _x;
+		};
+
+		detach ONL_cargoPlane;
+
 		if ((ONL_cargoPlane animationSourcePhase "back_ramp") isEqualTo 1) then {
 			ONL_cargoPlane animateSource ["back_ramp",0];
 			ONL_cargoPlane animateSource ["back_ramp_switch",0];
