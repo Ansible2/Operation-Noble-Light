@@ -27,7 +27,8 @@ respawnDialog = ON;
 respawnDelay = 15;
 respawnButton = ON;
 
-respawnTemplates[] = {RESPAWN_TEMPLATE_MENU_POSITION};
+respawnTemplates[] = {RESPAWN_TEMPLATE_MENU_POSITION,RESPAWN_TEMPLATE_SPECTATOR};
+
 /*
 respawnTemplatesWest[] = {  };
 respawnTemplatesEast[] = {  };
