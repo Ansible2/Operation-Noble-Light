@@ -26,6 +26,35 @@ if (!isServer) exitWith {};
 	BASE
 ---------------------------------------------------------------------------- */
 call {
+	// Armor
+	private _fn_create = {
+		params [
+			["_logic",objNull,[objNull]],
+			["_type","",[""]]
+		];
+		private _object = createVehicle [_type,getPosATL _logic,[],0,"CAN_COLLIDE"];
+		_object setVectorDirAndUp [vectorDir _logic,vectorUp _logic];
+		_object enableDynamicSimulation true;
+		private _group = createVehicleCrew _object;
+		_group setCombatMode "RED";
+
+		allCurators apply {
+			_x addCuratorEditableObjects [[_object],true];
+		};
+	};
+
+
+	[ONL_maridBaseLogic_1,ONL_CSAT_APCWheeled] call _fn_create;
+
+	uiSleep 1;
+
+	[ONL_kamyshBaseLogic_1,ONL_CSAT_APCTracked] call _fn_create;
+
+	uiSleep 1;
+
+	[ONL_varsukBaseLogic_1,ONL_CSAT_MBT] call _fn_create;
+
+
 	// turrets
 	private _turretUnits = [4,1,ONL_CSATVariants,[],true] call KISKA_fnc_spawn;
 	private _turrets = [ONL_turretBase_1,ONL_turretBase_2,ONL_turretBase_3,ONL_turretBase_4];
@@ -89,7 +118,7 @@ call {
 
 	//// bunker patrols
 	// patrol 1
-	private _patrol1 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_1] call KISKA_fnc_spawnGroup;
+	private _patrol1 = [5,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_1] call KISKA_fnc_spawnGroup;
 
 	_patrol1 setVariable ["ONL_loadCreationCode","
 		params ['_group'];
@@ -102,7 +131,7 @@ call {
 	uiSleep 1;
 
 	// patrol 2
-	private _patrol2 = [3,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_2] call KISKA_fnc_spawnGroup;
+	private _patrol2 = [5,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_2] call KISKA_fnc_spawnGroup;
 
 	_patrol2 setVariable ["ONL_loadCreationCode","
 		params ['_group'];
@@ -111,6 +140,19 @@ call {
 	"];
 
 	[_patrol2,ONL_baseBunker_patrolLogic_2,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
+
+	uiSleep 1;
+
+	// patrol 3
+	private _patrol3 = [6,ONL_CSATVariants,OPFOR,ONL_baseBunker_patrolLogic_2] call KISKA_fnc_spawnGroup;
+
+	_patrol3 setVariable ["ONL_loadCreationCode","
+		params ['_group'];
+		[_group] call CBA_fnc_clearWaypoints;
+		[_group,ONL_baseBunker_patrolLogic_3,300,4,'MOVE','AWARE','YELLOW','LMITED','STAG COLUMN'] call CBA_fnc_taskPatrol;
+	"];
+
+	[_patrol3,ONL_baseBunker_patrolLogic_3,200,4,"MOVE","AWARE","RED","LIMITED","STAG COLUMN"] call CBA_fnc_taskPatrol;
 
 	uiSleep 1;
 
