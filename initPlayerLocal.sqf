@@ -17,32 +17,42 @@ params [
 *
 *
 */
-ONL_CCMLoaded = ["CCM_MUSIC"] call KISKA_fnc_isPatchLoaded;
+//ONL_CCMLoaded = ["CCM_MUSIC"] call KISKA_fnc_isPatchLoaded;
+ONL_CCMLoaded = ["CCM_SB"] call KISKA_fnc_isPatchLoaded;
 ONL_KISKAMusicLoaded = ["KISKA_music"] call KISKA_fnc_isPatchLoaded;
 
 [_player] call ONL_fnc_addPlayerKilledEHs;
-// filthy casuals reducing weapon sway
 _player setCustomAimCoef 0.15;
 
 
+
+/* ----------------------------------------------------------------------------
+	Handle View Distance
+---------------------------------------------------------------------------- */
 // adjust player view distance for the airfield as it is very intensive
-setViewDistance 750;
-setObjectViewDistance 500;
+setViewDistance 500;
+setObjectViewDistance 300;
 
 // adjust to longer ranges once out of sight of the airfield
-null = [
+[
 	1,
 	{
 		setViewDistance 1700;
 		setObjectViewDistance 1500;
 	},
-	{(player distance2D ONL_airfieldRespawn_Logic) > 500}
+	{(player distance2D ONL_airfieldRespawn_Logic) > 1000}
 ] spawn KISKA_fnc_waitUntil;
 
 
+/* ----------------------------------------------------------------------------
+	Add mission actions to objects
+---------------------------------------------------------------------------- */
 call ONL_fnc_addActionsMaster;
 
-//// diary records
+
+/* ----------------------------------------------------------------------------
+	Diary Records
+---------------------------------------------------------------------------- */
 // Situation
 _player createDiaryRecord ["Diary",["Situation","In a bid to garner more influence among Europe and its talks with the Russian Federation, CSAT's soft expansion has brought it to Scandinavia.
 <br></br>
@@ -87,7 +97,7 @@ _player createDiaryRecord ["Diary",["READ ME","
 	The following explains how to load vehicles:
 	<br></br>
 	<br></br>
-	Simply drive the corresponding vehicle (carefully) into the aircraft. 
+	Simply drive the corresponding vehicle (carefully) into the aircraft.
 	<br></br>
 	<br></br>
 	Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.
@@ -128,11 +138,15 @@ _player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
 	"<execute expression= '[true,ONL_zeusLogic] call KISKA_fnc_reassignCurator;'>If You've Lost Zeus, Click Here</execute>"
 ]];
 
-// wait to add save game button (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
+
+
+/* ----------------------------------------------------------------------------
+	wait to add save game button (only admins or hosts will be able to save because of checks in ONL_fnc_saveProgress)
+---------------------------------------------------------------------------- */
 [
 	5,
 	{
-		(_this select 0) createDiaryRecord ["Diary", ["SAVE GAME", 
+		(_this select 0) createDiaryRecord ["Diary", ["SAVE GAME",
 			"(Only hosts and admins can save)
 			<br></br>
 			<br></br>
@@ -146,45 +160,56 @@ _player createDiaryRecord ["ReassignZeus_entry", ["Reassign Zeus Curator",
 	[_player]
 ] call KISKA_fnc_waitUntil;
 
-null = [] spawn KISKA_fnc_rallyPointActionLoop;
 
+/* ----------------------------------------------------------------------------
+	Add actions for loading vehicles
+---------------------------------------------------------------------------- */
 waitUntil {
 	if !(isNil "ONL_startingVehicles") exitWith {
-		[_player] call ONL_fnc_addCargoActions; 
+		[_player] call ONL_fnc_addCargoActions;
 		true
 	};
-	
+
 	uiSleep 1;
 	false
 };
 
 
-null = [] spawn {
-	
-	sleep 10;
-  
-	"READ ME" hintC [
-		"The following explains how to load vehicles:",
-		
-		parseText "Simply drive the corresponding vehicle (carefully) into the aircraft.", 
 
-		parseText "Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.", 
+/* ----------------------------------------------------------------------------
+	Show Readme
+---------------------------------------------------------------------------- */
+[] spawn {
 
-		parseText "You can unmount the vehicle using its <t color='#039e00'>--Unstrap Vehicle--</t> action.",
+	waitUntil {
+		sleep 1;
+		if (isNull (missionNamespace getVariable ["ONL_cargoPlane",objNull])) exitWith {true};
+		player distance2D ONL_cargoPlane <= 50;
+	};
 
-		parseText "<t color='#de0000'>DO NOT use any other methods of loading the vehicles.</t>",
+	if (!isNull (missionNamespace getVariable ["ONL_cargoPlane",objNull])) then {
+		"VEHICLE LOADING" hintC [
+			"The following explains how to load vehicles:",
 
-		"If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.",
+			parseText "Simply drive the corresponding vehicle (carefully) into the aircraft.",
 
-		"The aircraft will take off once all PLAYERS are in seats.",
+			parseText "Make sure to use <t color='#3fbfd9'>--Strap Vehicle--</t> action once in place.",
 
-		parseText "Once over the DZ, use the <t color='#039e00'>--Get Out Interior--</t> action to leave your seat (you'll skydive for a bit but settle).",
+			parseText "You can unmount the vehicle using its <t color='#039e00'>--Unstrap Vehicle--</t> action.",
 
-		parseText "Lower the ramp and then go to the vehicles. Use their <t color='#de0000'>--Release Vehicle--</t> action to eject them from the aircraft.",
+			parseText "<t color='#de0000'>If you use another method of loading vehicles, make sure you can eject them while in the air.</t>",
 
-		"Then just follow them out the door."
-	];
+			"If the aircraft decides to launch up in the air, simply use the action on the switch box near all the computers in the hangar.",
+
+			"The aircraft will take off once all PLAYERS are in seats within the plane.",
+
+			parseText "Once over the DZ, use the <t color='#039e00'>--Get Out Interior--</t> action to leave your seat (you'll skydive for a bit but settle).",
+
+			parseText "Lower the ramp and then go to the vehicles. Use their <t color='#de0000'>--Release Vehicle--</t> action to eject them from the aircraft.",
+
+			"Then just follow them out the door."
+		];
+	};
+
 
 };
-
-[_player] call ONL_fnc_addSupplyDropSupports;

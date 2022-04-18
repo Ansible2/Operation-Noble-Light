@@ -16,12 +16,12 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_shutOffLights;
+		[] spawn ONL_fnc_shutOffLights;
 
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 

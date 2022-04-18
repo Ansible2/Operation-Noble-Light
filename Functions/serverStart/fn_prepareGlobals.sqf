@@ -3,9 +3,9 @@ Function: ONL_fnc_prepareGlobals
 
 Description:
 	Does exactly what it says. Most globals in the scenario are initialized here.
-	
+
 	It is executed from the "initServer.sqf".
-	
+
 Parameters:
 	NONE
 
@@ -14,20 +14,57 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_prepareGlobals
-
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
+
+// arrays of eden entities
+#include "..\..\headers\entityGroups.hpp";
+
+#define GET_UNIT_ARRAY(class,property) getArray(_arrayConfigs >> class >> property)
+#define GET_SIMPLE_CLASS(class,property) getText(_simpleClassesConfig >> class >> property)
+#define GET_CIV_ARRAY(property) getArray(missionConfigFile >> "KISKA_loadouts" >> "civGear" >> property)
+
 
 ONL_allClientsTargetID = [0,-2] select isDedicated;
 publicVariable "ONL_allClientsTargetID";
 
-// load save game
+
+/* ----------------------------------------------------------------------------
+	civilian gear
+---------------------------------------------------------------------------- */
+ONL_loadoutConfig = missionConfigFile >> "KISKA_loadouts" >> "ONL";
+ONL_civUniforms = GET_CIV_ARRAY("uniforms");
+ONL_civFacewear = GET_CIV_ARRAY("facewear");
+ONL_civVests = GET_CIV_ARRAY("vests");
+ONL_civHeadgear = GET_CIV_ARRAY("headgear");
+
+
+/* ----------------------------------------------------------------------------
+	spawn positions
+---------------------------------------------------------------------------- */
+private _configProps = configProperties [missionConfigFile >> "Mission_SpawnPositions","true",false];
+_configProps apply {
+	private _data = [_x] call BIS_fnc_getCfgData;
+	private _configName = configName _x;
+	if (_data isEqualType "") then {
+		_data = [_data] call KISKA_fnc_getMissionLayerObjects;
+	};
+
+	missionNamespace setVariable [_configName,_data];
+
+};
+
+
+/* ----------------------------------------------------------------------------
+
+	Load save
+
+---------------------------------------------------------------------------- */
 ONL_loadSave = [false,true] select (["LoadSave",0] call BIS_fnc_getParamValue);
 if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData",[]]) isEqualTo []}) then {
 	ONL_loadSave = false;
@@ -41,6 +78,15 @@ if (ONL_loadSave AND {(profileNamespace getVariable ["ONL_saveData",[]]) isEqual
 	] call CBA_fnc_waitAndExecute;
 };
 
+
+// this is prepared for saves to put the index of dead vehicles so they can be deleted when loading a game
+// in other words, since they are created in a certain order, the exact vehicle can be deleted through an array index
+ONL_deadVehicleIndexes = [];
+// this is for loops and events that do not need to be created again after loading a save
+ONL_skipLoopsAndEvents = [];
+
+
+
 // so that the defusal actions can check if these are alive
 // interesting note. as of 1.98, global names assigned in the Eden Editor for mines
 /// are NOT propigated across all machines unlike every other object.
@@ -48,7 +94,11 @@ publicVariable "ONL_charge_1";
 publicVariable "ONL_charge_2";
 publicVariable "ONL_charge_3";
 
-// check optional mods
+/* ----------------------------------------------------------------------------
+
+	Check mods
+
+---------------------------------------------------------------------------- */
 ONL_snowTigersLoaded = ["IP_CSAT_ST"] call KISKA_fnc_isPatchLoaded;
 ONL_CUPVehiclesLoaded = ["CUP_Vehicles_Core"] call KISKA_fnc_isPatchLoaded;
 ONL_RHSUSFVehiclesLoaded = ["rhsusf_cars"] call KISKA_fnc_isPatchLoaded;
@@ -57,86 +107,179 @@ ONL_CUPUnitsLoaded = ["CUP_Creatures_People_Core"] call KISKA_fnc_isPatchLoaded;
 ONL_FSGLoaded = ["fsg_units"] call KISKA_fnc_isPatchLoaded;
 
 
-////// prepare globals for unitTypes
 
-// CSAT
-ONL_CSATVariants = [ONL_VanillaCSAT_unitTypes,ONL_FSTCSAT_unitTypes] select ONL_snowTigersLoaded;
-ONL_CSAT_crewman = ["O_T_Crew_F","IP_O_crew_FST"] select ONL_snowTigersLoaded;
+/* ----------------------------------------------------------------------------
+
+	Unit classes
+
+---------------------------------------------------------------------------- */
+private _unitTypeConfig = missionConfigFile >> "Mission_unitTypes";
+private _simpleClassesConfig = _unitTypeConfig >> "SimpleClasses";
+private _arrayConfigs = _unitTypeConfig >> "ClassArrays";
+
+/* ----------------------------------------------------------------------------
+	CSAT types
+---------------------------------------------------------------------------- */
+ONL_CSATVariants = [
+	GET_UNIT_ARRAY("csat_units","vanilla"),
+	GET_UNIT_ARRAY("csat_units","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_CSAT_crewman = [
+	GET_SIMPLE_CLASS("csat_crewman","vanilla"),
+	GET_SIMPLE_CLASS("csat_crewman","snowTigers")
+] select ONL_snowTigersLoaded;
+
 // CSAT Vehicles
-ONL_CSATVehicleVariants = [ONL_vanillaCSAT_vehicleUnitTypes,ONL_FST_vehicleUnitTypes] select ONL_snowTigersLoaded;
-ONL_CSATHelicopterAttack = ["O_Heli_Attack_02_dynamicLoadout_F","IP_O_Heli_Attack_02_SnowHex_FST"] select ONL_snowTigersLoaded;
-ONL_CSAT_MBT = ["O_T_MBT_02_cannon_ghex_F","IP_O_MBT_02_cannon_FST"] select ONL_snowTigersLoaded;
-ONL_CSAT_APCWheeled = ["O_T_APC_Wheeled_02_rcws_v2_ghex_F","IP_O_APC_Wheeled_02_rcws_FST"] select ONL_snowTigersLoaded;
-ONL_CSAT_APCTracked = ["O_T_APC_Tracked_02_cannon_ghex_F","IP_O_APC_Tracked_02_cannon_FST"] select ONL_snowTigersLoaded;
+ONL_CSATVehicleVariants = [
+	GET_UNIT_ARRAY("csat_vehicle_types", "vanilla"),
+	GET_UNIT_ARRAY("csat_vehicle_types", "snowTigers")
+] select ONL_snowTigersLoaded;
 
-// spetsnaz
-ONL_spetsnazRegular_unitTypes = [ONL_spetsnazRegVanilla_unitTypes,ONL_fsg_unitTypes] select ONL_FSGLoaded;
-ONL_spetsnazSFVariants = [ONL_vanillaSpetsnazSF_unitTypes,ONL_fsgSF_unitTypes] select ONL_FSGLoaded;
-ONL_spetsnaz_crewman = ["O_R_Patrol_Soldier_Engineer_F","fsg_o_regular_crewman"] select ONL_FSGLoaded;
+ONL_CSATHelicopterAttack = [
+	GET_SIMPLE_CLASS("csat_attackHeli","vanilla"),
+	GET_SIMPLE_CLASS("csat_attackHeli","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_CSAT_MBT = [
+	GET_SIMPLE_CLASS("csat_tank","vanilla"),
+	GET_SIMPLE_CLASS("csat_tank","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_CSAT_APCWheeled = [
+	GET_SIMPLE_CLASS("csat_apc_wheeled","vanilla"),
+	GET_SIMPLE_CLASS("csat_apc_wheeled","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_CSAT_APCTracked = [
+	GET_SIMPLE_CLASS("csat_apc_tracked","vanilla"),
+	GET_SIMPLE_CLASS("csat_apc_tracked","snowTigers")
+] select ONL_snowTigersLoaded;
+
+
+
+/* ----------------------------------------------------------------------------
+	spetsnaz type
+---------------------------------------------------------------------------- */
+ONL_spetsnazRegular_unitTypes = [
+	GET_UNIT_ARRAY("spetsnaz_regular_units","vanilla"),
+	GET_UNIT_ARRAY("spetsnaz_regular_units","foxhound")
+] select ONL_FSGLoaded;
+
+ONL_spetsnazSFVariants = [
+	GET_UNIT_ARRAY("spetsnaz_sf_units","vanilla"),
+	GET_UNIT_ARRAY("spetsnaz_sf_units","foxhound")
+] select ONL_FSGLoaded;
+
+ONL_spetsnaz_crewman = [
+	GET_SIMPLE_CLASS("spetsnaz_crewman","vanilla"),
+	GET_SIMPLE_CLASS("spetsnaz_crewman","foxhound")
+] select ONL_FSGLoaded;
+
 // spetsnaz vehicles
-ONL_spetsnaz_apc = ["I_APC_Wheeled_03_cannon_F","fsg_btr_1"] select ONL_FSGLoaded;
-ONL_spetsnaz_carArmed = ["I_G_Offroad_01_armed_F","fsg_tigr_2"] select ONL_FSGLoaded;
-ONL_spetsnaz_car = ["C_Offroad_01_comms_F","fsg_tigr_1"] select ONL_FSGLoaded;
-ONL_spetsnaz_helicopter = "O_Heli_Light_02_unarmed_F";
+ONL_spetsnaz_apc = [
+	GET_SIMPLE_CLASS("spetsnaz_apc","vanilla"),
+	GET_SIMPLE_CLASS("spetsnaz_apc","foxhound")
+] select ONL_FSGLoaded;
+
+ONL_spetsnaz_carArmed = [
+	GET_SIMPLE_CLASS("spetsnaz_armedCar","vanilla"),
+	GET_SIMPLE_CLASS("spetsnaz_armedCar","foxhound")
+] select ONL_FSGLoaded;
+
+ONL_spetsnaz_car = [
+	GET_SIMPLE_CLASS("spetsnaz_car","vanilla"),
+	GET_SIMPLE_CLASS("spetsnaz_car","foxhound")
+] select ONL_FSGLoaded;
+
+ONL_CSATViper_unitTypes = getArray(_arrayConfigs >> "ONL_CSATViper_unitTypes");
+ONL_CSATMask_unitTypes = getArray(_arrayConfigs >> "ONL_CSATMask_unitTypes");
+ONL_spetsnaz_helicopter = GET_SIMPLE_CLASS("spetsnaz_helicopter","vanilla");
 
 
-// PMC
-ONL_pmc_Variants = [ONL_PMCVanilla_unitTypes,ONL_ion_unitTypes] select ONL_CUPUnitsLoaded;
-ONL_PMC_guntruck = ["I_G_Offroad_01_armed_F","CUP_I_RG31E_M2_W_ION"] select ONL_CUPVehiclesLoaded;
+/* ----------------------------------------------------------------------------
+	PMC types
+---------------------------------------------------------------------------- */
+ONL_pmc_Variants = [
+	GET_UNIT_ARRAY("pmc_units","vanilla"),
+	GET_UNIT_ARRAY("pmc_units","cup")
+] select ONL_CUPUnitsLoaded;
+
+ONL_PMC_guntruck = [
+	GET_SIMPLE_CLASS("pmc_gunTruck","vanilla"),
+	GET_SIMPLE_CLASS("pmc_gunTruck","cup")
+] select ONL_CUPUnitsLoaded;
 
 
-// static object replacement globals
-ONL_tempestVariants = [ONL_tempestVariants_Vanilla,ONL_tempestVariants_FST] select ONL_snowTigersLoaded;
-ONL_taruPodsVariants = [ONL_taruPodsVariants_vanilla,ONL_taruPodsVariants_FST] select ONL_snowTigersLoaded;
-ONL_ifritVariants = [ONL_ifritVariants_vanilla,ONL_ifritVariants_FST] select ONL_snowTigersLoaded;
-ONL_orca = ["O_Heli_Light_02_unarmed_F","IP_O_Heli_Light_02_unarmed_FST"] select ONL_snowTigersLoaded;
+/* ----------------------------------------------------------------------------
+	static object types
+---------------------------------------------------------------------------- */
+ONL_tempestVariants = [
+	GET_UNIT_ARRAY("tempest","vanilla"),
+	GET_UNIT_ARRAY("tempest","snowTigers")
+] select ONL_snowTigersLoaded;
 
+ONL_taruPodsVariants = [
+	GET_UNIT_ARRAY("taruPods","vanilla"),
+	GET_UNIT_ARRAY("taruPods","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_ifritVariants = [
+	GET_UNIT_ARRAY("ifrits","vanilla"),
+	GET_UNIT_ARRAY("ifrits","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_orca = [
+	GET_SIMPLE_CLASS("orca","vanilla"),
+	GET_SIMPLE_CLASS("orca","snowTigers")
+] select ONL_snowTigersLoaded;
+
+ONL_CSATHazmat_unitType = "O_T_Soldier_F";
+
+
+
+/* ----------------------------------------------------------------------------
+	Misc
+---------------------------------------------------------------------------- */
+ONL_blackSite_collectableIntel_count = count ((getMissionLayerEntities "Black Site Collects") select 0);
+ONL_cave_collectableIntel_count = count ONL_caveCollectDevices;
+ONL_cave_destroyableServers_count = count ONL_caveServers;
+ONL_blackSiteServers = (getMissionLayerEntities "Black Site Servers") select 0;
+ONL_blackSite_destroyableServers_count = count ONL_blackSiteServers;
 
 ONL_startingVehicles = (getMissionLayerEntities "Starting Vehicles") select 0;
-
 ONL_prePlacedVehicles = vehicles select {
 	!(_x isKindOf "THING") AND
 	{!(_x in ONL_startingVehicles)}
 };
-// this is prepared for saves to put the index of dead vehicles so they can be deleted when loading a game
-// in other words, since they are created in a certain order, the exact vehicle can be deleted through an array index
-ONL_deadVehicleIndexes = [];
-// this is for loops and events that do not need to be created again after loading a save
-ONL_skipLoopsAndEvents = [];
 
 
-// Task stuff for saves
-ONL_taskIdsAndInfo = [
-	[FindHeadScientist_TaskID,"FindHeadScientist_TaskInfo","","SEARCH"],
-	[CollectBaseIntel_TaskID,"CollectBaseIntel_TaskInfo","","SEARCH"],
-	[DestroyComs_TaskID,"DestroyComs_TaskInfo",ONL_comRelay,"DESTROY"],
-	[DestroyArty_taskID,"DestroyArty_taskInfo","","DESTROY"],
-	[CollectBlackSiteIntel_TaskID,"CollectBlackSiteIntel_TaskInfo","","SEARCH"],
-	[CollectRockSample_TaskID,"CollectRockSample_TaskInfo",ONL_glowingRock,"INTERACT"],
-	[DestroyBlackSiteServers_TaskID,"DestroyBlackSiteServers_TaskInfo",ONL_blackSiteServer_2,"DESTROY"],
-	[InvestigateBlackSite_TaskID,"InvestigateBlackSite_TaskInfo","","SEARCH"],
-	[CollectCaveData_TaskID,"CollectCaveData_TaskInfo","","INTERACT"],
-	[CollectDeviceLogs_TaskID,"CollectDeviceLogs_TaskInfo","","INTERACT"],
-	[DestroyCaveServers_TaskID,"DestroyCaveServers_TaskInfo",ONL_caveServer_1,"DESTROY"],
-	[DestroyTheDevices_TaskID,"DestroyTheDevices_TaskInfo","","DESTROY"],
-	[InvestigateFacility_TaskID,"InvestigateFacility_TaskInfo","","SEARCH"],
-	[SearchLodging_TaskID,"SearchLodging_TaskInfo","","SEARCH"],
-	[SecureApollo_TaskID,"SecureApollo_TaskInfo",ONL_ApolloFiles,"MEET"],
-	[Extract_TaskID,"Extract_TaskInfo",[6388.54,9555.92,0],"TAKEOFF"]
-];
+//ONL_newsSounds = getMissionConfigValue "newsSounds";
+//ONL_usedNewsSounds = [];
 
+/* ----------------------------------------------------------------------------
+	Music
+---------------------------------------------------------------------------- */
+ONL_musicSceneConfig = missionConfigFile >> "Music_Tracks" >> "tracksForScenes";
 
-////// Prepare music globals
 private _musicType = ["CCM","NONE"/*,"KISKA"*/] select (["MusicType",0] call BIS_fnc_getParamValue);
 if (_musicType != "None") then {
 	if (_musicType == "CCM") then {
 		ONL_CCMLoaded = true;
+		ONL_randomMusicTracks = getArray(missionConfigFile >> "Music_Tracks" >> "ONL_randomMusicTracksCCM");
+		ONL_caveMusicTracks = getArray(missionConfigFile >> "Music_Tracks" >> "ONL_caveMusicTracks");
 		ONL_KISKAMusicLoaded = false;
+
 	} else {
 		ONL_KISKAMusicLoaded = true;
+		ONL_randomMusicTracks = getArray(missionConfigFile >> "Music_Tracks" >> "ONL_randomMusicTracksKISKA");
 		ONL_CCMLoaded = false;
+
 	};
+
 } else {
 	ONL_CCMLoaded = false;
+	ONL_randomMusicTracks = [];
 	ONL_KISKAMusicLoaded = false;
+
 };

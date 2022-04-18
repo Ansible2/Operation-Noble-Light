@@ -12,21 +12,19 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_enterCave;
-
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!hasInterface) exitWith {};
 
-["ONL_Cave_entered_Event"] call CBA_fnc_serverEvent;
-		
+remoteExec ["ONL_fnc_cave_entered",2];
+
 titleText ["<t font='PuristaSemibold' align='center' size='5'>Now Entering...</t>", "BLACK OUT", 3, true, true];
 
-null = [] spawn ONL_fnc_addDefusalActions;
+[] spawn ONL_fnc_addDefusalActions;
 
 3 fadeSound 0;
 
@@ -49,7 +47,7 @@ playSound "garage_doors";
 	},
 	[],
 	3
-] call CBA_fnc_waitAndExecute; 
+] call CBA_fnc_waitAndExecute;
 
 [
 	{
@@ -58,4 +56,4 @@ playSound "garage_doors";
 	},
 	[],
 	6
-] call CBA_fnc_waitAndExecute; 
+] call CBA_fnc_waitAndExecute;

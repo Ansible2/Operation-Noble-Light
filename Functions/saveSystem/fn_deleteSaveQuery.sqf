@@ -23,6 +23,6 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 remoteExecCall ["ONL_fnc_deleteSave",2];

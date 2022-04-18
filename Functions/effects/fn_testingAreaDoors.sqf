@@ -15,12 +15,12 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_testingAreaDoors;
+		[] spawn ONL_fnc_testingAreaDoors;
 
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 
 if (!canSuspend) exitWith {};

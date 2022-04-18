@@ -13,12 +13,12 @@ Returns:
 Examples:
     (begin example)
 
-		null = [] spawn ONL_fnc_endMission;
+		[] spawn ONL_fnc_endMission;
 
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (hasInterface AND {call KISKA_fnc_isMusicPlaying}) then {
 	10 fadeMusic 0;

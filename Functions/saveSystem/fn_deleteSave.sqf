@@ -18,7 +18,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 profileNamespace setVariable ["ONL_saveData",nil];
 saveProfileNamespace;

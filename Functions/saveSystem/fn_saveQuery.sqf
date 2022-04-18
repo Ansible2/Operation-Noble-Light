@@ -23,7 +23,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if !(call KISKA_fnc_isAdminOrHost) then {
 	hint "Only admins or hosts can save a game";

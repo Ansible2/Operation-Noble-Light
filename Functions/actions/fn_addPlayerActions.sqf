@@ -12,53 +12,54 @@ Returns:
 
 Examples:
     (begin example)
-
-		null = [player] spawn ONL_fnc_addPlayerActions;
-
+		[player] spawn ONL_fnc_addPlayerActions;
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
+scriptName "ONL_fnc_addPlayerActions";
+
 if (!hasInterface) exitWith {};
 
 if (!canSuspend) exitWith {
-	"ONL_fnc_addplayerActions must be run in scheduled envrionment" call BIS_fnc_error;
+	["Was not run in scheduled, exiting to scheduled..."] call KISKA_fnc_log;
+	_this spawn ONL_fnc_addPlayerActions;
 };
 
 waitUntil {!isNull player};
 
 params ["_player",player,[objNull]];
 
-ONL_enterBunkerAction_ID = _player addAction [ 
-	"--Enter Bunker",  
+ONL_enterBunkerAction_ID = _player addAction [
+	"-- Enter Bunker --",
 	{
 		call ONL_fnc_enterCave;
-	}, 
-	nil, 
-	10,  
-	true,  
-	false,  
-	"", 
-	"_target distance ONL_logic_cave_2 < 5 AND {isNull (objectParent _target)}", 
-	2, 
-	false 
+	},
+	nil,
+	10,
+	true,
+	false,
+	"",
+	"_target distance ONL_logic_cave_2 < 5 AND {isNull (objectParent _target)}",
+	2,
+	false
 ];
 
 // exit cave
-ONL_exitBunkerAction_ID = _player addAction [ 
-	"--Exit Bunker",  
-	{		
-		call ONL_fnc_exitCave; 
-	}, 
-	nil, 
-	10,  
-	true,  
-	false,  
-	"", 
-	"_target distance ONL_logic_cave_1 < 5 AND {isNull (objectParent _target)}", 
-	2, 
-	false 
+ONL_exitBunkerAction_ID = _player addAction [
+	"-- Exit Bunker --",
+	{
+		call ONL_fnc_exitCave;
+	},
+	nil,
+	10,
+	true,
+	false,
+	"",
+	"_target distance ONL_logic_cave_1 < 5 AND {isNull (objectParent _target)}",
+	2,
+	false
 ];
 
 

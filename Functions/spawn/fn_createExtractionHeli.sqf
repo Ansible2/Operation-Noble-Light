@@ -20,7 +20,7 @@ Examples:
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
 if (!isServer) exitWith {};
 
@@ -29,7 +29,7 @@ ONL_extractHeli = createVehicle [["B_Heli_Transport_03_F","CUP_B_UH60M_US"] sele
 if (ONL_CUPVehiclesLoaded) then {
 	[
 		ONL_extractHeli,
-		["Grey",1], 
+		["Grey",1],
 		["Hide_ESSS2x",1,"Hide_ESSS4x",1,"Hide_Nose",0,"Navyclan_hide",0,"Navyclan2_hide",1,"Blackhawk_Hide",0,"Hide_FlirTurret",0,"Hide_Probe",0,"Doorcock_Hide",0,"Filters_Hide",1]
 	] call BIS_fnc_initVehicle;
 };
@@ -37,6 +37,7 @@ if (ONL_CUPVehiclesLoaded) then {
 ONL_extractHeliPilots_group = createVehicleCrew ONL_extractHeli;
 
 // so turrets can fire without pilot freaking out
+/*
 ONL_extractHeliTurrets_group = createGroup WEST;
 [ONL_extractHeli turretUnit [1], ONL_extractHeli turretUnit [2]] joinSilent ONL_extractHeliTurrets_group;
 
@@ -48,13 +49,13 @@ private _extractHeli_turretUnits = units ONL_extractHeliTurrets_group;
 		_x assignAsTurret [ONL_extractHeli,[2]];
 	};
 } forEach _extractHeli_turretUnits;
-
+*/
 /*
 ONL_extractHeliTurrets_group setBehaviour "AWARE";
 ONL_extractHeliTurrets_group setCombatMode "RED";
 */
 
-(units ONL_extractHeliPilots_group + _extractHeli_turretUnits) apply {
+(units ONL_extractHeliPilots_group) apply {
 	_x setUnitLoadout [[],[],["hgun_P07_F","","","",["16Rnd_9x21_Mag",16],[],""],["U_B_CombatUniform_mcam_wdl_f",[]],["V_CarrierRigKBT_01_light_Olive_F",[]],["B_LegStrapBag_black_F",[]],"H_CrewHelmetHeli_B","",[],["ItemMap","ItemGPS","ItemRadio","ItemCompass","ItemWatch","NVGoggles"]];
 	_x allowDamage false;
 	_x enableSimulationGlobal false;
@@ -65,7 +66,7 @@ ONL_extractHeliTurrets_group setCombatMode "RED";
 ONL_extractHeli setUnloadInCombat [false,false];
 ONL_extractHeli allowDamage false;
 ONL_extractHeli enableSimulationGlobal false;
-ONL_extractHeli hideObjectGlobal true; 
+ONL_extractHeli hideObjectGlobal true;
 
 // to be used in player respawn script
 missionNamespace setVariable ["ONL_extractHeli",ONL_extractHeli,true];
@@ -73,5 +74,5 @@ missionNamespace setVariable ["ONL_extractHeli",ONL_extractHeli,true];
 
 // exclude from saves
 ONL_extractHeli setVariable ["ONL_saveExcluded",true];
-ONL_extractHeliTurrets_group setVariable ["ONL_saveExcluded",true];
+//ONL_extractHeliTurrets_group setVariable ["ONL_saveExcluded",true];
 ONL_extractHeliPilots_group setVariable ["ONL_saveExcluded",true];

@@ -3,9 +3,9 @@ Function: ONL_fnc_createBaseHeliPatrol
 
 Description:
 	Creates a patroling helicopter around the base.
-	
+
 	It is executed from "ONL_fnc_spawnUnitsNewGame" OR possibly "ONL_fnc_loadProgress".
-	
+
 Parameters:
 	NONE
 
@@ -14,22 +14,22 @@ Returns:
 
 Examples:
     (begin example)
-
 		call ONL_fnc_createBaseHeliPatrol;
-
     (end)
 
 Author:
-	Ansible2 // Cipher
+	Ansible2
 ---------------------------------------------------------------------------- */
-ONL_basePatrolHelicopter = createVehicle [ONL_CSATHelicopterAttack,position ONL_baseHelipad,[],0,"NONE"];
+scriptName "ONL_fnc_createBaseHeliPatrol";
+
+ONL_basePatrolHelicopter = createVehicle [ONL_CSATHelicopterAttack,getPosATL ONL_baseHelipad,[],0,"FLY"];
 ONL_basePatrolHelicopter setVariable ["ONL_saveExcluded",true];
 
 // if snow tigers is not loaded, make the heli black
 if !(ONL_snowTigersLoaded) then {
 	[
 		ONL_basePatrolHelicopter,
-		["Black",1], 
+		["Black",1],
 		true
 	] call BIS_fnc_initVehicle;
 };
@@ -47,7 +47,7 @@ for "_i" from 1 to 2 do {
 	if (isNull _unit) then {
 		_unit = _pilotsGroup createUnit [ONL_CSAT_crewman,[0,0,0],[],0,"NONE"];
 	};
-	
+
 	if (_i isEqualTo 1) then {
 		_unit moveInDriver ONL_basePatrolHelicopter;
 	} else {
@@ -75,7 +75,7 @@ _group2 enableDynamicSimulation false;
 _pilotsGroup setVariable ["ONL_loadCreationCode","
 	params ['_group'];
 	ONL_basePatrolHelicopter = objectParent (leader _group);
-	ONL_basePatrolHelicopter engineOn true; 
+	ONL_basePatrolHelicopter engineOn true;
 	[ONL_basePatrolHelicopter,[ONL_heliPatroLogic_1,ONL_heliPatroLogic_2,ONL_heliPatroLogic_3,ONL_heliPatroLogic_4],600,100,'LIMITED',false] call KISKA_fnc_heliPatrol;
 "];
 

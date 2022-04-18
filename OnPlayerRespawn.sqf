@@ -8,7 +8,7 @@ _newUnit setUnitLoadout ONL_playerLoadout;
 
 _newunit setCustomAimCoef 0.15;
 
-[false,ONL_zeusLogic] call KISKA_fnc_reassignCurator;
+[ONL_zeusLogic,false] call KISKA_fnc_reassignCurator;
 
 // set envrionmental and view distance if player respawns in or out of cave accordingly
 [
@@ -21,7 +21,7 @@ _newunit setCustomAimCoef 0.15;
 		};
 
 		// if people are in the extraction helicopter, move the person into it cuz we. are. leeeaaaving.
-		if !(((call CBA_fnc_players) findIf {(objectParent _x) isEqualTo ONL_extractHeli}) isEqualTo -1) then {
+		if (((call CBA_fnc_players) findIf {(objectParent _x) isEqualTo ONL_extractHeli}) isNotEqualTo -1) then {
 			_newUnit moveInCargo ONL_extractHeli;
 		};
 
@@ -34,12 +34,13 @@ _newunit setCustomAimCoef 0.15;
 			setObjectViewDistance 200;
 			setViewDistance 200;
 
-			null = [] spawn ONL_fnc_addDefusalActions;
+			[] spawn ONL_fnc_addDefusalActions;
+
 		} else {
 			if !(environmentEnabled isEqualTo [true,true]) then {
 				enableEnvironment [true,true];
 			};
-			
+
 			setObjectViewDistance -1;
 			setViewDistance -1;
 
@@ -50,6 +51,7 @@ _newunit setCustomAimCoef 0.15;
 			if ((getObjectViewDistance select 0) > 1500) then {
 				setObjectViewDistance 1500;
 			};
+
 		};
 
 	},
