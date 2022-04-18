@@ -390,7 +390,7 @@ class Mission_SpawnPositions {
         {4938.21,10634.1,0.138245},
         {4921.31,10626.3,0.471573}
     };
-    ONL_base_bunkerInterior_positions[] = {
+    /* ONL_base_bunkerInterior_positions[] = {
         {4012.16,10436.9,0.2836},
         {4086.55,10458.2,0.377335},
         {4084.29,10464.3,0.195847},
@@ -415,7 +415,7 @@ class Mission_SpawnPositions {
         {4033.56,10436.7,0.2836},
         {4030.06,10441.4,0.2836},
         {4017.73,10440,0.2836}
-    };
+    }; */
     ONL_base_bunkerExterior_positions[] = {
         {4117.24,10433.3,0.138306},
         {4110.36,10436.6,0},

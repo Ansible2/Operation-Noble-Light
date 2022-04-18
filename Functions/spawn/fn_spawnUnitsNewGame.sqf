@@ -76,7 +76,8 @@ call {
 	uiSleep 1;
 
 	// bunker interior
-	[8,4,ONL_CSATVariants,ONL_base_bunkerInterior_positions] call KISKA_fnc_spawn;
+	private _bunkerInteriorSpawns = ["Bunker Interior Spawn Positions"] call KISKA_fnc_getMissionLayerObjects;
+	[12,4,ONL_CSATVariants,_bunkerInteriorSpawns] call KISKA_fnc_spawn;
 
 	uiSleep 1;
 
